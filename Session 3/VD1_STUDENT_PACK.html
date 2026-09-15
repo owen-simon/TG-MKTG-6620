@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Case 1 — Which Customers Should the Retention Team Contact?">
+<meta name="generator" content="MKTG 4600 handout renderer">
+<title>Case 1 — Which Customers Should the Retention Team Contact?</title>
+<style>
+:root {
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --accent-color: #1f3864;
+    --muted-color: #404040;
+    --table-header-bg: #d9e1f2;
+    --table-stripe-bg: #f5f5f7;
+    --code-bg: #f3f3f3;
+    --border-color: #707070;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; margin-top: 0; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p, ul, ol, table, blockquote, pre {
+    margin: 0 0 1rem 0;
+}
+
+ul, ol { padding-left: 1.75rem; }
+li { margin-bottom: 0.25rem; }
+li > p { margin-bottom: 0.5rem; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+tbody tr:nth-child(even) td { background-color: var(--table-stripe-bg); }
+
+code {
+    background-color: var(--code-bg);
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding: 0.25rem 1rem;
+    color: var(--muted-color);
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+strong { font-weight: 600; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+a:hover { text-decoration: none; }
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    text-decoration: none;
+    background-color: var(--table-header-bg);
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+    outline: 2px solid #fff;
+}
+
+/* Honor reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* Print stylesheet — letter, 0.75in margins, preserved table contrast */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+    html { font-size: 11pt; }
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+        page-break-after: avoid;
+    }
+    h2 {
+        border-bottom: 1.5pt solid #000;
+        page-break-before: auto;
+    }
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+    th {
+        background-color: #ddd !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    tbody tr:nth-child(even) td {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+    blockquote {
+        border-left: 1pt solid #000;
+        color: #000;
+        font-style: italic;
+    }
+    hr { border-top: 0.5pt solid #999; }
+    .skip-link { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+<h1>Case 1 — Which Customers Should the Retention Team Contact?</h1>
+<h2>V&amp;D Project 1 · MKTG 6620 · Fall 2026</h2>
+<p><strong>Released:</strong> Monday, September 14, after Session 3. <strong>Due:</strong> Monday, September 28, at 6:00 pm Mountain Time. <strong>Individual work.</strong> Worth 20% of the course grade; scored out of 100.</p>
+<p>You will compare a simple customer rule with two prediction models, check the results, and recommend whether to test a retention campaign. Your coding agent can handle the Python. Your job is to explain what was compared, whether the evidence supports your choice, and what the business still needs to learn.</p>
+<p>The supplied script performs the required calculations. Using it unchanged can earn full credit. Plan for approximately <strong>8–10 hours over two weeks</strong>, including writing; this is a workload estimate, not a timed requirement. If setup takes more than 30 minutes without progress, contact the instructor with the error message.</p>
+<h2>1. The business decision</h2>
+<p>Devon Achebe, VP of Customer Retention at <strong>Summit Telecom</strong>, is considering a retention offer. Summit Telecom and Devon are fictional. The team can contact <strong>at most 20% of customers</strong>. Devon wants to know:</p>
+<blockquote>
+<p>“Does a prediction model identify a more useful contact list than our contract rule? Is the potential value large enough to justify a pilot?”</p>
+</blockquote>
+<p>Use the public Telco customer-churn file as a classroom example. Keep its original meaning: <code>Churn = Yes</code> records that a customer left. Telephone and internet services remain telephone and internet services. The file is an example dataset, not verified records from Summit Telecom or evidence about a retail membership program.</p>
+<p>A high churn probability does not tell us whether an offer will persuade that customer to stay. The analysis helps us form a list to test. It cannot establish the effect of contacting people.</p>
+<h2>2. What you receive</h2>
+<p>The assignment package contains this handout, <strong><code>churn.csv</code></strong>, <strong><code>VD1_analysis.py</code></strong>, and <strong><code>VD1_requirements.txt</code></strong>. Save them together. The script reads the local CSV; it does not download data or call an AI service. Use the course Python environment and your usual coding agent. This project needs no GPU, paid API, additional dataset, or model tuning.</p>
+<p>The CSV is the Telco example distributed through the <code>scikit-learn/churn-prediction</code> dataset mirror. The source address is recorded here for attribution: <a href="https://huggingface.co/datasets/scikit-learn/churn-prediction">Telco churn dataset mirror</a>. The mirror declares CC BY 4.0, checked September 9, 2026. Use the instructor-supplied copy so everyone works from the same extract. Keep this source note with your submission and use only the assigned public example data.</p>
+<h3>Read the inputs</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Column</th>
+<th scope="col">Meaning and treatment in this project</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>customerID</code></td>
+<td>Identifier. Used to check that each row identifies a different customer; excluded from prediction. A unique ID is not automatically leakage, but it provides no justified input for this exercise.</td>
+</tr>
+<tr>
+<td><code>Churn</code></td>
+<td>Recorded outcome: Yes or No. Converted to 1 or 0; never used as a predictor.</td>
+</tr>
+<tr>
+<td><code>tenure</code></td>
+<td>Months with the provider.</td>
+</tr>
+<tr>
+<td><code>MonthlyCharges</code></td>
+<td>Monthly charges.</td>
+</tr>
+<tr>
+<td><code>TotalCharges</code></td>
+<td>Total charges recorded to date. Read as a number; the supplied script fills the 11 blank entries at zero tenure with zero. This is a documented classroom cleaning assumption.</td>
+</tr>
+<tr>
+<td><code>Contract</code></td>
+<td>Month-to-month, one year, or two year.</td>
+</tr>
+<tr>
+<td><code>InternetService</code></td>
+<td>DSL, Fiber optic, or No. Preserve all three categories.</td>
+</tr>
+<tr>
+<td><code>PaperlessBilling</code>, <code>PaymentMethod</code></td>
+<td>Billing arrangements. Preserve the recorded categories.</td>
+</tr>
+</tbody>
+</table>
+<p>The two models use the same <strong>seven inputs</strong>: tenure, the two charge variables, contract, internet service, paperless billing, and payment method. Other columns remain in the file but are outside this small comparison. You do not need to evaluate every available variable.</p>
+<p>The assigned extract has <strong>7,043 rows and 21 columns</strong>, with <strong>1,869 Yes and 5,174 No</strong> outcomes. Always predicting No therefore matches about <strong>73.5%</strong> of the outcomes. That accuracy does not tell Devon which customers to contact.</p>
+<p>For the exercise, assume these seven inputs are available when a list is made. The extract does not establish their timing relative to each churn event or provide a dated future campaign. Before a real pilot, the business must verify that the inputs precede the outcome and are available in its operational records.</p>
+<h2>3. Compare three methods</h2>
+<p>Use these three methods and the supplied settings. You can earn every point with this comparison alone.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Contract rule</strong> (<code>contract</code>)</td>
+<td>Assign each customer the training-data churn rate for their contract category. This is the simple baseline.</td>
+</tr>
+<tr>
+<td><strong>Logistic regression</strong> (<code>logistic</code>)</td>
+<td>Combine the seven inputs into a predicted churn probability.</td>
+</tr>
+<tr>
+<td><strong>Boosted trees</strong> (<code>trees</code>)</td>
+<td>Combine a sequence of small decision trees using the same inputs.</td>
+</tr>
+</tbody>
+</table>
+<p>A <strong>baseline</strong> is the simple option against which the additional modeling must be assessed. A <strong>predicted probability</strong> is the model's estimate of how often churn would occur among comparable customers; it needs checking against observed outcomes.</p>
+<p>The script uses logistic regression with <code>C=1</code> and boosted trees with 100 trees, depth 2, and learning rate 0.1. It keeps the original class proportions. Numeric scaling and category encoding are learned only from training rows. These settings are supplied so that your time goes into understanding the comparison.</p>
+<h3>Keep model choice separate from final evaluation</h3>
+<p>The script divides rows into <strong>60% training, 20% validation, and 20% final test</strong>, with rounding to whole rows. Both split steps use random seed 0 and keep similar churn proportions in each part.</p>
+<ul>
+<li><strong>Training rows</strong> teach the rule and models, including preprocessing.</li>
+<li><strong>Validation rows</strong> help you choose the method to carry forward.</li>
+<li><strong>Final-test rows</strong> evaluate that recorded choice afterward.</li>
+</ul>
+<p>This random split estimates performance on records resembling this example file. It does not demonstrate performance in a later campaign or another company. Do not repeatedly adjust settings to improve final-test results.</p>
+<h2>4. Run the comparison, then record your choice</h2>
+<p>Ask your coding agent to help you run the supplied script and inspect the output. A starting prompt is:</p>
+<pre><code class="language-text">Read the Case 1 handout and VD1_analysis.py. Use the local churn.csv.
+Run the compare stage with the supplied settings. Explain the data checks,
+the three partitions, and how each method makes predictions. Show the
+validation table. Do not run the final evaluation until I record my choice.
+Help me understand the output, but do not write my assessed explanations
+or decision memo.
+</code></pre>
+<p>Run from the folder containing the files:</p>
+<pre><code class="language-bash">python VD1_analysis.py compare --csv churn.csv --out outputs
+</code></pre>
+<p>It writes <code>outputs/validation.csv</code>, the row assignments, and a run record with the data fingerprint and package versions.</p>
+<p><strong>AUC</strong> measures ranking: how often does a randomly selected churner receive a higher score than a randomly selected non-churner? Ties receive half credit. AUC 0.50 means no ranking advantage. AUC 0.80 does not mean that 80% of all customers were classified correctly.</p>
+<p>In <code>analysis.md</code>, record your selected method and two or three sentences explaining the validation evidence. The default is the highest validation AUC; on an exact tie choose the simpler method in the table above. Choosing a simpler method despite a small AUC disadvantage is also acceptable if you explain that tradeoff. You do not need a particular winner.</p>
+<p>Record the choice <strong>before</strong> the next command. A dated note is sufficient. Git commit timestamps and the number of commits are not grading criteria. If you accidentally ran both stages together, disclose that and explain the limitation; do not invent an earlier record.</p>
+<h2>5. Evaluate the choice and check the results</h2>
+<p>Replace <code>logistic</code> below with your recorded choice: <code>contract</code>, <code>logistic</code>, or <code>trees</code>.</p>
+<pre><code class="language-bash">python VD1_analysis.py evaluate --csv churn.csv --out outputs --choice logistic
+</code></pre>
+<p>The script reconstructs the same training fits with the same settings; it does not refit on validation or final-test rows. It produces the final comparison for all three methods, including the alternatives you did not choose. Keep your original choice visible if the final-test ordering differs.</p>
+<h3>The four checks to explain</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Check</th>
+<th scope="col">What to show and explain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data and separation</strong></td>
+<td>Confirm the row/outcome counts and the treatment of blank charges. Use <code>split_rows.csv</code> to check that no source row belongs to two partitions. Locate where the code restricts fitting to training rows.</td>
+</tr>
+<tr>
+<td><strong>Ranking and the contact list</strong></td>
+<td>Report all three final-test AUCs. Also report the observed churn rate among each method's highest-scoring 20%, alongside the overall test churn rate. Explain which quantity answers the contact-list question.</td>
+</tr>
+<tr>
+<td><strong>Uncertainty in a comparison</strong></td>
+<td>Report the supplied AUC intervals and the paired AUC differences from the contract rule. Explain the chosen method's comparison with the baseline; if you chose the baseline, explain the strongest alternative's comparison with it.</td>
+</tr>
+<tr>
+<td><strong>Probability accuracy</strong></td>
+<td>For your chosen method, compare predicted and observed churn rates overall, within its top-20% list, and across the supplied probability groups. Identify any meaningful mismatch and any group too small to support a confident conclusion.</td>
+</tr>
+</tbody>
+</table>
+<p>For the list, the script rounds the contact count <strong>down</strong> to stay within 20%. Ties are broken using a fixed random order that does not use churn outcomes. This matters especially for the contract rule, which gives many customers identical scores. A different tie order can change that rule's list.</p>
+<p><strong>Calibration</strong> means agreement between probabilities and observed frequencies in comparable groups. An overall average can look right even when the highest-risk group is overpredicted. AUC measures order and cannot establish that probabilities are accurate. You only need to diagnose the supplied probabilities; building a recalibration model is outside the required work.</p>
+<p>A <strong>bootstrap interval</strong> comes from repeatedly sampling test rows with replacement and recomputing the statistic. The script supplies 1,000 samples and reports the middle 95% of the resulting AUCs. For a difference, it scores both methods on the <strong>same sampled rows</strong> and subtracts inside each sample. That is a <strong>paired interval</strong>. You may use this code; explain its logic in your own words.</p>
+<p>An interval that includes zero leaves the direction of the difference uncertain. It does <strong>not</strong> prove that the methods are equal or that a useful difference is impossible. These intervals describe test-sample uncertainty for the fixed models under a row-independence assumption. They do not include uncertainty from training a new model, future changes, or the effectiveness of an offer. The three comparisons are exploratory, with no adjustment for multiple comparisons; a barely positive interval is limited evidence for a broad claim of superiority.</p>
+<p>You are not required to write a bootstrap routine, repeat ten split seeds, rebalance the data, search six models, or produce a failed AI answer. More models or more prompts earn no additional credit.</p>
+<h2>6. Assess the business value under explicit assumptions</h2>
+<p>Evaluate the <strong>same top-20% list</strong> at each of three assumed save rates. You are assessing a candidate campaign, not required to use the entire budget or contact customers whose estimated value is negative.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Planning assumption</th>
+<th scope="col">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contribution from one additional customer retained, before the offer</td>
+<td>$81</td>
+</tr>
+<tr>
+<td>Offer cost for each additional retention</td>
+<td>$15</td>
+</tr>
+<tr>
+<td>Net value per additional retention</td>
+<td>$66 = $81 − $15</td>
+</tr>
+<tr>
+<td>Cost of each contact, whether successful or not</td>
+<td>$6.20</td>
+</tr>
+<tr>
+<td>Share of otherwise-churning customers retained because of contact</td>
+<td>Try 10%, 15%, and 20%</td>
+</tr>
+</tbody>
+</table>
+<p>All five rows are <strong>fictional assumptions</strong>. The simplified offer-cost assumption excludes payments to customers who would have stayed anyway. A real offer paid to those customers would require additional cost terms.</p>
+<p>Let <strong>r</strong> be the observed churn rate in the chosen method's top-20% final-test list. It is a historical estimate of that group's churn risk. Let <strong>s</strong> be the assumed share of otherwise-churning customers saved by the offer. The data do not estimate s.</p>
+<p><code>Scenario net value per 1,000 contacts = 1,000 × (r × s × $66 − $6.20)</code>.</p>
+<p>Here <code>r × s</code> is the assumed number of additional retentions per contact; multiply by $66 and subtract the contact cost. For illustration only, if r is 60% and s is 15%, the calculation is <code>1,000 × (0.60 × 0.15 × $66 − $6.20) = −$260</code>. That is hypothetical value under the assumptions, not measured campaign profit.</p>
+<p>The script supplies this table for all three lists. Check one row independently with a calculator or spreadsheet. For the chosen list, also report:</p>
+<p><code>Break-even save rate = $6.20 / (r × $66)</code>.</p>
+<p>This is the share of otherwise-churning customers the offer must save to cover contact costs under this cost model. At r = 60%, it is about 15.7%. If r is zero, there is no feasible break-even save rate; if the result exceeds 100%, the campaign cannot break even under these assumptions.</p>
+<p>Explain whether changing s changes your recommendation. The list stays fixed across scenarios. Sampling error in r, future customer differences, and the unknown offer effect remain limitations. A well-supported recommendation to defer the campaign, use the simple rule, or run a small randomized pilot can all earn full credit.</p>
+<h2>7. What to submit</h2>
+<p>Submit your repository URL and a <strong>one-page memo PDF</strong> on Canvas by the deadline. Include the memo in the repository too. The repository contains:</p>
+<ol>
+<li><strong><code>analysis.md</code></strong>, about 1,200–1,800 words excluding tables. Use Q1–Q4 below as headings. Include the validation choice, the required checks, the comparison table, and the value scenarios. Clear shorter answers are welcome; there is no minimum word count.</li>
+<li><strong>Code, <code>outputs/</code>, and a short <code>README.md</code></strong> stating the two commands, your choice, and how to obtain the course CSV. Include the supplied requirements file and retain the automatically recorded versions. Keep the dataset source note; the grader uses the same course CSV. A public data upload is not required.</li>
+<li><strong>An AI-use record:</strong> save the prompts you used and the transcript or chat export, including attempts that did not work. If your tool cannot export, save the relevant exchanges as text as you work. Add a brief note explaining what AI helped with and two checks you personally understood. No duplicate six-field log for every prompt is required. A successful first attempt is fine.</li>
+<li><strong>The one-page memo</strong>, addressed to Devon Achebe, VP of Customer Retention, Summit Telecom. Recommend an action, support it with a few decision-relevant numbers, name an assumption that could reverse it, and propose how to learn whether the offer works. Use readable formatting; no prescribed heading names or exact font are required.</li>
+</ol>
+<h3>Q4 comparison table</h3>
+<p>Use one row for each of the three methods. Additional models are unnecessary; if you did evaluate others, include their results rather than selecting only favorable ones.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">Final-test AUC</th>
+<th scope="col">ΔAUC vs. contract rule</th>
+<th scope="col">95% interval for ΔAUC</th>
+<th scope="col">Carry forward?</th>
+<th scope="col">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contract rule</td>
+<td>Your result</td>
+<td>—</td>
+<td>Put its AUC interval here</td>
+<td>Your choice</td>
+<td>Your explanation</td>
+</tr>
+<tr>
+<td>Logistic regression</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Supplied paired interval</td>
+<td>Your choice</td>
+<td>Your explanation</td>
+</tr>
+<tr>
+<td>Boosted trees</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Supplied paired interval</td>
+<td>Your choice</td>
+<td>Your explanation</td>
+</tr>
+</tbody>
+</table>
+<p>State whether “carry forward” means a pilot candidate, a benchmark, or a deferred option. There is no required number of rejected methods. Finish with two or three sentences answering <strong>what evidence would change your recommendation</strong>. Agreement with your original expectation or your AI assistant is an acceptable result.</p>
+<h2>8. How the project is graded</h2>
+<p>The published five-question weights stay the same. Points reward correct work and explanations supported by your output, not high AUC, a particular winner, statistical significance, or a positive campaign value.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Question</th>
+<th scope="col">Points</th>
+<th scope="col">Allocation and full-credit evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q1 — Generate</strong></td>
+<td><strong>20</strong></td>
+<td>Run the supplied three-method comparison and retain code/output (10); explain the three methods and common inputs (5); document AI use and the run instructions (5). Code changes and a minimum prompt count are not required.</td>
+</tr>
+<tr>
+<td><strong>Q2 — Validate the analysis</strong></td>
+<td><strong>25</strong></td>
+<td>Data checks and cleaning explanation (5); separate partitions and training-only fitting (10); correct three-method AUC/contact-list table, baseline, and interpretation (10).</td>
+</tr>
+<tr>
+<td><strong>Q3 — Assess uncertainty and value</strong></td>
+<td><strong>25</strong></td>
+<td>Correct supplied intervals and an explanation of pairing and limits (10); probability checks overall, in the selected list, and across groups (7); three value scenarios, one independent arithmetic check, and the break-even save rate (8).</td>
+</tr>
+<tr>
+<td><strong>Q4 — Explain your choice</strong></td>
+<td><strong>20</strong></td>
+<td>Validation choice and an honest record of when it was made (5); complete comparison table and reasons consistent with the evidence (10); specific evidence that would change the recommendation (5).</td>
+</tr>
+<tr>
+<td><strong>Q5 — Decide</strong></td>
+<td><strong>10</strong></td>
+<td>Actionable recommendation to Devon (3); relevant comparison and scenario numbers (3); uncertainty, offer-effect limitation, and a sensible next measurement or pilot (4).</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>100</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Within each allocation, award full credit for correct, explained evidence; roughly three-quarters for a minor omission; roughly half for a substantive error with some valid reasoning; and zero only when that component is absent or unsupported. Feedback should identify the affected component. Do not automatically zero a whole question because a model won, every prompt worked, a method was retained, or the prose used different headings.</p>
+<p>A technical problem reduces points for the affected work; independently supported analysis can still earn credit. Show any unresolved error honestly. Missing work, invented output, and undisclosed AI writing are different issues; academic misconduct is handled under the syllabus policy rather than inferred from an unexpectedly good result.</p>
+<h2>9. AI use and course policies</h2>
+<p>Use AI to help run, explain, inspect, or debug code and generate calculation tables. <strong>Write your assessed interpretations, Q4 reasons, and memo yourself.</strong> AI drafting, rewriting, or polishing those passages is not permitted under the course policy. You may ask conceptual questions while learning; you remain responsible for the explanations you submit.</p>
+<p>Work individually. The syllabus rules on collaboration, academic integrity, accommodations, emergencies, late work, and regrades apply. The deadline remains September 28 at 6:00 pm; submit partial work rather than leaving the submission empty. This handout gives the Case 1 requirements: its three supplied methods, reasonable partial credit, and honest documentation replace the former six-model and mandatory-rejection requirements.</p>
+<p>Before submitting, check that your tables match your saved outputs, your choice is recorded, one value calculation has been checked independently, your memo distinguishes predicted churn from an effect of contact, and your repository contains the instructions needed to reproduce the work.</p>
+</main>
+</body>
+</html>

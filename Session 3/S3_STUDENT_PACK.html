@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Session 3 — Which Customers Should We Call?">
+<meta name="generator" content="MKTG 4600 handout renderer">
+<title>Session 3 — Which Customers Should We Call?</title>
+<style>
+:root {
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --accent-color: #1f3864;
+    --muted-color: #404040;
+    --table-header-bg: #d9e1f2;
+    --table-stripe-bg: #f5f5f7;
+    --code-bg: #f3f3f3;
+    --border-color: #707070;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; margin-top: 0; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p, ul, ol, table, blockquote, pre {
+    margin: 0 0 1rem 0;
+}
+
+ul, ol { padding-left: 1.75rem; }
+li { margin-bottom: 0.25rem; }
+li > p { margin-bottom: 0.5rem; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+tbody tr:nth-child(even) td { background-color: var(--table-stripe-bg); }
+
+code {
+    background-color: var(--code-bg);
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding: 0.25rem 1rem;
+    color: var(--muted-color);
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+strong { font-weight: 600; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+a:hover { text-decoration: none; }
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    text-decoration: none;
+    background-color: var(--table-header-bg);
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+    outline: 2px solid #fff;
+}
+
+/* Honor reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* Print stylesheet — letter, 0.75in margins, preserved table contrast */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+    html { font-size: 11pt; }
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+        page-break-after: avoid;
+    }
+    h2 {
+        border-bottom: 1.5pt solid #000;
+        page-break-before: auto;
+    }
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+    th {
+        background-color: #ddd !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    tbody tr:nth-child(even) td {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+    blockquote {
+        border-left: 1pt solid #000;
+        color: #000;
+        font-style: italic;
+    }
+    hr { border-top: 0.5pt solid #999; }
+    .skip-link { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+<h1>Session 3 — Which Customers Should We Call?</h1>
+<h2>MKTG 6620 · Monday, September 14, 2026 · 6:00–10:00 pm</h2>
+<p><strong>Use this handout from the start of class.</strong> It contains the explanation, prompts, and measured reference results. No pre-class analysis is assumed. Your coding agent writes and runs Python; you direct the work and explain the results.</p>
+<p><strong>Updated September 14:</strong> the Case 1 handoff reflects its three supplied methods. <a href="#extra-practice">Four optional activities</a>, with worked answers, are included at the end for additional class practice.</p>
+<p>A marketing team can contact only a small share of its customers. It wants to put people likely to respond near the top of the list. A model can help, but three different checks are needed:</p>
+<ol>
+<li>Does it rank likely responders above unlikely responders?</li>
+<li>Does it use information available when the list must be made?</li>
+<li>When it predicts a probability, does that number agree with observed response rates?</li>
+</ol>
+<p>We use real bank-marketing data. The recorded outcome is whether a client subscribed to a term deposit. We do not relabel those outcomes as retail renewals or churn, and we do not claim the data measure the effect of making a call.</p>
+<h2>The ideas you need</h2>
+<p><strong>Classification</strong> means predicting a category. Here the categories are “subscribed” and “did not subscribe.” The recorded answer is the <strong>label</strong>. The inputs, sometimes called <strong>features</strong>, are the facts the model uses to make its prediction.</p>
+<p><strong>Logistic regression</strong> combines inputs into a score and converts it to a number between zero and one. It is a useful starting model because it is relatively simple. A <strong>decision tree</strong> asks a sequence of questions about the inputs and gives different predictions to the resulting groups. <strong>Boosted trees</strong> build a sequence of trees, each helping improve the predictions made so far. More complicated models can find patterns the simpler model misses; whether that helps on new records is something we measure.</p>
+<p><strong>Training data</strong> teach the model. <strong>Validation data</strong> help choose between our two models. <strong>Final-test data</strong> assess that choice afterward. If we repeatedly change the model to improve its final-test result, that sample has become another model-selection sample. Keep a record of the choices made before opening it.</p>
+<p><strong>AUC</strong> measures ranking: compare a randomly selected subscriber with a randomly selected non-subscriber. How often does the subscriber receive the higher score? Ties receive half credit. An AUC of 0.50 means no ranking advantage. An AUC of 0.69 does not mean that 69% of all customers were classified correctly.</p>
+<p><strong>Response rate among the top 10%</strong> answers a more direct business question: among the records the model ranks highest, what fraction actually subscribed? We use the top 10% as a classroom contact-capacity assumption, not a fact about the original bank's budget.</p>
+<p><strong>Calibration</strong> means that predicted probabilities agree with observed frequencies across comparable groups. Among many records predicted around 30%, roughly 30% should respond. Matching the overall average is not enough; the high-scoring group can still be overpredicted.</p>
+<p>A <strong>confidence interval</strong> shows uncertainty in a reported estimate under a stated sampling method. Here we use a <strong>bootstrap</strong>: repeatedly sample evaluation rows with replacement, recompute a result, and report the middle 95% of those results. For a model difference, calculate the difference inside each common sample. This is a <strong>paired interval</strong>. An interval that includes zero does not establish an improvement; it also does not prove the models are equivalent.</p>
+<h2>The data and the decision</h2>
+<p>Imagine you are advising a bank's marketing manager about a small future calling pilot. Before recommending a model, show how it performs on historical records and what still needs testing. The bank data contain <strong>41,188 records and 21 columns</strong>, including <strong>4,640 yes</strong> and <strong>36,548 no</strong> outcomes. These are historical campaign records, not a list of 41,188 confirmed unique customers currently eligible for calls.</p>
+<p>Always predicting “no” matches <strong>88.73%</strong> of the labels in the full file. That descriptive count explains why accuracy alone is a weak way to choose a calling list. A predicted label and a contact policy are separate decisions: predicting “no” does not itself mean nobody will be called.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Input group</th>
+<th scope="col">Treatment in this exercise</th>
+<th scope="col">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Age, job, marital status, education, credit default, housing loan, personal loan</td>
+<td>Keep</td>
+<td>Customer information for the prediction exercise</td>
+</tr>
+<tr>
+<td>Previous campaign contacts and outcome</td>
+<td>Keep</td>
+<td>History from an earlier campaign</td>
+</tr>
+<tr>
+<td>Days since previous contact</td>
+<td>Make a “previously contacted” flag and a separate days value</td>
+<td>999 means no previous contact, not 999 days</td>
+</tr>
+<tr>
+<td>Duration of the completed call</td>
+<td>Exclude from the usable models</td>
+<td>The value is unavailable before that call</td>
+</tr>
+<tr>
+<td>Current-campaign contact count, channel, month, and weekday</td>
+<td>Exclude</td>
+<td>Keep the main exercise about information available before scheduling the current campaign</td>
+</tr>
+<tr>
+<td>Five economic indicators</td>
+<td>Exclude from this deliberately small comparison</td>
+<td>Avoid treating the historical campaign context as a ready-made forecast of a new campaign</td>
+</tr>
+</tbody>
+</table>
+<p>The numeric sentinel 999 occurs in <strong>39,673 records</strong>. The word <code>unknown</code> is also meaningful missing information; keep it as a category in this exercise. Do not discard those records merely because the word appears.</p>
+<p>The data are ordered historically, but this classroom comparison uses a random, stratified split, keeping similar yes/no proportions in each part. That measures performance on records from a similar mix of historical campaigns. It does <strong>not</strong> establish performance on a later campaign. The file has no reliable customer identifier for checking whether the same person appears more than once. Row-resampling intervals assume independent records; they do not resolve that limitation or changes over time.</p>
+<p><strong>Source:</strong> the original <a href="https://archive.ics.uci.edu/dataset/222/bank+marketing">UCI Bank Marketing release</a>, downloaded September 9, 2026. Use its <code>bank-additional-full.csv</code> variant, with 20 inputs plus <code>y</code>, rather than the older 45,211-row variant. Read it with a semicolon separator. The CSV is unchanged from UCI. UCI declares <strong>CC BY 4.0</strong>, which permits sharing and adaptation with attribution. Credit: Moro, S., Rita, P., and Cortez, P. (2014), <em>Bank Marketing</em> [Dataset], UCI Machine Learning Repository, DOI 10.24432/C5K306. Its accompanying documentation defines <code>duration</code> and the 999 sentinel. Use this public file for the exercise.</p>
+<h2>Step 1. Read the file and set aside the final test</h2>
+<pre><code class="language-text">Open bank-additional-full.csv locally with semicolon separation. Do not download a
+replacement. Check the row and column counts, yes/no counts in y, the meaning of
+pdays=999, and literal unknown categories. Add the original row number for
+auditing, never as a predictor. The target is term-deposit subscription, not
+renewal or churn.
+
+Before fitting anything, split original row positions with train_test_split:
+test_size=0.40, stratify=y, random_state=0. Split that remainder equally into
+validation and final test, stratify on its y, random_state=0. Keep all three row
+lists fixed and report their sizes and yes counts. Do not inspect final-test
+outcomes for model choice.
+
+Allow these customer inputs: age, job, marital, education, default, housing, loan,
+previous, and poutcome. Replace pdays by previously_contacted=(pdays!=999) and
+days_since_previous=pdays when contacted, otherwise 0. Keep unknown as a category.
+Exclude duration, campaign, contact, month, day_of_week, and all five economic
+indicators. Do not merge this file with another dataset.
+</code></pre>
+<p>Reference split: <strong>24,712 training records (2,784 yes), 8,238 validation records (928 yes), and 8,238 final-test records (928 yes)</strong>. No row belongs to more than one part. Confirm these counts before fitting.</p>
+<h2>Step 2. Compare two models and record a choice</h2>
+<pre><code class="language-text">Fit two models on the training rows only: logistic regression with C=1,
+solver=lbfgs, max_iter=3000; and HistGradientBoostingClassifier with max_iter=100,
+learning_rate=0.1, max_leaf_nodes=15, l2_regularization=1, early_stopping=False,
+random_state=0. Do not balance the classes or use class weights in this
+comparison.
+
+For each model use a pipeline fitted only on training rows. One-hot encode job,
+marital, education, default, housing, loan, and poutcome with
+handle_unknown=&quot;ignore&quot; and dense output. Standardize age, previous,
+previously_contacted, and days_since_previous. Preserve that column order. Do not
+tune any other settings.
+
+Compare validation AUC. Report 95% percentile intervals from 2,000 validation-row
+bootstrap resamples, seed 0, using fixed fitted models. Choose the model with
+higher validation AUC; choose logistic regression on an exact tie. Record the
+choice before evaluating the final test. Keep the original fitted pipelines,
+without refitting. Record Python and package versions.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th scope="col">Model</th>
+<th scope="col">AUC on the model-selection sample [95% interval]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logistic regression</td>
+<td>0.7033 [0.6849, 0.7222]</td>
+</tr>
+<tr>
+<td>Boosted trees</td>
+<td>0.7095 [0.6905, 0.7284]</td>
+</tr>
+</tbody>
+</table>
+<p>The reference chooses <strong>boosted trees</strong> using the validation sample. The choice is a rule for this exercise, not a claim that boosted trees are generally superior. Different library versions or preprocessing can change the result; compare the procedure before judging a mismatch.</p>
+<h2>Step 3. Check the final result and the probabilities</h2>
+<pre><code class="language-text">Evaluate both fixed before-call models on the untouched final-test rows. Report
+AUC and the observed response rate among the highest-scoring 10%, rounding the
+selected count up. Break score ties by their saved test-row order. Report the
+overall test response rate as the random-selection comparison.
+
+Use 2,000 bootstrap samples of the test rows, seed 0, with replacement and the
+same sampled rows for both models. Do not refit. In each sample recompute AUC and
+the response rate in that sample's highest-scoring 10%. Report percentile 95%
+intervals. Within each sample subtract logistic AUC from boosted-tree AUC, then
+report the interval on that difference. Do not infer a difference by comparing the
+two separate intervals.
+
+Also report the chosen model's mean predicted probability and compare it with the
+test response rate. Group its predictions into [0,0.1), [0.1,0.2), [0.2,0.4), and
+[0.4,1]. For each group show its count, average predicted probability, and actual
+response rate with a 95% Wilson interval. Do not tune or recalibrate using
+final-test labels.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th scope="col">Model</th>
+<th scope="col">Final-test AUC [95% interval]</th>
+<th scope="col">Responses among the highest-scoring 10% [95% interval]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logistic regression</td>
+<td>0.6813 [0.6622, 0.7010]</td>
+<td>34.34% [31.07%, 37.62%]</td>
+</tr>
+<tr>
+<td>Boosted trees</td>
+<td>0.6899 [0.6711, 0.7103]</td>
+<td>36.29% [32.77%, 40.17%]</td>
+</tr>
+</tbody>
+</table>
+<p>The overall final-test response rate is <strong>11.26% [10.59%, 11.91%]</strong>. The highest-scoring 10% contain <strong>824 of the 8,238 test records</strong>. Both models find a group with a substantially higher historical response rate than random selection would yield in this sample.</p>
+<p>The boosted-tree minus logistic-regression AUC difference is <strong>0.0085 [-0.0019, 0.0197]</strong>. The interval includes zero. Boosted trees won the model-selection comparison, but this final test does not establish that their ranking is better than logistic regression. Do not change the model repeatedly until this final-test comparison looks favorable.</p>
+<p>The selected model's overall mean prediction is <strong>11.21% [10.95%, 11.48%]</strong>, close to the overall observed response rate. Now check the groups:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Predicted-probability range</th>
+<th scope="col">Test records</th>
+<th scope="col">Average prediction in this group</th>
+<th scope="col">Actual response rate [95% interval]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0% to under 10%</td>
+<td>5,622</td>
+<td>6.83%</td>
+<td>7.35% [6.69%, 8.06%]</td>
+</tr>
+<tr>
+<td>10% to under 20%</td>
+<td>1,960</td>
+<td>12.08%</td>
+<td>12.55% [11.16%, 14.09%]</td>
+</tr>
+<tr>
+<td>20% to under 40%</td>
+<td>316</td>
+<td>28.37%</td>
+<td>29.11% [24.38%, 34.35%]</td>
+</tr>
+<tr>
+<td>40% to 100%</td>
+<td>340</td>
+<td>62.68%</td>
+<td>52.06% [46.76%, 57.32%]</td>
+</tr>
+</tbody>
+</table>
+<p>The average predictions in the table describe the fixed scores of the records in each group; the intervals are for their observed response rates. In the highest group the model predicts about 63%, while about 52% responded. The intervals shown are pointwise group checks, not a simultaneous guarantee for all four groups. Overall agreement can conceal an important local mismatch.</p>
+<p>The comparison's intervals resample evaluation records while keeping the fitted models fixed. They describe uncertainty from which records are evaluated. They do not include the uncertainty from retraining on different data, customer dependence, a future economic change, or our choice of inputs. The model-selection intervals describe two specified models; they do not remove the tendency to select a model that happened to score well on that sample.</p>
+<h2>Step 4. See why a better score can be unusable</h2>
+<pre><code class="language-text">Run a deliberately unusable comparison, not a new candidate for deployment. Fit
+the same boosted-tree pipeline on the same training rows, adding duration to its
+standardized numeric inputs. Score the same final-test rows. Report AUC with the
+same 2,000-row-bootstrap procedure, and a paired interval on its AUC difference
+from the before-call boosted trees. Explain when duration becomes available. Do
+not use this model to choose customers before a call.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th scope="col">Boosted-tree version</th>
+<th scope="col">Final-test AUC [95% interval]</th>
+<th scope="col">Suitable for choosing calls beforehand?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Before-call inputs only</td>
+<td>0.6899 [0.6711, 0.7103]</td>
+<td>Eligible for further testing</td>
+</tr>
+<tr>
+<td>Also uses completed-call duration</td>
+<td>0.8938 [0.8835, 0.9035]</td>
+<td>No; that input does not exist yet</td>
+</tr>
+</tbody>
+</table>
+<p>The paired AUC difference is <strong>0.2040 [0.1846, 0.2229]</strong>. The improvement in this retrospective calculation is large. It does not make the model usable: the duration of a completed call cannot help select that same call beforehand. UCI explicitly identifies this issue in its documentation.</p>
+<h2>Step 5. Check what balancing the classes changes</h2>
+<pre><code class="language-text">For a planned class-balancing demonstration, use training rows only. Keep all yes
+rows. Using numpy.random.default_rng(0), randomly keep the same number of no rows
+without replacement, in the original training-row order before sampling.
+Concatenate yes rows followed by the sampled no rows. Fit a fresh copy of the same
+before-call boosted-tree pipeline on that balanced subset.
+
+On the unchanged final test, compare its AUC and average predicted probability
+with the original boosted-tree model and the actual response rate. Give the same
+2,000-row-bootstrap intervals, seed 0. Do not rebalance validation or test data.
+
+For an optional correction, let w be the fraction of training no rows retained.
+Replace each balanced-model probability q by w*q/(w*q+1-q). Report AUC and mean
+predicted probability again. Explain why this monotone rescaling preserves
+ranking, why retraining after discarding rows need not preserve ranking, and why
+the correction does not guarantee calibration within every group. Do not fit a
+calibration model on final-test outcomes.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th scope="col">Training treatment</th>
+<th scope="col">Final-test AUC [95% interval]</th>
+<th scope="col">Average predicted response [95% interval]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keep the original class proportions</td>
+<td>0.6899 [0.6711, 0.7103]</td>
+<td>11.21% [10.95%, 11.48%]</td>
+</tr>
+<tr>
+<td>Keep all yes rows and an equal number of no rows</td>
+<td>0.6842 [0.6645, 0.7042]</td>
+<td>43.65% [43.33%, 43.98%]</td>
+</tr>
+<tr>
+<td>Apply the known sampling-odds correction to that second model</td>
+<td>0.6842 [0.6645, 0.7042]</td>
+<td>11.58% [11.30%, 11.88%]</td>
+</tr>
+</tbody>
+</table>
+<p>The untouched test sample's response rate remains <strong>11.26% [10.59%, 11.91%]</strong>. The balanced training subset has <strong>5,568 rows</strong>, half yes and half no. It is a changed training distribution, not a new measurement of the bank's response rate.</p>
+<p>The balanced fit's average prediction is far too high for this test population. Its AUC is also allowed to change because it was retrained after most negative examples were discarded. In contrast, applying the correction to its fixed predictions preserves their order and therefore preserves AUC exactly.</p>
+<p>The correction is optional mathematics, not a general calibration guarantee. It uses the known fraction of negative training examples retained: <code>w = 0.126961</code>. For a balanced-model score <code>q</code>, the adjusted probability is <code>w*q/(w*q+1-q)</code>. This undoes the known sampling change in the odds under random sampling within each class; model error can remain. A separate calibration model would have to be fitted on validation data, not on the final-test labels.</p>
+<h2>What the calling recommendation can and cannot say</h2>
+<p>A high predicted response does not show that making a call causes an extra subscription. Some people might subscribe without it. These data do not provide the no-call comparison needed to estimate that difference.</p>
+<p>For a deliberately hypothetical calculation, suppose calling changes subscription probability from 28% without a call to 30% with one. If an additional subscription contributes $66 and a call costs $6.20, the extra expected contribution is:</p>
+<p><code>(30% − 28%) × $66 − $6.20 = −$4.88 per call</code>.</p>
+<p>Every number in that example is an assumption for illustration, not a finding from the bank data. Multiplying 30% by $66 and subtracting call cost would answer a different question because it counts subscriptions that would happen anyway. A randomized call-versus-no-call pilot, where feasible, can help measure the added response. The prediction model may help design that pilot; it does not replace it.</p>
+<p>Write a short recommendation that states the frozen model choice, its historical test performance, what the comparison with the simpler model established, and what still needs testing before relying on its probabilities or claiming outreach profit.</p>
+<h2>Keep your work for Case 1</h2>
+<p>Save the AI prompts and generated code, the train/validation/test row assignments, a comparison table, and your short recommendation. These give you a worked example of choosing a model before its final evaluation and explaining the limits of a calling recommendation.</p>
+<p><strong>Case 1 uses three supplied methods: a contract rule, logistic regression, and boosted trees.</strong> It applies the workflow to a different dataset and a retention decision at the fictional Summit Telecom. Use its supplied <code>churn.csv</code>, <code>VD1_analysis.py</code>, and <code>VD1_requirements.txt</code>, with the case's <strong>20% contact capacity</strong>. The supplied script performs the required calculations; using it unchanged can earn full credit. Extra models, rebalancing, repeated split seeds, and a required number of rejected methods are outside the required work.</p>
+<p>Follow the <a href="../projects/VD1%20-%20Classical%20ML/VD1_STUDENT_PACK.html">current Case 1 student pack</a> for the complete instructions and rubric. Record a dated validation choice before final evaluation; Git timestamps are not grading criteria. Write your assessed explanations and memo yourself, under the course AI-use policy.</p>
+<p>V&amp;D Project 1 is released at the end of class on <strong>September 14</strong> and is due <strong>September 28 at 6:00 pm Mountain Time</strong>. It is <strong>20% of the course grade</strong>. The five parts remain Generate (20 points), Validate the analysis (25), Assess uncertainty and value (25), Explain your choice (20), and Decide (10). Today's practice, including the optional activities below, has no additional graded submission.</p>
+<p><strong>Reference calculation:</strong> measured September 9, 2026, using the original UCI file, Python 3.11.3, pandas 2.0.0, NumPy 1.24.2, and scikit-learn 1.2.2. Bootstrap intervals use 2,000 resamples at seed 0. Model scores are measured outputs, dataset counts are descriptive facts, and the dollar example is explicitly hypothetical. You are not graded for matching a particular score.</p>
+<p><a id="extra-practice"></a></p>
+<h2>Optional extra practice — about 40 minutes</h2>
+<p>These four activities provide about <strong>40 minutes of optional practice</strong>. Each takes about 10 minutes, including calculation and discussion. They use supplied fictional tables and the already measured bank comparison, so no additional dataset or model fitting is needed. The worked answers are included for everyone from the start. None adds a graded requirement to Case 1.</p>
+<p>Use whichever activities the instructor selects. Your coding agent can check the arithmetic from the copied prompt; you can also explain the answers with the printed tables and a calculator.</p>
+<p><a id="extra-1"></a></p>
+<h3>Extra 1 — Rank eight customers by hand · 10 minutes</h3>
+<p>These <strong>eight invented records</strong> are a small arithmetic exercise, separate from the bank data. The score is available before the recorded outcome. Use the rows as listed; there are no tied scores.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Record</th>
+<th scope="col">Score</th>
+<th scope="col">Recorded subscription</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>0.42</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>B</td>
+<td>0.36</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>C</td>
+<td>0.30</td>
+<td>No</td>
+</tr>
+<tr>
+<td>D</td>
+<td>0.24</td>
+<td>No</td>
+</tr>
+<tr>
+<td>E</td>
+<td>0.18</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>F</td>
+<td>0.12</td>
+<td>No</td>
+</tr>
+<tr>
+<td>G</td>
+<td>0.08</td>
+<td>No</td>
+</tr>
+<tr>
+<td>H</td>
+<td>0.04</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>The manager is comparing a list of two records with a list of four. Explain what each list would have captured in this historical example.</p>
+<pre><code class="language-text">Use only these invented rows, in score order:
+A 0.42 Yes; B 0.36 Yes; C 0.30 No; D 0.24 No;
+E 0.18 Yes; F 0.12 No; G 0.08 No; H 0.04 No.
+
+Calculate AUC by comparing every Yes record with every No record.
+Show the number of winning pairs for each Yes record, not just the final score.
+For the top two and top four, report the selected records, subscriber count,
+response rate within the list, and share of all subscribers captured.
+Explain why these historical counts do not measure subscriptions caused by calls.
+Do not fit a model, read another file, or download anything.
+</code></pre>
+<p><strong>Worked answer:</strong> there are 3 subscribers and 5 non-subscribers, giving <strong>15 pairs</strong>. A outranks all 5 non-subscribers, B outranks all 5, and E outranks 3. AUC is <strong>13/15 = 0.8667</strong>.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">List</th>
+<th scope="col">Selected records</th>
+<th scope="col">Subscribers</th>
+<th scope="col">Response rate in list</th>
+<th scope="col">Share of all subscribers captured</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Top two</td>
+<td>A, B</td>
+<td>2</td>
+<td>100%</td>
+<td>2/3 = 66.67%</td>
+</tr>
+<tr>
+<td>Top four</td>
+<td>A, B, C, D</td>
+<td>2</td>
+<td>50%</td>
+<td>2/3 = 66.67%</td>
+</tr>
+</tbody>
+</table>
+<p>In this tiny example, adding C and D increases the number contacted without capturing another recorded subscriber. This does not establish what a future list would do, or whether calling A or B changes their behavior. A contact limit is a maximum; deciding whether to use it also requires evidence about the added benefit and cost.</p>
+<p><strong>Discuss:</strong> “What did AUC summarize that the two contact-list rows did not, and what did those rows tell the manager that AUC did not?” AUC uses all subscriber/non-subscriber pairs; the list comparison focuses on the particular capacity being considered.</p>
+<p><a id="extra-2"></a></p>
+<h3>Extra 2 — Same ranking, different probabilities · 10 minutes</h3>
+<p>Use the same invented records, repeated in the prompt so this activity can stand alone. Call the original score <strong>p</strong>. Now report <strong>q = 0.50 + 0.50 × p</strong>. This deliberately chosen transformation demonstrates a changed scale; it is not a proposed probability correction.</p>
+<pre><code class="language-text">Use these invented original scores and outcomes:
+A 0.42 Yes; B 0.36 Yes; C 0.30 No; D 0.24 No;
+E 0.18 Yes; F 0.12 No; G 0.08 No; H 0.04 No.
+
+For each original score p, calculate q = 0.50 + 0.50*p.
+Show both score columns and compare their AUC and top-two contact list.
+For each column, predict Yes when the score is at least 0.50 and report accuracy.
+Compare each average score with the observed subscription rate.
+Explain which answers depend on ranking, which depend on the threshold or scale,
+and what these eight invented records cannot establish about calibration.
+Do not retrain, use another dataset, or claim q is a valid probability correction.
+</code></pre>
+<p><strong>Worked answer:</strong> q is <strong>0.71, 0.68, 0.65, 0.62, 0.59, 0.56, 0.54, 0.52</strong> for A through H. Multiplication by a positive number and addition of a constant preserve every ordering here.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Quantity</th>
+<th scope="col">Original score p</th>
+<th scope="col">Transformed score q</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUC</td>
+<td>0.8667</td>
+<td>0.8667</td>
+</tr>
+<tr>
+<td>Top-two list</td>
+<td>A, B</td>
+<td>A, B</td>
+</tr>
+<tr>
+<td>Predicted labels at a 0.50 threshold</td>
+<td>All No</td>
+<td>All Yes</td>
+</tr>
+<tr>
+<td>Accuracy at that threshold</td>
+<td>5/8 = 62.5%</td>
+<td>3/8 = 37.5%</td>
+</tr>
+<tr>
+<td>Mean score</td>
+<td>21.75%</td>
+<td>60.875%</td>
+</tr>
+<tr>
+<td>Observed subscription rate</td>
+<td>37.5%</td>
+<td>37.5%</td>
+</tr>
+</tbody>
+</table>
+<p>AUC and a fixed-capacity list depend on order. A fixed numerical threshold and a probability-based value calculation also depend on the scale. These records do not establish that either score column supplies reliable probabilities. The arbitrary q transformation does not repair calibration.</p>
+<p><strong>Discuss:</strong> “If the software sends only Yes labels to the calling team, why would these two versions produce different workloads even though they have the same AUC?” The threshold selects no records under p and all eight under q; a policy of selecting the highest two would select A and B under either.</p>
+<p><a id="extra-3"></a></p>
+<h3>Extra 3 — Why compare models on the same resampled rows? · 10 minutes</h3>
+<p>The following AUCs are <strong>invented outputs for six common resamples</strong>, provided only to make pairing visible. Each row evaluates both models on the same sampled records. They are not new bank-data results, and the displayed ranges are not confidence intervals.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Common resample</th>
+<th scope="col">Logistic AUC</th>
+<th scope="col">Tree AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0.64</td>
+<td>0.66</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.68</td>
+<td>0.69</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.71</td>
+<td>0.74</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0.74</td>
+<td>0.76</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0.77</td>
+<td>0.78</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0.80</td>
+<td>0.82</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-text">These are invented AUC outputs for six common evaluation resamples:
+Resample 1: logistic 0.64, trees 0.66
+Resample 2: logistic 0.68, trees 0.69
+Resample 3: logistic 0.71, trees 0.74
+Resample 4: logistic 0.74, trees 0.76
+Resample 5: logistic 0.77, trees 0.78
+Resample 6: logistic 0.80, trees 0.82
+
+Subtract logistic AUC from tree AUC within every row and calculate the mean gap.
+Explain why the two columns can overlap even when every paired gap is positive.
+Explain what would be lost by pairing different resamples instead.
+Do not estimate a 95% interval from these six illustrative outputs.
+
+Return to the measured bank comparison: tree-minus-logistic AUC is 0.0085,
+with paired 95% interval [-0.0019, 0.0197].
+Explain how validation can select trees while the final test leaves their
+ranking advantage uncertain. Does that uncertainty prove the models equivalent?
+</code></pre>
+<p><strong>Worked answer:</strong> the six paired differences are <strong>0.02, 0.01, 0.03, 0.02, 0.01, 0.02</strong>, with mean <strong>0.0183</strong>. The displayed logistic range is 0.64–0.80 and the tree range is 0.66–0.82. Those ranges overlap because resamples vary in difficulty. Trees still score higher within every displayed pair. Mixing rows would discard the common-sample comparison and distort the variation in the difference.</p>
+<p>For the <strong>actual bank result</strong>, the paired interval <strong>[-0.0019, 0.0197]</strong> includes zero. The validation rule selected trees; the final-test comparison leaves the direction of their ranking advantage uncertain. It does not establish equivalence. A simpler pilot candidate can be reasonable when implementation cost matters, while keeping the original validation choice and subsequent reasoning visible.</p>
+<p><strong>Discuss:</strong> “What would you tell a manager who asks for a winner today?” Separate the recorded model-selection rule, uncertainty about the ranking difference, and the operational reasons for a pilot choice. Do not tune repeatedly on this final test to manufacture a clearer winner.</p>
+<p><a id="extra-4"></a></p>
+<h3>Extra 4 — Call the most likely subscriber or the person most likely to change? · 10 minutes</h3>
+<p>These are <strong>fictional planning assumptions</strong>, not estimates from the bank file. Assume the two probabilities describe what would happen to comparable eligible people in each group with and without a call. Every extra subscription contributes $66; each call costs $6.20. These are the same illustrative dollar assumptions used earlier.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Group</th>
+<th scope="col">Subscription probability without a call</th>
+<th scope="col">Subscription probability with a call</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>28%</td>
+<td>30%</td>
+</tr>
+<tr>
+<td>B</td>
+<td>10%</td>
+<td>22%</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-text">Use only these fictional assumptions:
+Group A: subscription probability 28% without a call, 30% with a call.
+Group B: subscription probability 10% without a call, 22% with a call.
+Each additional subscription contributes $66; each call costs $6.20.
+
+For each group, calculate the probability increase caused by calling under
+these assumptions, extra expected contribution, and net value per call.
+Which group ranks higher on response with a call, and which on added net value?
+Calculate the probability increase needed to break even, in percentage points.
+Then treat the no-call probabilities as unknown, as they are in tonight's data.
+Outline a randomized call-versus-no-call pilot within each eligible group,
+including a common observation period and the outcomes needed to check value.
+Do not claim the bank file identifies these call effects or either group's value.
+</code></pre>
+<p>Use <strong>net value per call = (probability with a call − probability without a call) × $66 − $6.20</strong>.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Group</th>
+<th scope="col">Assumed probability increase</th>
+<th scope="col">Extra expected contribution per call</th>
+<th scope="col">Net value per call</th>
+<th scope="col">Net value per 1,000 calls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>2 percentage points</td>
+<td>$1.32</td>
+<td>−$4.88</td>
+<td>−$4,880</td>
+</tr>
+<tr>
+<td>B</td>
+<td>12 percentage points</td>
+<td>$7.92</td>
+<td>+$1.72</td>
+<td>+$1,720</td>
+</tr>
+</tbody>
+</table>
+<p>Group A has the higher response probability with a call. Group B has the higher incremental value under these assumptions. The break-even probability increase is <strong>$6.20 / $66 = 0.09394</strong>, or <strong>9.39 percentage points</strong>. This is an absolute change in subscription probability, not a 9.39% relative increase and not Case 1's save rate among otherwise-churning customers.</p>
+<p><strong>Pilot outline:</strong> define the eligible groups before assignment. Randomly assign people within each group to a call attempt or no campaign call. Keep other treatment comparable and use the same prespecified observation period. Compare subscription rates by assigned arm, including unsuccessful call attempts; record contribution and actual contact costs. Report uncertainty around the differences. The pilot must learn the effect; tonight's predictions cannot supply the missing no-call outcome.</p>
+<p><strong>Discuss:</strong> “Why would comparing called Group A with uncalled Group B fail to answer the question?” The groups differ before calling. Random assignment within each group creates the comparison needed to estimate the effect of the calling policy for that group.</p>
+</main>
+</body>
+</html>
