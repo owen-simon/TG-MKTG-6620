@@ -1,0 +1,30 @@
+{
+  "stage": "evaluate",
+  "source_file": "churn.csv",
+  "source_sha256": "88be4b93fbe0cc83421af1c503794c97c342eca914c1576db7c276e61d61358a",
+  "python": "3.13.9",
+  "pandas": "2.3.3",
+  "numpy": "2.3.5",
+  "sklearn": "1.8.0",
+  "split_seed": 0,
+  "features": [
+    "tenure",
+    "MonthlyCharges",
+    "TotalCharges",
+    "Contract",
+    "InternetService",
+    "PaperlessBilling",
+    "PaymentMethod"
+  ],
+  "sizes": {
+    "train": 4225,
+    "validation": 1409,
+    "test": 1409
+  },
+  "cleaning": "11 blank TotalCharges at tenure 0 filled with 0; no rows removed",
+  "contact_share": 0.2,
+  "tie_break": "fixed random priority per source row, seed 0",
+  "choice": "trees",
+  "bootstrap_requested": 1000,
+  "bootstrap_valid": 1000
+}

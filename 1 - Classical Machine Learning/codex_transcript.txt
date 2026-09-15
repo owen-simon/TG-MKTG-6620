@@ -1,0 +1,39 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260915125106
+Username: DESKTOP-TQ6QLB3\owens
+RunAs User: DESKTOP-TQ6QLB3\owens
+Configuration Name: 
+Machine: DESKTOP-TQ6QLB3 (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 17720
+PSVersion: 5.1.26100.9168
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9168
+BuildVersion: 10.0.26100.9168
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\codex_transcript.txt
+PS C:\Users\owens\Repositories\TG-MKTG-6620\1 - Classical Machine Learning> codex
+    … +2 lines (ctrl + t to view transcript)
+
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+• Saved the AI-use record as codex_conversation_transcript.md. It records this assignment conversation, commands run,
+  outputs reviewed, and the boundary that your assessed writing remained yours.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+Token usage: total=65,907 input=57,418 (+ 510,976 cached) output=8,489 (reasoning 1,476)
+To continue this session, run:
+  codex resume 01a0a668-c1c6-7892-a651-76792b297144
+Or run codex resume and select Create analysis template.
+PS C:\Users\owens\Repositories\TG-MKTG-6620\1 - Classical Machine Learning> exit
+**********************
+Windows PowerShell transcript end
+End time: 20260915140356
+**********************
