@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Session 4 — Which Forecast Should the Planning Team Use?">
+<meta name="generator" content="MKTG 4600 handout renderer">
+<title>Session 4 — Which Forecast Should the Planning Team Use?</title>
+<style>
+:root {
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --accent-color: #1f3864;
+    --muted-color: #404040;
+    --table-header-bg: #d9e1f2;
+    --table-stripe-bg: #f5f5f7;
+    --code-bg: #f3f3f3;
+    --border-color: #707070;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; margin-top: 0; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p, ul, ol, table, blockquote, pre {
+    margin: 0 0 1rem 0;
+}
+
+ul, ol { padding-left: 1.75rem; }
+li { margin-bottom: 0.25rem; }
+li > p { margin-bottom: 0.5rem; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+tbody tr:nth-child(even) td { background-color: var(--table-stripe-bg); }
+
+code {
+    background-color: var(--code-bg);
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding: 0.25rem 1rem;
+    color: var(--muted-color);
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+strong { font-weight: 600; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+a:hover { text-decoration: none; }
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    text-decoration: none;
+    background-color: var(--table-header-bg);
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+    outline: 2px solid #fff;
+}
+
+/* Honor reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* Print stylesheet — letter, 0.75in margins, preserved table contrast */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+    html { font-size: 11pt; }
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+        page-break-after: avoid;
+    }
+    h2 {
+        border-bottom: 1.5pt solid #000;
+        page-break-before: auto;
+    }
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+    th {
+        background-color: #ddd !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    tbody tr:nth-child(even) td {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+    blockquote {
+        border-left: 1pt solid #000;
+        color: #000;
+        font-style: italic;
+    }
+    hr { border-top: 0.5pt solid #999; }
+    .skip-link { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+<h1>Session 4 — Which Forecast Should the Planning Team Use?</h1>
+<h2>MKTG 6620 · Monday, September 21, 2026</h2>
+<p>A planning team needs forecasts for the next 15 days. Should it repeat last
+week, average several recent weeks, or use a pretrained forecasting model?
+We will build the comparison, check which observations its averages describe,
+and decide what evidence would justify trying a different planning method.</p>
+<p><strong>Homework dates:</strong> Case 1, released last Monday, is due <strong>September 28 at
+6:00 p.m. Mountain Time</strong>. Case 2 is released at the end of this class and is
+due <strong>October 5 at 6:00 p.m. Mountain Time</strong>. Tonight's practice adds no
+graded submission. There is no weekly quiz.</p>
+<p>Use your usual coding agent to build and inspect the analysis. The worked
+examples describe the supplied data and stated settings. Focus on how each
+comparison supports the planning decision.</p>
+<h2>The decision and the three methods</h2>
+<p>Rina Kapoor, a fictional planning executive, wants to know whether a new
+forecast is useful enough to pilot. We use the public <strong>Favorita store-sales
+example</strong>, preserving its original store, product-family, date, and sales
+fields. These observations are not records from Rina's company.</p>
+<p>A <strong>time series</strong> is a sequence of observations indexed by time. Here one
+series is one store and product family. A <strong>forecast origin</strong> is the first day
+being predicted; everything supplied to the forecasting method must be
+available before that day. The <strong>horizon</strong> is how far ahead the forecast must
+reach. A 15-day forecast answers a different planning question from tomorrow's
+forecast.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">What it learns or uses</th>
+<th scope="col">What to expect it to miss</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Seasonal naive</strong></td>
+<td>Repeat the last complete training week across all 15 days. No fitted parameters.</td>
+<td>A recent unusual week is repeated.</td>
+</tr>
+<tr>
+<td><strong>Weekday mean</strong></td>
+<td>Estimate seven averages from the last eight weeks: one for each weekday. This is a simple fitted model.</td>
+<td>Sudden changes and effects not captured by weekday.</td>
+</tr>
+<tr>
+<td><strong>TimesFM</strong></td>
+<td>A foundation model pretrained on other time series. Give its fixed weights the previous 112 days as context; perform no local training.</td>
+<td>Future events absent from that history; suitability for this population still needs checking.</td>
+</tr>
+</tbody>
+</table>
+<p>A foundation model has already been trained. <strong>Zero-shot forecasting</strong> here
+means we use its existing weights without fitting them on this class file.
+It still needs a carefully chosen history, evaluation period, and output.
+These are three complete forecasting recipes with different history lengths;
+the comparison cannot isolate the effect of architecture alone.</p>
+<p>The agent can write and execute the code, while you specify the task and
+check the evidence.</p>
+<h2>The measures, before we compute them</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Term</th>
+<th scope="col">Meaning and limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Error</strong></td>
+<td>Actual sales minus forecast sales. Absolute error ignores its sign.</td>
+</tr>
+<tr>
+<td><strong>MAE</strong></td>
+<td>Mean absolute error. Its units match the target. Our pooled value averages store-family-days; large-volume families contribute more absolute error.</td>
+</tr>
+<tr>
+<td><strong>WAPE</strong></td>
+<td>Sum of absolute errors divided by sum of absolute actual sales, on the same rows. Report it as a percentage. Undefined when the denominator is zero; otherwise zero-sales rows still contribute their errors.</td>
+</tr>
+<tr>
+<td><strong>MAPE</strong></td>
+<td>Mean of each row's absolute error divided by its actual. Undefined at a zero actual. Dropping zeros changes the population being described.</td>
+</tr>
+<tr>
+<td><strong>MASE</strong></td>
+<td>A series' test MAE divided by its average absolute seven-day difference in training. Undefined when that training denominator is zero. Its value of 1 compares with that training scale, not necessarily with the baseline's error in this test window.</td>
+</tr>
+<tr>
+<td><strong>Quantile</strong></td>
+<td>A forecasted threshold for a stated share of outcomes, such as the 0.80 quantile. Check that lower quantiles are no larger than higher ones.</td>
+</tr>
+<tr>
+<td><strong>Prediction interval</strong></td>
+<td>A range for a future outcome. The 0.10 to 0.90 quantiles describe a nominal central 80% interval.</td>
+</tr>
+<tr>
+<td><strong>Coverage</strong></td>
+<td>The observed share of outcomes inside an interval, or below a stated quantile. State which rows were counted.</td>
+</tr>
+<tr>
+<td><strong>Paired uncertainty interval</strong></td>
+<td>An interval on a difference between methods, computed on common resamples. This is distinct from a prediction interval.</td>
+</tr>
+</tbody>
+</table>
+<p>For a small invented example, actuals <code>[0, 10, 20]</code> and forecasts <code>[2, 8, 25]</code>
+give absolute errors <code>[2, 2, 5]</code>, MAE <strong>3</strong>, and WAPE <strong>30%</strong>. MAPE is
+undefined. Dropping the zero produces MAPE <strong>22.5% on two of three rows</strong>.
+That smaller number answers a different question. Both numbers can be
+computed correctly; their denominators tell us what they mean.</p>
+<h2>The class files and what one row means</h2>
+<p>Save <code>favorita_subset.csv</code>, <code>S4_foundation_forecasts.csv</code>, and
+<code>S4_forecast_source.json</code> together. <code>S4_student_files.zip</code> contains these
+three files and this handout. You can complete the lesson with the
+usual course Python packages and the supplied forecasts. A fresh model
+installation, GPU, paid API, or CHPC account is not required.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Field in the sales file</th>
+<th scope="col">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>date</code></td>
+<td>Observation date. Parse and sort it as a date.</td>
+</tr>
+<tr>
+<td><code>store_nbr</code>, <code>family</code></td>
+<td>Together identify one series. Neither alone is a unique series key.</td>
+</tr>
+<tr>
+<td><code>sales</code></td>
+<td>Recorded sales in product units, sometimes fractional; not revenue or directly observed unconstrained demand.</td>
+</tr>
+<tr>
+<td><code>onpromotion</code></td>
+<td>Number of promoted items. Excluded from this comparison; future availability would need to be established before using it.</td>
+</tr>
+</tbody>
+</table>
+<p>The CSV has <strong>134,720 rows</strong>, <strong>10 stores</strong>, <strong>8 families</strong>, <strong>80 series</strong>,
+and <strong>1,684 observed dates</strong>, spanning 2013-01-01 through 2017-08-15. The
+family <code>LIQUOR,WINE,BEER</code> contains commas: use a CSV parser, not a manual split.
+The four missing calendar dates are December 25 of 2013, 2014, 2015, and 2016.
+An absent observation alone does not prove zero demand or a store closure.
+All histories and outcomes used in tonight's three windows are complete, so
+we need no fill rule. Earlier gaps remain visible in the data audit.</p>
+<p>This extract comes from the <a href="https://huggingface.co/datasets/t4tiana/store-sales-time-series-forecasting">Favorita competition-data mirror</a>.
+Keep the course's source notice with your work and the data out of public
+repositories; the mirror does not supply a general redistribution licence.
+The supplied forecasts were generated locally on September 20 from the
+pinned model and saved with their settings and file fingerprints. They are
+model outputs to evaluate, distinct from the observed sales.
+Public benchmark exposure during pretraining cannot be ruled out here.</p>
+<h2>The dates we will use</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Role</th>
+<th scope="col">Forecast origin</th>
+<th scope="col">Last day available to the method</th>
+<th scope="col">Forecast dates</th>
+<th scope="col">Rows per method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Validation A</td>
+<td>July 2, 2017</td>
+<td>July 1</td>
+<td>July 2–16</td>
+<td>1,200</td>
+</tr>
+<tr>
+<td>Validation B</td>
+<td>July 17, 2017</td>
+<td>July 16</td>
+<td>July 17–31</td>
+<td>1,200</td>
+</tr>
+<tr>
+<td>Final evaluation</td>
+<td>August 1, 2017</td>
+<td>July 31</td>
+<td>August 1–15</td>
+<td>1,200</td>
+</tr>
+</tbody>
+</table>
+<p>Each forecast covers <strong>80 series × 15 days</strong>. The evaluation windows do not
+overlap. At each new origin the history advances: outcomes from the first
+validation window are legitimately available by the second origin. They are
+not available to the first forecast. Later windows may still share economic
+conditions; non-overlap does not make them independent experiments.</p>
+<p>For selection, pool the two validation windows and use WAPE. Lower is better.
+On an exact tie, prefer seasonal naive, then weekday mean, then TimesFM.
+Record the selection before computing the final comparison. Use the worked
+tables to follow both steps and explain which observations support each
+result.</p>
+<h2>Step 1 — Audit the series and protect the dates</h2>
+<pre><code class="language-text">Read favorita_subset.csv without changing its meaning. Check columns,
+row count, duplicate date/store_nbr/family keys, stores, families, date
+range, missing calendar dates, and zero sales. Then construct the three
+15-day windows starting 2017-07-02, 2017-07-17, and 2017-08-01. Check that
+all 80 series have all 112 preceding calendar days and all 15 outcomes.
+Do not fill missing dates or fit anything yet. Explain what is available
+at each forecast origin.
+</code></pre>
+<p><strong>Reference check:</strong> 134,720 rows; 80 unique store-family series; no duplicate
+keys; four absent December 25 dates. Each required history contains 112 days
+and each evaluation contains 15, with no missing values. The earliest history
+starts March 12, 2017. Preserve the original <code>sales</code> values.</p>
+<p><strong>Checkpoint:</strong> point to the line that keeps every model input strictly
+before its forecast origin. A random split would not simulate this decision.</p>
+<h2>Step 2 — Build two simple forecasts and compare with TimesFM</h2>
+<pre><code class="language-text">For each series at each origin, build seasonal_naive by repeating its
+last seven observed training days for all 15 forecast days. Build
+weekday_mean from the last 56 training days, averaging each weekday.
+Read S4_foundation_forecasts.csv and its source JSON; join by origin,
+date, store_nbr, and family with a one-to-one key check for each method.
+Use its prediction column as the TimesFM point forecast. For now score
+only the two July validation windows, on the same rows, with MAE and
+pooled WAPE. Show each window and the pooled comparison. Explain the
+source, history lengths, and meaning of the foundation outputs.
+</code></pre>
+<p>The foundation snapshot uses TimesFM 2.5 at revision
+<code>5a9806b9b291fad9233b5249d88263f1846304d3</code>, with 112 observed days and padding
+to 128 positions. Its point output is the <strong>median</strong> in this pinned
+implementation, despite the library field being called <code>mean_predictions</code>.
+Do not present it as the expected mean. The other two methods use 7 and 56
+observed days, respectively. No future sales or promotion values are inputs.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">July 2 WAPE</th>
+<th scope="col">July 17 WAPE</th>
+<th scope="col">Pooled validation WAPE</th>
+<th scope="col">Pooled MAE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>seasonal_naive</td>
+<td>14.33%</td>
+<td>12.99%</td>
+<td>13.66%</td>
+<td>111.72</td>
+</tr>
+<tr>
+<td>weekday_mean</td>
+<td>10.43%</td>
+<td>11.71%</td>
+<td>11.07%</td>
+<td>90.54</td>
+</tr>
+<tr>
+<td>timesfm</td>
+<td>10.72%</td>
+<td>11.10%</td>
+<td>10.91%</td>
+<td>89.24</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reference selection:</strong> TimesFM has the lowest pooled validation WAPE.
+Weekday mean is better in the first window, so this is already a comparison
+whose ordering depends on the period. The pooled difference is small. Record
+the method, metric, windows, and reason; carry the simple method forward as a
+benchmark. Choosing simplicity with a clear reason is also defensible.</p>
+<h2>Step 3 — Evaluate the choice on the later window</h2>
+<pre><code class="language-text">Keep the validation selection visible. Evaluate all three frozen
+recipes on August 1–15, 2017, using identical 1,200 store-family-days.
+Report MAE and pooled WAPE. Show the row count, number of zero actuals,
+and which MAPE cases would be undefined. Calculate each series' MASE
+using its 112-day training history and lag 7; report how many scales
+are positive before taking the median. Do not retune on these results.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">Final MAE</th>
+<th scope="col">Final WAPE</th>
+<th scope="col">Median MASE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>seasonal_naive</td>
+<td>149.26</td>
+<td>18.59%</td>
+<td>0.949</td>
+</tr>
+<tr>
+<td>weekday_mean</td>
+<td>132.36</td>
+<td>16.48%</td>
+<td>0.798</td>
+</tr>
+<tr>
+<td>timesfm</td>
+<td>122.24</td>
+<td>15.22%</td>
+<td>0.712</td>
+</tr>
+</tbody>
+</table>
+<p>All three methods are scored on <strong>1,200 rows</strong>, including <strong>482 zero-sales
+rows</strong>. Dropping zero actuals leaves only <strong>718 rows (59.8%)</strong>. The median
+MASE describes <strong>68 of 80 series</strong>; the other 12 have zero training scale.
+Those 12 remain in MAE and pooled WAPE.</p>
+<p>Notice that seasonal naive itself has median MASE <strong>0.949</strong>, not exactly 1.
+The MASE denominator measures seven-day differences in training. We compare
+methods on the same final window directly when deciding which forecast did
+better there. These results do not establish savings, an optimal order, or
+performance at a different company.</p>
+<h2>Step 4 — Check whose errors the average describes</h2>
+<pre><code class="language-text">Using each series' 112 training days at the August 1 origin, call it
+all_zero if every day is zero; otherwise intermittent if more than
+half the days are zero; otherwise dense. Show counts and final actual
+units by bucket. For every method, calculate MAE and WAPE within each
+bucket, reporting undefined denominators. Then use 2,000 paired
+bootstrap samples with seed 0, resampling the 10 stores with replacement
+and retaining all their families and days. Report final WAPE differences
+for TimesFM versus each simple method, with 95% percentile intervals.
+Explain the limitations of resampling just 10 selected stores.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th scope="col">Training bucket</th>
+<th scope="col">Series</th>
+<th scope="col">Rows</th>
+<th scope="col">Final actual units</th>
+<th scope="col">TimesFM MAE</th>
+<th scope="col">TimesFM WAPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all_zero</td>
+<td>12</td>
+<td>180</td>
+<td>0</td>
+<td>0.000</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>dense</td>
+<td>48</td>
+<td>720</td>
+<td>963,693</td>
+<td>203.668</td>
+<td>15.22%</td>
+</tr>
+<tr>
+<td>intermittent</td>
+<td>20</td>
+<td>300</td>
+<td>37</td>
+<td>0.172</td>
+<td>139.12%</td>
+</tr>
+</tbody>
+</table>
+<p>These are descriptions of this 112-day history, not permanent product types.
+The dense bucket contributes almost all volume. The intermittent bucket's
+WAPE exceeds 100% even though its MAE is below one product unit per day.
+The all-zero bucket still matters for avoiding unnecessary forecasts and
+orders; its WAPE has denominator zero.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Difference (TimesFM minus comparator)</th>
+<th scope="col">WAPE difference, percentage points</th>
+<th scope="col">95% paired interval, percentage points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>seasonal naive</td>
+<td>-3.36</td>
+<td>[-4.38, -2.39]</td>
+</tr>
+<tr>
+<td>weekday mean</td>
+<td>-1.26</td>
+<td>[-2.27, -0.27]</td>
+</tr>
+</tbody>
+</table>
+<p>Negative differences favor TimesFM. Both forecasts are scored inside each
+common store resample. This describes store-to-store sampling variation for
+fixed forecasts on this period. Ten selected stores are a small basis for an
+interval, and shared calendar shocks remain. The interval omits retraining,
+future shocks, benchmark contamination, and the effects of changing the
+planning process. It is supporting evidence, not a guarantee.</p>
+<h2>Step 5 — Check the forecast range and make a bounded recommendation</h2>
+<pre><code class="language-text">For the final TimesFM forecasts, check q10 &lt;= q80 &lt;= q90 and report
+any crossed rows without silently repairing or dropping them. Measure
+central 80% interval coverage only for ordered rows, giving its count
+and excluded count. Also show the share of all actuals below q80.
+Repeat by the training-defined buckets. Explain why pooled coverage
+can hide a problem in dense series. Suggest evidence a planning pilot
+would need; do not claim cost savings from forecast accuracy alone.
+</code></pre>
+<p>The final file has <strong>one crossed row among 1,200 forecasts</strong>. Its point
+prediction remains in the accuracy comparison; its quantiles are not a usable
+ordered range. We preserve and flag it. This is an observed model-output issue,
+not something your agent must reproduce to complete the lesson.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Bucket</th>
+<th scope="col">Ordered rows / all rows</th>
+<th scope="col">Central 80% coverage on ordered rows</th>
+<th scope="col">Actual at or below q80, all rows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all</td>
+<td>1199 / 1200</td>
+<td>83.32%</td>
+<td>87.17%</td>
+</tr>
+<tr>
+<td>all_zero</td>
+<td>180 / 180</td>
+<td>100.00%</td>
+<td>100.00%</td>
+</tr>
+<tr>
+<td>dense</td>
+<td>720 / 720</td>
+<td>77.64%</td>
+<td>81.81%</td>
+</tr>
+<tr>
+<td>intermittent</td>
+<td>299 / 300</td>
+<td>86.96%</td>
+<td>92.33%</td>
+</tr>
+</tbody>
+</table>
+<p>Pooled central coverage is above 80%, while dense-series coverage is below
+80%. All-zero series contribute easy [0, 0] intervals. For discrete outcomes,
+a quantile can have coverage above its nominal level because many observations
+tie at the same value. Coverage is evidence to inspect alongside interval
+width and decision costs; a nominal label alone is not validation.</p>
+<p>A supported class conclusion is to consider TimesFM for a limited comparison
+in the planning process, retain the simple forecast as a benchmark, and check
+more future periods, interval behavior, and operational costs. Another
+supported action is to retain the simpler method while collecting that
+evidence. The data alone cannot tell us how much inventory to purchase or
+how many people to schedule.</p>
+<h2>Practice exercises</h2>
+<p>The first two exercises help you complete Case 1. The next two apply the
+forecasting ideas to small examples with worked answers.</p>
+<h3>Practice 1 — Case 1: from the assignment to a recorded choice</h3>
+<p>Open your own Case 1 folder with its handout, <code>churn.csv</code>, <code>VD1_analysis.py</code>,
+and <code>VD1_requirements.txt</code>. It is due <strong>September 28 at 6:00 p.m.</strong> The three
+methods are the contract rule, logistic regression, and boosted trees.
+They use the supplied settings and the same seven predictors.</p>
+<pre><code class="language-text">Read my Case 1 handout and VD1_analysis.py. Help me locate the data
+checks, seven predictors, training-only preprocessing, and the
+60/20/20 partitions. Run only the compare stage on local churn.csv.
+Explain validation.csv and validation model selection. Stop before
+final evaluation. Do not write my assessed explanations or memo.
+</code></pre>
+<p>The command your agent runs is:</p>
+<pre><code class="language-bash">python VD1_analysis.py compare --csv churn.csv --out outputs
+</code></pre>
+<p><strong>What to find:</strong> 7,043 rows; 1,869 churn outcomes; 11 blank <code>TotalCharges</code>
+entries at zero tenure; separate train, validation, and test row assignments.
+The training sizes are 4,225 / 1,409 / 1,409 across the three partitions.
+Locate <code>outputs/validation.csv</code> and record the selected method and your reason
+in <code>analysis.md</code>. The highest validation AUC is the default; a simpler method
+with a reason is allowed. You are not required to find a particular winner.</p>
+<p><strong>Check your understanding:</strong> Which file supports the choice? Which rows may
+teach the encoder? Why is a fixed three-method comparison enough for full
+credit? <strong>Answers:</strong> validation results; training rows only; those are the
+assignment's complete required methods. More models and more prompts do not
+add points by themselves.</p>
+<p>Your coding agent can help you run and audit this workflow. Write your
+assessed interpretation yourself. If you already evaluated the
+final test before recording a choice, disclose the sequence and its limitation;
+do not manufacture an earlier note.</p>
+<h3>Practice 2 — Case 1: final checks, value assumptions, and submission</h3>
+<p>After you have recorded your choice, the second command evaluates it. Replace
+<code>logistic</code> below with your recorded <code>contract</code>, <code>logistic</code>, or <code>trees</code> choice:</p>
+<pre><code class="language-bash">python VD1_analysis.py evaluate --csv churn.csv --out outputs --choice logistic
+</code></pre>
+<p>If you have not recorded a choice, finish that step first. Use the invented
+calculation below to practice the value comparison before evaluating your
+chosen method.</p>
+<pre><code class="language-text">Use the Case 1 requirements to help me locate the final AUCs, top-20%
+contact-list rates, paired differences from the contract rule,
+probability groups, and value-scenario output. Explain which output
+supports each requirement. Check the following invented example with
+a calculator: list churn risk 60%, net value per saved customer $66,
+contact cost $6.20, and save rates 10%, 15%, and 20%. Do not use these
+practice inputs as my actual homework results or write my memo.
+</code></pre>
+<p>For <strong>practice r = 60%</strong>, the scenario per 1,000 contacts is
+<code>1,000 × (0.60 × save rate × 66 − 6.20)</code>:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Assumed save rate</th>
+<th scope="col">Scenario net value per 1,000 contacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10%</td>
+<td>−$2,240</td>
+</tr>
+<tr>
+<td>15%</td>
+<td>−$260</td>
+</tr>
+<tr>
+<td>20%</td>
+<td>+$1,720</td>
+</tr>
+</tbody>
+</table>
+<p>Break-even is <code>6.20 / (0.60 × 66)</code> = <strong>15.66%</strong>. The sign changes because
+we changed the assumed causal effect of contact. Churn labels do not measure
+that effect. In your submission, use your selected list's observed churn rate
+and check one arithmetic row independently.</p>
+<p><strong>Submission check:</strong> repository URL <strong>and</strong> one-page memo PDF. Q1–Q4 are
+supported by the repository (90 points); Q5 is the memo (10 points). The repo
+contains <code>analysis.md</code>, code, outputs, README/run instructions, AI-use record,
+and memo. Include the repository URL in the memo PDF as well so it remains
+visible if Canvas accepts one submission type at a time. The memo goes to
+Devon Achebe at the fictional Summit Telecom. Write your assessed explanations,
+comparison reasons, and memo yourself. A randomized pilot can estimate whether
+contact actually retains customers.</p>
+<h3>Practice 3 — Forecast day eight and an absent date</h3>
+<pre><code class="language-text">For a fictional daily series, the final training week is
+[10, 20, 30, 40, 50, 60, 70]. Forecast 15 days at one fixed origin
+using seasonal naive. List the source observation for days 1, 8,
+and 15. If the actual on forecast day 1 later turns out to be 999,
+should this change the original day-8 forecast? Separately, explain
+how you would handle a missing training date with no closure record.
+</code></pre>
+<p><strong>Worked answer:</strong> <code>[10,20,30,40,50,60,70,10,20,30,40,50,60,70,10]</code>.
+Days 1, 8, and 15 all use the same first day of the final training week.
+The later actual 999 must not change any prediction made at the original
+origin. A newly issued forecast is a different origin and must be labelled
+that way. A missing date needs investigation or a disclosed history-based
+fill assumption. It is not automatically zero. Do not impute an unknown
+holdout outcome and score it as observed truth.</p>
+<h3>Practice 4 — When an order decision needs a quantile</h3>
+<pre><code class="language-text">Use a fictional one-day inventory decision. Demand is 0 with
+probability 0.5 and 10 with probability 0.5. Each unit of unmet demand
+costs $8; each unsold unit costs $2. Compare ordering 5 with ordering
+10 by enumerating both outcomes. Compute 8/(8+2). Explain why this
+example does not justify summing 15 daily 0.80 quantiles into a
+0.80 quantile of total demand.
+</code></pre>
+<p><strong>Worked answer:</strong> expected demand is 5. Order 5: expected loss is
+<code>0.5 × (5 × $2) + 0.5 × (5 × $8) = $25</code>. Order 10: expected loss is
+<code>0.5 × (10 × $2) + 0.5 × $0 = $10</code>. The cost ratio is <strong>0.80</strong> and the
+smallest demand value whose cumulative probability reaches 0.80 is <strong>10</strong>.
+This is the optimal order for this simplified one-period problem, with no
+capacity or other cost terms. It is an invented demand distribution, not a
+finding about Favorita's observed sales.</p>
+<p>For 15-day total demand, the optimal order would use the distribution of the
+<strong>total</strong>, including dependence between days. Marginal daily quantiles do not
+supply that joint information. Quantiles cannot generally be added. A calibrated
+daily forecast is a useful input, but it does not by itself solve replenishment.</p>
+<h2>Case 2 release — What carries over</h2>
+<p>Case 2 uses a <strong>different dataset</strong>, Rossmann daily store sales, and a
+<strong>42-day horizon</strong>. Use its own handout and ZIP. Do not apply the 15-day
+Favorita settings or mix the two files.</p>
+<p>You will compare seasonal naive, weekday mean, and supplied TimesFM forecasts
+for <strong>20 specified stores</strong>. Two earlier windows support selection; a later
+window evaluates that choice. You will inspect a known-schedule assumption,
+store groups, paired model differences, and forecast-interval coverage. The
+supplied analysis performs the calculations. No large search, local foundation
+model installation, or paid API is required.</p>
+<p>Start with the data and the compare stage this week. Finish Case 1 by
+September 28; Case 2 is due October 5, both at 6:00 p.m. Mountain Time.</p>
+<h2>Sources and reference settings</h2>
+<p>The calculations in this lesson were measured September 20, 2026, using
+Python 3.11.3, pandas 2.0.0, NumPy 1.24.2, PyTorch 2.13.0+cpu, and
+Transformers 5.15.1. Student evaluation of supplied predictions needs only
+pandas and NumPy. Local inference is optional: if an approved, working
+installation is already available, use the pinned model, 112 observations,
+<code>forecast_context_len=128</code>, float32, evaluation mode, and no gradient updates.
+Pinning the package and context settings matters as well as pinning weights.
+Keep any independently generated forecast distinct from the supplied snapshot.</p>
+<p>Method explanations are supported by <a href="https://otexts.com/fpp3/accuracy.html">forecast accuracy definitions</a>.
+The <a href="https://huggingface.co/google/timesfm-2.5-200m-transformers">TimesFM model card</a>
+and <a href="https://huggingface.co/docs/transformers/v5.14.0/en/model_doc/timesfm2_5">Transformers TimesFM documentation</a>
+describe the model and interfaces; the supplied source JSON identifies the
+actual version and settings used for these numbers.</p>
+</main>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Skill Workshop — Turn Course Methods into Reusable Skills">
+<meta name="generator" content="MKTG 4600 handout renderer">
+<title>Skill Workshop — Turn Course Methods into Reusable Skills</title>
+<style>
+:root {
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --accent-color: #1f3864;
+    --muted-color: #404040;
+    --table-header-bg: #d9e1f2;
+    --table-stripe-bg: #f5f5f7;
+    --code-bg: #f3f3f3;
+    --border-color: #707070;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; margin-top: 0; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p, ul, ol, table, blockquote, pre {
+    margin: 0 0 1rem 0;
+}
+
+ul, ol { padding-left: 1.75rem; }
+li { margin-bottom: 0.25rem; }
+li > p { margin-bottom: 0.5rem; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+tbody tr:nth-child(even) td { background-color: var(--table-stripe-bg); }
+
+code {
+    background-color: var(--code-bg);
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding: 0.25rem 1rem;
+    color: var(--muted-color);
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+strong { font-weight: 600; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+a:hover { text-decoration: none; }
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    text-decoration: none;
+    background-color: var(--table-header-bg);
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+    outline: 2px solid #fff;
+}
+
+/* Honor reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* Print stylesheet — letter, 0.75in margins, preserved table contrast */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+    html { font-size: 11pt; }
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+        page-break-after: avoid;
+    }
+    h2 {
+        border-bottom: 1.5pt solid #000;
+        page-break-before: auto;
+    }
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+    th {
+        background-color: #ddd !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    tbody tr:nth-child(even) td {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+    blockquote {
+        border-left: 1pt solid #000;
+        color: #000;
+        font-style: italic;
+    }
+    hr { border-top: 0.5pt solid #999; }
+    .skip-link { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+<h1>Skill Workshop — Turn Course Methods into Reusable Skills</h1>
+<h2>MKTG 6620 · Model comparison, k-means, trees, and forecasting</h2>
+<p>Build one reusable skill from an analysis you understand, test it on a small
+example, and revise it using the results. The four examples cover model
+comparison, k-means with optional PCA, tree classification, and time-series
+forecasting.</p>
+<p><strong>What you need:</strong> your usual coding agent and a practice folder. This handout
+contains all four example skills, prompts, and test cases. To start from the
+editable files, extract <code>S4_skill_workshop_files.zip</code>; its <code>skill_examples/</code>
+folder contains one <code>SKILL.md</code> for each method.</p>
+<p><strong>This is ungraded practice.</strong> Finish with one revised skill and a short test
+record. Case 1 and Case 2 keep their existing requirements and deadlines;
+assessed interpretations and memos remain your own writing.</p>
+<h2>1. Decide what belongs in a skill</h2>
+<p>A prompt specifies today's request. A skill carries reusable instructions for
+requests of a certain kind. A Python script performs a calculation. The agent
+can read a skill and use or write code to carry out the request. Start with
+one instruction file; add a script when repeated calculations benefit from
+a tested implementation.</p>
+<p>A lean skill contains decisions another capable agent might otherwise get
+wrong. It does not need to explain Python, repeat the entire lecture, insist
+on one winner, or force every dataset through one set of dates and settings.
+The class examples below are roughly a page each. Their length is a design
+choice, not a universal word limit.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Keep in the skill</th>
+<th scope="col">Put in today's prompt or assignment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use validation for selection and reserve later evaluation</td>
+<td>Today's files, outcome, metric, candidates, and split dates</td>
+</tr>
+<tr>
+<td>Keep IDs out of clustering distance</td>
+<td>Today's customer ID column and chosen features</td>
+</tr>
+<tr>
+<td>Check whether an input exists before a decision</td>
+<td>Today's decision time and available columns</td>
+</tr>
+<tr>
+<td>Construct fixed-origin forecasts from earlier data</td>
+<td>Today's origin, horizon, and approved history length</td>
+</tr>
+<tr>
+<td>Return evidence the user can inspect</td>
+<td>Today's output folder and requested formats</td>
+</tr>
+</tbody>
+</table>
+<p>For coursework, the task contract also tells the agent which writing must
+remain yours. A skill cannot override that rule.</p>
+<h2>2. Write the trigger before the body</h2>
+<p>Compare these descriptions:</p>
+<ul>
+<li>Too broad: “Help with all marketing analytics and make the best model.”</li>
+<li>Useful: “Compare a bounded set of model specifications for a stated business
+  prediction task, using a baseline and separate selection and evaluation evidence.”</li>
+</ul>
+<p>The useful description tells an agent when this skill applies. A request to
+format a chart caption should not trigger model fitting. Overlap is acceptable:
+<code>compare-model-specs</code> governs the comparison, while <code>tree-classification</code>
+contributes method-specific checks. The assignment supplies the current scope.</p>
+<p>The standard file starts with YAML metadata:</p>
+<pre><code class="language-yaml">---
+name: compare-model-specs
+description: Compare a bounded set of model specifications for a stated business prediction task, using a baseline and separate selection and evaluation evidence.
+---
+</code></pre>
+<p>Below that header, write the reusable procedure in ordinary Markdown. Name,
+description, and body are enough for these examples. Optional helper folders
+are not required. Skill hosts can first inspect the name and description,
+then read the body when the task matches. This is called <strong>progressive
+disclosure</strong>: load more detail when it is needed. <a href="https://learn.chatgpt.com/docs/build-skills">Official skill guide</a></p>
+<h2>3. Extract a skill from work you understand</h2>
+<pre><code class="language-text">Help me design a lean skill for comparing model specifications.
+Use the workflow from our course: task and baseline, common evaluation
+rows, training-only fitting, validation selection, later evaluation,
+paired comparisons, and inspectable outputs. First propose a precise
+name and description. Then draft one SKILL.md. Keep today's dataset,
+dates, candidate count, and numerical results out of the reusable
+instructions. Follow the assignment's AI-use rules. Explain why each
+instruction changes a decision the agent might otherwise get wrong.
+</code></pre>
+<p>Read every sentence. Mark it <strong>keep</strong>, <strong>move to today's prompt</strong>, or <strong>remove</strong>.
+Keep the few instructions that change behavior. Move current file names,
+hyperparameters, and dates to the invocation. Remove “be accurate,” long
+background lectures, and claims that the skill guarantees the right answer.</p>
+<p>In the clustering example, <code>n_init</code> is the number of random initializations;
+ARI compares grouping agreement even when the numeric cluster labels change.</p>
+<p>Now apply the same process to k-means, trees, and time-series forecasting.
+The four completed examples below are editable starting points. First identify
+one decision each must preserve, then compare your draft with the example.</p>
+<h3>Example — Model specification selection</h3>
+<p>Save as <code>compare-model-specs/SKILL.md</code>.</p>
+<pre><code class="language-markdown">---
+name: compare-model-specs
+description: Compare a bounded set of model specifications for a stated business prediction task, using a baseline and separate selection and evaluation evidence.
+---
+
+Read the assignment or task contract first. Identify the decision, row unit,
+outcome, usable inputs, baseline, candidates, primary metric, and compute budget.
+Ask only for missing choices that would change the comparison. Use supplied
+methods when the task supplies them; do not expand the search automatically.
+
+Keep candidate methods on the same evaluation rows. Use time-ordered evaluation
+for future prediction and keep repeated entities together when needed. Learn
+preprocessing from training data. Select using validation evidence, record the
+choice, then evaluate it on the reserved test data. Do not use test results to
+retune and still call that sample untouched.
+
+Return a table of every attempted specification, its choices, validation result,
+and status. Add final-test results only after selection. Compare differences on
+the same resamples, at a unit appropriate to the data's dependence. State what
+the interval includes and omits. An interval containing zero does not establish
+equivalence; a small observed win does not establish business value.
+
+Save code, versions, data identifiers, splits, and outputs. Surface tradeoffs
+for the user to decide. For assessed coursework, generate calculations and
+explanations for learning, but leave assessed interpretations and memos to the
+student under the assignment's AI-use policy.
+</code></pre>
+<h3>Example — K-means and optional PCA</h3>
+<p>Save as <code>kmeans-segments/SKILL.md</code>.</p>
+<pre><code class="language-markdown">---
+name: kmeans-segments
+description: Build and assess customer segments with k-means, including feature and scaling choices, optional PCA, cluster profiles, and stability checks.
+---
+
+Read the segmentation decision and available fields. State the customer unit,
+selected features, missing-value and outlier policies, transformations, scaling,
+candidate k values, seed, and n_init. Keep identifiers and outcome labels out of
+the distance calculation. Preserve requested settings and a bounded run budget.
+
+Explain which differences drive distance. If using PCA, fit it after the chosen
+preprocessing and report retained variance and loadings. PCA components summarize
+variation; they are not automatically customer motivations.
+
+Fit the requested candidates. Report silhouette with cluster sizes and profiles
+in original units. Compare membership across a few stated seeds or resamples
+using an agreement measure unaffected by cluster-number permutations. Do not
+compare numeric cluster labels directly. Use a null comparison when the question
+requires evidence beyond geometric separation; match its preprocessing and
+search procedure to the observed analysis.
+
+Explain whether segments identify an actionable distinction or mostly separate
+high from low values on one variable. High silhouette and stable membership do
+not prove natural customer types or different responses to marketing.
+
+Return the settings table, membership file keyed by customer ID, profiles,
+diagnostics, and limitations. Do not turn a proposed segment treatment into a
+measured causal effect. Respect the assignment's rules on student-authored work.
+</code></pre>
+<h3>Example — Trees and classification</h3>
+<p>Save as <code>tree-classification/SKILL.md</code>.</p>
+<pre><code class="language-markdown">---
+name: tree-classification
+description: Fit or compare decision trees and tree ensembles for classification, checking input timing, held-out ranking, contact capacity, and probability accuracy.
+---
+
+Read the task's outcome, positive class, decision time, capacity, baseline, and
+allowed methods. Check whether every input exists when the decision is made.
+Exclude identifiers and information learned afterward unless the task gives a
+valid reason to use them. Completed-call duration cannot guide a pre-call list.
+
+Use the task's split and settings. Fit encoding, scaling where needed, and models
+on training rows only. Compare candidates on validation rows, record selection,
+and evaluate afterward. Keep final-test data out of tuning. If time or repeated
+customers make a random row split unsuitable, surface that before fitting.
+
+Return AUC alongside the observed positive rate at the stated contact capacity.
+Keep the contact count within capacity and break score ties without outcomes.
+Check predicted against observed rates overall, in the selected list, and across
+probability groups; include group counts. AUC assesses ranking, not calibration.
+
+For model differences, use the same resampled evaluation units for both models
+and state the uncertainty covered. Keep feature importance separate from causal
+effects. Churn risk is not the effect of a retention offer. Report business value
+only under explicit cost and intervention assumptions. Preserve all results and
+the assignment's boundary around student-written interpretations and memos.
+</code></pre>
+<h3>Example — Time series and foundation models</h3>
+<p>Save as <code>time-series-forecast/SKILL.md</code>.</p>
+<pre><code class="language-markdown">---
+name: time-series-forecast
+description: Compare time-series forecasts at fixed origins and horizons, including seasonal baselines, fitted methods, and supplied or locally run foundation-model forecasts.
+---
+
+State the series key, target units, frequency, forecast origins, horizon, history
+window, and information available at each origin. Check duplicate keys and
+missing dates. An absent row is not automatically zero demand. Learn any fill
+rule from history and disclose it; do not fill unknown evaluation outcomes.
+
+Build the baseline from information available at the origin. For seasonal naive,
+repeat the last complete training week throughout the horizon. Never read later
+actuals to refresh a fixed-origin forecast. Fit other methods on history only.
+Use a known future calendar only under an explicit availability assumption.
+
+Select on earlier validation windows and preserve a later evaluation window.
+Compare common rows with MAE and a defined denominator, such as WAPE. Report
+counts and undefined cases. MASE uses training seasonal-difference errors; its
+value of one need not tie the baseline on this test window.
+
+For foundation forecasts, record model revision, context, output meaning, and
+whether predictions were supplied or generated. Check quantile ordering and
+coverage with denominators. Do not sum daily quantiles into a total-demand
+quantile. Preserve dependent observations when resampling model differences.
+
+Return forecasts keyed by origin, date, and series; comparison tables; checks;
+and limits. Do not install, download, or call services without task authorization.
+Respect coursework rules on student-written judgments.
+</code></pre>
+<h2>4. Give the skill a home and invoke it</h2>
+<p>For Codex in your own practice repository, put the chosen folder inside
+<code>.agents/skills/</code>. For example:</p>
+<pre><code>my-practice-project/
+  .agents/
+    skills/
+      time-series-forecast/
+        SKILL.md
+</code></pre>
+<p>The workshop ZIP stores examples in a visible <code>skill_examples/</code> folder so you
+can inspect them first. Copy only the skill folders you want into your own
+repository. Do not put them into a system directory or overwrite an existing
+skill without comparing it.</p>
+<p>In Codex, mention <code>$time-series-forecast</code> in the task prompt. If your chosen
+agent uses a different skill location, use its documented mechanism. The
+portable fallback is to attach or explicitly ask it to read the <code>SKILL.md</code>
+file. This exercises the instructions even when automatic discovery is not
+available. <a href="https://learn.chatgpt.com/docs/build-skills">Codex discovery and invocation</a></p>
+<pre><code class="language-text">Use $time-series-forecast for this practice task. Read the Session 4
+handout and local sales and foundation-forecast files. Use its three
+origins, 15-day horizon, and bounded three-method comparison. Start
+with the date audit and stop after the two validation windows. Save
+code and evidence I can inspect. Tell me which skill you read and
+which task-specific choices came from the handout.
+</code></pre>
+<p>The agent's claim that it read a skill is only one clue. Inspect whether the
+result actually respects the dates, uses the keys, and stops before the final
+evaluation. Installed does not mean followed; followed does not mean correct.</p>
+<h2>5. Test behavior, then revise one instruction</h2>
+<p>Use the following small tests in a fresh practice conversation. Give the agent
+the request and the skill; inspect artifacts rather than grading its tone.
+All numbers in this table are <strong>invented practice inputs</strong>.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Skill</th>
+<th scope="col">Ordinary request</th>
+<th scope="col">Tricky request and the evidence to look for</th>
+<th scope="col">Outside its scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model specification selection</td>
+<td>Compare baseline A and candidate B on the supplied validation table.</td>
+<td>Validation AUC: A .80, B .79; test AUC: A .77, B .84. Ask which was selected by a highest-validation-AUC rule. It should preserve A, report the later reversal, and avoid inventing an earlier selection of B.</td>
+<td>Reformat a paragraph; it should not start a model search.</td>
+</tr>
+<tr>
+<td>K-means</td>
+<td>Segment numeric customer features with a stated k and scaling.</td>
+<td>IDs <code>[1,2,3,4]</code>, spending <code>[10,11,90,91]</code>, labels from two runs <code>[0,0,1,1]</code> and <code>[1,1,0,0]</code>. IDs must stay outside the distance; identical grouping has ARI 1 despite label reversal.</td>
+<td>Predict a labelled churn outcome; grouping is not a replacement for classification.</td>
+</tr>
+<tr>
+<td>Tree classification</td>
+<td>Compare the assigned classifier and baseline at a fixed capacity.</td>
+<td>A pre-call list includes completed-call duration. It should exclude that field from a deployable comparison and explain why. With 9 customers and at most 20% capacity, it contacts at most 1, not 2.</td>
+<td>Estimate the causal effect of a retention offer from churn labels alone.</td>
+</tr>
+<tr>
+<td>Time series</td>
+<td>Forecast 15 days from a seven-value training week.</td>
+<td>Supply <code>[10,20,30,40,50,60,70]</code>, then change a future actual to 999. Day-8 forecast must remain 10. With all actuals zero and forecasts 2, MAE is 2 and WAPE is undefined.</td>
+<td>Turn a revenue forecast directly into staff headcount without a staffing relationship.</td>
+</tr>
+</tbody>
+</table>
+<p>The specification-selection toy supplies both tables. It tests application
+of the stated rule; it does not recreate an unseen final evaluation or prove
+that a choice was made prospectively.</p>
+<p>For each test, record the request, the skill version, what happened, the file
+or calculation you checked, and the smallest useful revision. If the first
+version succeeds, record that success. There is no requirement to make an
+agent fail. If the task cannot be executed, distinguish a discussion of what
+should happen from a completed behavior test.</p>
+<pre><code class="language-text">Test my draft skill on one ordinary request and one tricky case
+from the workshop. Use a new scratch folder and no external services.
+Show the resulting files and checks. Identify one instruction that
+helped or one observed failure. Propose the smallest revision that
+addresses the evidence. If both tests pass, do not invent a failure
+or add rules just to make the skill longer.
+</code></pre>
+<h2>6. Explain your design to another analyst</h2>
+<p>In your practice notes, answer: When should this skill be used? Which two
+analytical decisions does it protect? What evidence does it return? Which
+choice still belongs to the current user? What did your test establish?</p>
+<p>A useful finished exercise is <strong>one revised skill and a short test record</strong>.
+The four examples let you repeat the exercise across the course methods.
+These notes are ungraded practice. You may use the skills to help with the
+permitted parts of Case 1 and Case 2, while writing assessed judgments yourself.</p>
+<h2>Source</h2>
+<p>The <a href="https://learn.chatgpt.com/docs/build-skills">official skill guide</a> describes
+skill files and Codex discovery. The four examples and practice tests in this
+handout apply those instructions to the course methods.</p>
+</main>
+</body>
+</html>

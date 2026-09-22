@@ -1,0 +1,24 @@
+{
+  "measured": "2026-09-20",
+  "data_sha256": "eb95c6e825d7e628c74c27547b0f0d388400d1bd28505b4b14b44d67fae655bc",
+  "model_id": "google/timesfm-2.5-200m-transformers",
+  "revision": "5a9806b9b291fad9233b5249d88263f1846304d3",
+  "context_days": 112,
+  "horizon_days": 15,
+  "origins": [
+    "2017-07-02",
+    "2017-07-17",
+    "2017-08-01"
+  ],
+  "forecast_context_len": 128,
+  "point_output": "median: mean_predictions selects full_predictions index 5",
+  "quantile_policy": "Retain raw model quantiles; flag crossed rows; interval coverage uses ordered rows only and reports its denominator.",
+  "missing_context_policy": "fail if any required history or evaluation date is absent; no filling",
+  "versions": {
+    "pandas": "2.0.0",
+    "numpy": "1.24.2",
+    "torch": "2.13.0+cpu",
+    "transformers": "5.15.1"
+  },
+  "prediction_sha256": "970ceaf5723ba3fd56a74587711e5132f355225dce8601b263f1502b3b0ac4d4"
+}
