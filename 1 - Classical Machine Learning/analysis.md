@@ -2,6 +2,14 @@
 
 ## Q1 - Generate
 
+[COPY AND PASTE PROMPTING]
+
+## Q2 — Validate the analysis
+
+[Data Errors: Missing, Outliers]
+
+[Data Separation]
+
 I used codex and the prompts provided in `VD1_STUDENT_PACK.html` to read the `churn.csv` file and run the `VD1_analysis.py` script.
 
 Codex ran:
@@ -33,9 +41,7 @@ Both the logistic regression and boosted tree models used the same 7 input varia
 
 - `PaymentMethod`
 
-Method comparison results were saved in the `outputs/` folder. A transcript of my codex conversation was saved as `codex_conversation_transcript.md`
-
-## Q2 — Validate the analysis
+Method comparison results were saved in the `outputs/` folder. A transcript of my codex conversation was saved as `codex_conversation_transcript.md
 
 Before comparing method performance, I used codex to run data checks and cleaning, which identified:
 
@@ -65,7 +71,7 @@ Boosted trees achieved the highest validation AUC of 0.8456. Of the 3 methods, t
 
 ## Q3 — Assess uncertainty and value
 
-<!-- Your notes go here. -->
+[Break Even Rates]
 
 ## Q4 — Explain your choice
 
