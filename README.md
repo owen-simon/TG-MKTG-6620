@@ -19,4 +19,5 @@ Boosted Trees
 - `1 - Classical Machine Learning`
   - `outputs/`
   - `churn.csv`
-  - `codex_conversation_transcript.md` 
+  - `Codex_Transcript.md`
+  - `PowerShell_Transcript.md`

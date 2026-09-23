@@ -16,7 +16,7 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Transcript started, output file is .\codex_transcript.txt
+Transcript started, output file is .\PowerShell_Transcript.txt
 PS C:\Users\owens\Repositories\TG-MKTG-6620\1 - Classical Machine Learning> codex
     … +2 lines (ctrl + t to view transcript)
 
