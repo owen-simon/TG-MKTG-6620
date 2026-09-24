@@ -147,4 +147,4 @@ I am finished using Codex for this assignment. Please save a transcript of our c
 
 ## Codex
 
-Saved this transcript as `codex_conversation_transcript.md`.
+Saved this transcript as `agent_dialog.md`.
