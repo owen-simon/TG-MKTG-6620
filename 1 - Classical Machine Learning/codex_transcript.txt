@@ -1,0 +1,49 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20260915124253
+Username: PBRC\SimonOM
+RunAs User: PBRC\SimonOM
+Configuration Name: 
+Machine: P005044-PD (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 16164
+PSVersion: 5.1.26100.8521
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.8521
+BuildVersion: 10.0.26100.8521
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\codex_transcript.txt
+PS C:\Users\SimonOM\Repositories\TG-MKTG-6620\1 - Classical Machine Learning> codex login
+codex : File C:\Users\SimonOM\AppData\Roaming\npm\codex.ps1 cannot be loaded because running scripts is disabled on 
+this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:1
++ codex login
++ ~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+codex : File C:\Users\SimonOM\AppData\Roaming\npm\codex.ps1 cannot be loaded because running scripts is disabled on
+this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:1
++ codex login
++ ~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+PS C:\Users\SimonOM\Repositories\TG-MKTG-6620\1 - Classical Machine Learning> codex
+codex : File C:\Users\SimonOM\AppData\Roaming\npm\codex.ps1 cannot be loaded because running scripts is disabled on 
+this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:1
++ codex
++ ~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+codex : File C:\Users\SimonOM\AppData\Roaming\npm\codex.ps1 cannot be loaded because running scripts is disabled on
+this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:1
++ codex
++ ~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess

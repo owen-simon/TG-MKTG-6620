@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Case 2 — Which Sales Forecast Should the Planning Team Use?">
+<meta name="generator" content="MKTG 4600 handout renderer">
+<title>Case 2 — Which Sales Forecast Should the Planning Team Use?</title>
+<style>
+:root {
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --accent-color: #1f3864;
+    --muted-color: #404040;
+    --table-header-bg: #d9e1f2;
+    --table-stripe-bg: #f5f5f7;
+    --code-bg: #f3f3f3;
+    --border-color: #707070;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; margin-top: 0; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p, ul, ol, table, blockquote, pre {
+    margin: 0 0 1rem 0;
+}
+
+ul, ol { padding-left: 1.75rem; }
+li { margin-bottom: 0.25rem; }
+li > p { margin-bottom: 0.5rem; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+tbody tr:nth-child(even) td { background-color: var(--table-stripe-bg); }
+
+code {
+    background-color: var(--code-bg);
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding: 0.25rem 1rem;
+    color: var(--muted-color);
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+strong { font-weight: 600; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+a:hover { text-decoration: none; }
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    text-decoration: none;
+    background-color: var(--table-header-bg);
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+    outline: 2px solid #fff;
+}
+
+/* Honor reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* Print stylesheet — letter, 0.75in margins, preserved table contrast */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+    html { font-size: 11pt; }
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+        page-break-after: avoid;
+    }
+    h2 {
+        border-bottom: 1.5pt solid #000;
+        page-break-before: auto;
+    }
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+    th {
+        background-color: #ddd !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    tbody tr:nth-child(even) td {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+    blockquote {
+        border-left: 1pt solid #000;
+        color: #000;
+        font-style: italic;
+    }
+    hr { border-top: 0.5pt solid #999; }
+    .skip-link { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+<h1>Case 2 — Which Sales Forecast Should the Planning Team Use?</h1>
+<h2>V&amp;D Project 2 · MKTG 6620 · Fall 2026</h2>
+<p><strong>Released:</strong> Monday, September 21, after Session 4. <strong>Due:</strong> Monday,
+October 5, at <strong>6:00 p.m. Mountain Time</strong>. Individual work. Worth <strong>20%</strong>
+of the course grade; scored out of 100.</p>
+<p>Compare two simple forecasting methods with a pretrained foundation model.
+Use earlier periods to choose a method, evaluate it on a later period, and
+explain whether the evidence supports a change in the planning process.
+The supplied script performs the calculations. <strong>Using it unchanged and using
+the supplied foundation-model forecasts can earn full credit.</strong></p>
+<p>Plan for about <strong>8–10 hours over two weeks</strong>, including writing. This is a
+workload estimate, not a timed requirement. No GPU, paid API, fresh foundation
+model installation, broad specification search, or extra skill submission is
+required. If setup takes more than 30 minutes without progress, contact the
+instructor with the error and the command you ran.</p>
+<h2>1. The planning decision</h2>
+<p>Rina Kapoor, a fictional planning executive at Bonneville Retail Group, uses
+recent weekday averages to help plan the next six weeks. A vendor proposes a
+pretrained forecasting model. Rina wants to know:</p>
+<blockquote>
+<p>“Does this provide a useful improvement over our simple forecast, and what
+would we need to check before using it in the planning process?”</p>
+</blockquote>
+<p>Use the public <strong>Rossmann daily store-sales example</strong>, retaining the original
+store and sales fields. These are not Bonneville's actual records. The target
+is <strong>daily sales</strong>, a monetary measure in the example data. It is not product
+units, customer arrivals, labor hours, or required staff headcount. A sales
+forecast may inform planning, but this file does not supply the conversion
+from sales to staffing or inventory. Keep your recommendation at the level
+the evidence supports.</p>
+<h2>2. What you receive and how to start</h2>
+<p>Extract <code>VD2_student_files.zip</code>. It contains:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">File</th>
+<th scope="col">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VD2_STUDENT_PACK.html</code></td>
+<td>This assignment and complete rubric.</td>
+</tr>
+<tr>
+<td><code>VD2_analysis.py</code></td>
+<td>Supported comparison, evaluation, and checks.</td>
+</tr>
+<tr>
+<td><code>VD2_requirements.txt</code></td>
+<td>The small Python package set for the analysis.</td>
+</tr>
+<tr>
+<td><code>VD2_foundation_forecasts.csv</code></td>
+<td>Locally generated TimesFM point and quantile forecasts, keyed by store, date, and origin. No actual sales in this file.</td>
+</tr>
+<tr>
+<td><code>VD2_forecast_source.json</code></td>
+<td>Model revision, settings, versions, and data/forecast fingerprints.</td>
+</tr>
+</tbody>
+</table>
+<p>Obtain the original <a href="https://huggingface.co/datasets/AiiN-aini/rossmann-store-sales/resolve/main/train.csv">Rossmann training CSV</a>
+and save it as <strong><code>data/train.csv</code></strong> beside these files. This is the same public
+extract identified in the source JSON. The script checks its fingerprint
+before proceeding. The mirror's <code>test.csv</code> has no outcomes and is not used.
+<code>store.csv</code> is not needed for the required comparison.</p>
+<p>Use the course Python environment with pandas and NumPy. The supplied package
+versions were checked with Python 3.11.3. If you need help preparing the
+packages on a personal laptop, show the requirements file to your coding
+agent. In a managed class environment, use the installed packages and ask for
+help with a mismatch rather than changing the shared environment. The analysis
+reads local inputs; it does not download data, call an AI service, or load
+model weights.</p>
+<p>The <a href="https://huggingface.co/datasets/AiiN-aini/rossmann-store-sales">dataset mirror</a>
+is the source, not a general permission to republish the data. Retain its
+source note, cache the CSV locally, and keep it and model weights out of public
+repositories. Use only the assigned public example, not employer data. If the
+source is unavailable or the fingerprint differs, contact the instructor for
+the course extract rather than substituting a different file.</p>
+<h3>Read the columns</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Column</th>
+<th scope="col">Treatment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Store</code>, <code>Date</code></td>
+<td>Combined series/date key; check for duplicates and sort dates.</td>
+</tr>
+<tr>
+<td><code>Sales</code></td>
+<td>Recorded daily sales, including zeros. This is the target.</td>
+</tr>
+<tr>
+<td><code>Open</code></td>
+<td>Whether the store was recorded open. We explicitly assume the same schedule was known at the origin for one comparison.</td>
+</tr>
+<tr>
+<td><code>DayOfWeek</code></td>
+<td>Weekday field. The supplied code derives weekday from Date.</td>
+</tr>
+<tr>
+<td><code>Customers</code></td>
+<td>Contemporaneous customer count, excluded. Future realized customers are not available when forecasting.</td>
+</tr>
+<tr>
+<td><code>Promo</code>, <code>StateHoliday</code>, <code>SchoolHoliday</code></td>
+<td>Preserved in the source but excluded from the required predictive inputs. Their availability and usefulness would need a separate design.</td>
+</tr>
+</tbody>
+</table>
+<p>The original CSV contains <strong>1,017,209 rows</strong> and <strong>1,115 stores</strong>, covering
+2013-01-01 through 2015-07-31. It is an unbalanced panel: some stores have
+missing historical dates. We use <strong>20 specified stores</strong>, listed below. The
+84-day histories and 42-day evaluation windows used here are complete for all
+20. The code stops on a missing required date instead of inventing an outcome.
+An observed zero and an absent row have different meanings.</p>
+<h2>3. Compare three supplied methods</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">Complete recipe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Seasonal naive</strong> (<code>seasonal_naive</code>)</td>
+<td>Repeat the last complete training week across all 42 forecast days. This is the simple benchmark.</td>
+</tr>
+<tr>
+<td><strong>Weekday mean</strong> (<code>weekday_mean</code>)</td>
+<td>Estimate seven weekday means from the last 56 training days, including observed zero-sales days. This is the current-process comparison.</td>
+</tr>
+<tr>
+<td><strong>TimesFM</strong> (<code>timesfm</code>)</td>
+<td>Use the supplied fixed-weight forecasts made from the last 84 observed training days. No local fitting or future inputs were used.</td>
+</tr>
+</tbody>
+</table>
+<p>All methods forecast the same store-days. Different history lengths are part
+of these supplied recipes, so the results compare complete methods rather
+than isolating architecture. A 42-day seasonal-naive forecast repeats the last
+training week six times; it never reads actual sales from inside that horizon.</p>
+<p>The foundation file uses <code>google/timesfm-2.5-200m-transformers</code> at revision
+<code>5a9806b9b291fad9233b5249d88263f1846304d3</code>. In this pinned implementation, its
+point-output field selects the <strong>median</strong>, despite its library name
+<code>mean_predictions</code>. The snapshot also includes the 0.10, 0.80, and 0.90
+quantiles. Document that you evaluated supplied forecasts; do not claim you
+trained or ran the model yourself. Running inference independently is optional
+and earns no additional points by itself. The supplied file fixes the required
+comparison across students.</p>
+<h3>The calendar assumption</h3>
+<p>For the main comparison, treat recorded <code>Open</code> as the planned schedule known
+at each origin. On a planned closed day, set <strong>every method's prediction to
+zero</strong>; set both bounds of the foundation interval to zero too. The script
+also reports the raw predictions before this adjustment.</p>
+<p>The data do not verify that this schedule was actually known six weeks in
+advance. This is an explicit classroom information assumption. If it would
+not hold in practice, the adjusted comparison would not establish deployable
+performance. The raw comparison helps show how much that assumption changes
+the conclusion. Zeroing a known closure is different from using future Sales
+or Customers to improve a forecast.</p>
+<h2>4. Use earlier windows to choose; reserve the later window</h2>
+<p>Use stores <strong>1–15, 85, 122, 209, 259, and 262</strong>. The final five are the
+Sunday-trading group used in the course's fixed sampling design. This is a
+purposive teaching sample, not a representative sample of all Rossmann stores.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Role</th>
+<th scope="col">Origin (first forecast day)</th>
+<th scope="col">Last observed training day</th>
+<th scope="col">Evaluation window</th>
+<th scope="col">Store-days per method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Validation A</td>
+<td>March 28, 2015</td>
+<td>March 27</td>
+<td>March 28–May 8</td>
+<td>840</td>
+</tr>
+<tr>
+<td>Validation B</td>
+<td>May 9, 2015</td>
+<td>May 8</td>
+<td>May 9–June 19</td>
+<td>840</td>
+</tr>
+<tr>
+<td>Final evaluation</td>
+<td>June 20, 2015</td>
+<td>June 19</td>
+<td>June 20–July 31</td>
+<td>840</td>
+</tr>
+</tbody>
+</table>
+<p>The two validation windows contain <strong>1,680 store-days combined</strong>. Each is
+42 days; the evaluation windows do not overlap. History advances at each new
+origin, so earlier validation outcomes can become later training history.
+The reserved final window is not used to choose the recipe. Shared stores
+and calendar conditions still limit how independent these comparisons are.</p>
+<p>Run from the folder containing the supplied files:</p>
+<pre><code class="language-bash">python VD2_analysis.py compare --csv data/train.csv --out outputs
+</code></pre>
+<p>A useful agent prompt is:</p>
+<pre><code class="language-text">Read the Case 2 handout and VD2_analysis.py. Run only compare using
+local data/train.csv and the supplied forecasts. Explain the keys,
+date windows, three methods, and known-calendar assumption. Show
+validation.csv and validation_by_origin.csv. Stop before evaluate.
+Help me understand the evidence; do not write my assessed reasons,
+interpretations, or memo.
+</code></pre>
+<p><strong>MAE</strong> is mean absolute error in the Sales measure. <strong>WAPE</strong> is total absolute
+error divided by total absolute actual sales on the same rows. It is undefined
+if that denominator is zero; individual zero-sales rows stay in the numerator.
+Lower values are better. The script pools error and actual sums when combining
+windows; it does not average percentages with different denominators.</p>
+<p>In <code>analysis.md</code>, record the method you select and two or three sentences
+explaining the validation evidence. The default is <strong>lowest combined validation
+MAE</strong>. On an exact tie, prefer seasonal naive, then weekday mean, then TimesFM.
+A simpler method with a small MAE disadvantage is also acceptable if you explain
+the tradeoff. No particular winner is required.</p>
+<p>Record the choice <strong>before</strong> evaluating the last window. A dated note is
+sufficient; Git commit counts and timestamps are not grading criteria. If you
+already evaluated first, state what happened and explain its limitation.
+Do not invent an earlier decision record.</p>
+<h2>5. Evaluate and explain the checks</h2>
+<p>After recording your choice, replace <code>weekday_mean</code> with your recorded method:</p>
+<pre><code class="language-bash">python VD2_analysis.py evaluate --csv data/train.csv --out outputs --choice weekday_mean
+</code></pre>
+<p>The simple methods use history preceding this later origin. The foundation
+file contains a separate forecast from that origin. This is a new forecast
+using the selected recipe, not a model selected again using final outcomes.
+The script reports alternatives alongside the choice; keep the original
+selection visible even if their ordering changes.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Evidence to explain</th>
+<th scope="col">Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All three final MAEs and WAPEs, common rows and stores</td>
+<td><code>final_scores.csv</code></td>
+</tr>
+<tr>
+<td>Forecasts keyed by origin, store, and date; actuals and raw/adjusted predictions</td>
+<td><code>final_predictions.csv</code></td>
+</tr>
+<tr>
+<td>Differences between methods, on common store resamples</td>
+<td><code>paired_mae.csv</code></td>
+</tr>
+<tr>
+<td>Results for the five Sunday-trading stores and the other fifteen</td>
+<td><code>final_groups.csv</code></td>
+</tr>
+<tr>
+<td>Results before and after the assumed known schedule</td>
+<td><code>calendar_check.csv</code></td>
+</tr>
+<tr>
+<td>Central 80% interval coverage, row counts, and average width</td>
+<td><code>interval_coverage.csv</code></td>
+</tr>
+<tr>
+<td>Input fingerprints, code fingerprint, choice, and versions</td>
+<td><code>compare_record.json</code>, <code>evaluate_record.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3>Check 1 — Information and dates</h3>
+<p>Explain why the training week can be repeated but future actuals cannot be
+read to update the original forecast. Check one store's forecast day 8 against
+its last training week. Explain the excluded <code>Customers</code> field and the stated
+<code>Open</code> assumption. Show that the final comparison has 840 rows per method,
+with no duplicate forecast keys or missing predictions.</p>
+<h3>Check 2 — Error measures and groups</h3>
+<p>Report the three final MAEs and WAPEs. Write WAPE's numerator and denominator
+in words, including which rows they describe. Check one method's absolute-error
+sum divided by its actual-sales sum independently with a calculator or
+spreadsheet. Compare the five-store and fifteen-store groups. Explain why this
+sample does not support a claim about every store or about staff headcount.</p>
+<h3>Check 3 — Uncertainty and changing origins</h3>
+<p>The script supplies <strong>1,000 paired bootstrap samples with seed 0</strong>, resampling
+<strong>stores</strong> with replacement and retaining all 42 days within a selected store.
+Both methods are scored on the same resampled stores; subtract their MAEs
+inside each resample. Report the chosen method's difference from seasonal
+naive and from weekday mean, omitting a self-comparison if one is your choice.
+If you chose seasonal naive, discuss the strongest validation alternative
+against it as well.</p>
+<p>A negative difference favors the method named first. An interval containing
+zero leaves its direction uncertain; it does not establish that the methods
+are equivalent. These are exploratory intervals for fixed forecasts and a
+small, selected store sample. They omit new model fitting, selection uncertainty,
+future shocks, and shared calendar dependence between stores. There is no
+multiple-comparison adjustment. Also show the three windows' results and
+explain whether the size or order of the differences changes. Three windows
+are descriptive evidence, not a long-run performance guarantee.</p>
+<h3>Check 4 — Calendar and forecast intervals</h3>
+<p>Compare raw and schedule-adjusted error for your chosen method. It is acceptable
+for the adjustment to make no difference; explain why rather than manufacturing
+an effect. Separate the assumption that the schedule was known from the
+measured change in retrospective error.</p>
+<p>For the supplied TimesFM arm, explain the <strong>0.10–0.90 central 80% interval</strong>,
+its observed coverage, and its average width. Report coverage on all days and
+open days separately, with counts. Check interval ordering before interpreting
+coverage. Closed days receive [0, 0] under the schedule assumption and can
+inflate pooled coverage. A coverage rate above 80% does not automatically mean
+a better range; width and the decision's cost matter too. The required interval
+check applies to the foundation arm even if you selected another method.
+You do not need to construct additional interval models.</p>
+<p>The forecast interval describes an outcome range. The bootstrap interval in
+Check 3 describes uncertainty in a model difference. Do not confuse them or
+sum daily forecast quantiles into a six-week total-demand quantile.</p>
+<h2>6. What to submit</h2>
+<p>Submit your <strong>repository URL and a one-page memo PDF</strong> on Canvas by October 5,
+6:00 p.m. Include the repository URL in the memo PDF as well so both pieces
+remain identifiable if Canvas accepts one submission type at a time.</p>
+<p>The repository contains:</p>
+<ol>
+<li><strong><code>analysis.md</code></strong>, organized around Q1–Q4 below. About 1,200–1,800 words
+   excluding tables is a useful guide; clear shorter work is welcome and
+   there is no minimum word count. Include your validation choice and checks.</li>
+<li><strong>Code, <code>outputs/</code>, requirements, supplied forecast CSV and source JSON,
+   and <code>README.md</code></strong>. Give the data link, the two commands, and your recorded
+   choice. Keep raw data and model weights outside the repository. A grader
+   with the same CSV should be able to reproduce your tables.</li>
+<li><strong>An AI-use record:</strong> the prompts and transcript/export, including failed
+   attempts if any, plus a short description of what AI helped with and two
+   checks you understood. A successful first prompt is fine. A duplicate
+   six-field log for every prompt is not required.</li>
+<li><strong>The one-page memo to Rina Kapoor</strong>, included in the repository too.
+   Recommend an action, use a few relevant comparisons, explain one limitation
+   that could change the action, and describe how the planning team could test
+   the recommendation. Keep staffing and savings claims within the evidence.</li>
+</ol>
+<h3>Q4 comparison table</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">Validation MAE</th>
+<th scope="col">Final MAE</th>
+<th scope="col">Final WAPE</th>
+<th scope="col">Role in your recommendation</th>
+<th scope="col">Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seasonal naive</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Your choice</td>
+<td>Your explanation</td>
+</tr>
+<tr>
+<td>Weekday mean</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Your choice</td>
+<td>Your explanation</td>
+</tr>
+<tr>
+<td>TimesFM</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Your result</td>
+<td>Your choice</td>
+<td>Your explanation</td>
+</tr>
+</tbody>
+</table>
+<p>Place the paired differences and intervals beside this table or in Q3. A
+method may be a pilot candidate, an operational choice, a benchmark, or a
+deferred option. No rejection count is required. If you tried extra methods,
+report them honestly; more methods earn no points by themselves. End with a
+specific observation or additional evaluation that would change your
+recommendation. Your evidence may agree with your initial expectation.</p>
+<h2>7. The complete component rubric</h2>
+<p>The five question weights remain 20 / 25 / 25 / 20 / 10. Credit rewards correct
+work and explained evidence. High accuracy, statistical significance, a
+foundation-model win, a failed prompt, and a particular recommendation are
+not grading requirements.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Question</th>
+<th scope="col">Points</th>
+<th scope="col">Allocation and full-credit evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q1 — Generate</strong></td>
+<td><strong>20</strong></td>
+<td>Run and retain the supplied three-method comparison (10); explain the methods, histories, and supplied-versus-generated forecasts (5); reproducible commands, versions, and AI-use record (5).</td>
+</tr>
+<tr>
+<td><strong>Q2 — Validate the analysis</strong></td>
+<td><strong>25</strong></td>
+<td>Data, keys, and dates (5); fixed-origin forecasting, training-only information, and the explicit calendar assumption (10); correct MAE/WAPE tables, denominator explanation, and one independent arithmetic check (10).</td>
+</tr>
+<tr>
+<td><strong>Q3 — Assess uncertainty and forecast ranges</strong></td>
+<td><strong>25</strong></td>
+<td>Paired model differences with an explanation of store resampling and its limits (8); comparison across all three origins and the two store groups (7); raw-versus-schedule check and information assumption (4); ordered forecast intervals, coverage and width, all-day/open-day counts, and distinction from uncertainty in a model difference (6).</td>
+</tr>
+<tr>
+<td><strong>Q4 — Explain your choice</strong></td>
+<td><strong>20</strong></td>
+<td>Validation choice and honest sequence record (5); complete three-method table and evidence-consistent roles/reasons (10); specific evidence that could change the recommendation (5).</td>
+</tr>
+<tr>
+<td><strong>Q5 — Decide</strong></td>
+<td><strong>10</strong></td>
+<td>Actionable recommendation to Rina (3); relevant comparison, uncertainty, and interval evidence (3); bounded scope, calendar/forecast limitations, and a feasible next evaluation or pilot (4).</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>100</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Within an allocation, full credit means correct and explained evidence;
+roughly three-quarters indicates a minor omission; roughly half indicates a
+substantive error with some valid work; zero applies to an absent or unsupported
+component. Feedback identifies the affected component. There is no automatic
+whole-question zero for retaining every method, using a supplied forecast,
+not rejecting two specifications, or documenting a successful first prompt.</p>
+<p>Technical failures affect the components they prevent. Independently supported
+work can still earn credit. Disclose unresolved problems. Invented results
+and undisclosed AI writing are handled under the syllabus academic-integrity
+policy, not inferred from unexpectedly good results.</p>
+<h2>8. AI use, milestones, and other policies</h2>
+<p>AI may help run, explain, inspect, and debug code and generate calculation
+tables. <strong>Write your assessed interpretations, Q4 reasons, and memo yourself.</strong>
+AI drafting, rewriting, or polishing those passages is not permitted under the
+course policy. The class skills can assist permitted work; submitting a skill
+or a skill-test log is not an additional requirement for this case.</p>
+<p>Suggested pacing: by September 24, obtain the files and complete compare;
+by September 28, record your choice while completing Case 1; by October 1,
+finish the later evaluation and checks; by October 5, submit the analysis and
+memo. These are planning suggestions, not additional graded deadlines.</p>
+<p>The syllabus policies on individual work, collaboration, academic integrity,
+accommodations, emergencies, late work, and regrades apply. The hard deadline
+remains October 5 at 6:00 p.m.; submit partial work rather than nothing.
+This September 20 handout is the Case 2 assignment contract. It replaces the
+older six-specification search, mandatory rejections, extensive origin sweeps,
+and Git-timestamp grading, while preserving the published weight and deadline.</p>
+</main>
+</body>
+</html>

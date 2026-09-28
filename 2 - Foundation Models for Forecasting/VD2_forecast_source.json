@@ -1,0 +1,58 @@
+{
+  "measured": "2026-09-20",
+  "model_id": "google/timesfm-2.5-200m-transformers",
+  "revision": "5a9806b9b291fad9233b5249d88263f1846304d3",
+  "data_source": "https://huggingface.co/datasets/AiiN-aini/rossmann-store-sales/resolve/main/train.csv",
+  "data_sha256": "f6e4597c142d7d909a13d53b68a8e85c00b9a4c7b5ff40adbb37d6829cc1f4cc",
+  "prediction_sha256": "410d3baf78e5fc35aa504d2e999652cc06bbc1aad353da936901671735df85a6",
+  "stores": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    85,
+    122,
+    209,
+    259,
+    262
+  ],
+  "origins": [
+    "2015-03-28",
+    "2015-05-09",
+    "2015-06-20"
+  ],
+  "horizon_days": 42,
+  "context_days": 84,
+  "forecast_context_len": 96,
+  "point_output": "median: mean_predictions selects full_predictions index 5",
+  "context_policy": "84 preceding calendar days of observed Sales, including recorded zeros; no missing dates",
+  "features": "Sales history only; no future Sales, Customers, Open, or Promo supplied to TimesFM",
+  "calendar_policy": "Snapshot is raw. Analysis applies the same assumed known Open schedule to all methods afterward.",
+  "quantiles": {
+    "q10": 1,
+    "q80": 8,
+    "q90": 9
+  },
+  "elapsed_seconds": {
+    "2015-03-28": 1.026,
+    "2015-05-09": 0.979,
+    "2015-06-20": 0.982
+  },
+  "versions": {
+    "pandas": "2.0.0",
+    "numpy": "1.24.2",
+    "torch": "2.13.0+cpu",
+    "transformers": "5.15.1"
+  }
+}
