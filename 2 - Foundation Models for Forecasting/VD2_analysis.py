@@ -111,7 +111,6 @@ def paired_bootstrap(pred, reps=1000):
                              resampling_unit="store", stores=len(errors), resamples=reps))
     return pd.DataFrame(rows)
 
-
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage", choices=["compare", "evaluate"])
