@@ -1,0 +1,18 @@
+{
+  "status": "template_not_a_run",
+  "task": "",
+  "harness_and_version": "",
+  "model_id_or_unknown": "",
+  "instruction_profile": "",
+  "input_sha256": {},
+  "script_sha256": {},
+  "command": "",
+  "python_and_packages": {},
+  "exit_status": null,
+  "output_paths": [],
+  "independent_checks": [],
+  "human_review_minutes": null,
+  "reported_cost_usd": null,
+  "cost_status": "not_measured",
+  "remaining_limits": []
+}

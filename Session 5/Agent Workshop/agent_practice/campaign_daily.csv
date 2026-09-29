@@ -1,0 +1,10 @@
+record_id,date,campaign,segment,visits,orders,gross_revenue_usd,refunds_usd,ad_spend_usd
+C001,2026-09-14,A,new,500,10,500,50,100
+C002,2026-09-14,A,returning,50,4,400,0,40
+C003,2026-09-14,B,new,50,0,0,0,20
+C004,2026-09-14,B,returning,500,30,3000,200,200
+C005,2026-09-15,A,new,500,10,500,0,100
+C006,2026-09-15,A,returning,50,4,400,50,40
+C007,2026-09-15,B,new,50,1,50,0,20
+C008,2026-09-15,B,returning,500,30,3000,100,200
+C008,2026-09-15,B,returning,500,30,3000,100,200

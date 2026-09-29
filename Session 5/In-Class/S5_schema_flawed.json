@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Intentionally flawed teaching example: high is missing",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rows"
+  ],
+  "properties": {
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ticket_id",
+          "queue",
+          "priority"
+        ],
+        "properties": {
+          "ticket_id": {
+            "type": "string"
+          },
+          "queue": {
+            "type": "string",
+            "enum": [
+              "Billing and Payments",
+              "Customer Service",
+              "General Inquiry",
+              "Human Resources",
+              "IT Support",
+              "Product Support",
+              "Returns and Exchanges",
+              "Sales and Pre-Sales",
+              "Service Outages and Maintenance",
+              "Technical Support"
+            ]
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "critical"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+ticket_id,queue,priority
+T04539,IT Support,low
+T12622,Technical Support,medium
+T02698,IT Support,high
+T09586,Customer Service,medium
+T08200,IT Support,low
+T14700,Sales and Pre-Sales,low
+T04746,Technical Support,medium
+T25026,Technical Support,medium
+T12810,Technical Support,medium
+T06746,Product Support,low
+T04164,Product Support,low
+T03521,Technical Support,medium
+T01509,Service Outages and Maintenance,high
+T18481,IT Support,high
+T01069,Technical Support,medium
+T08751,Technical Support,medium
+T17141,Sales and Pre-Sales,low
+T16358,IT Support,high
+T16998,Product Support,low
+T27606,Sales and Pre-Sales,low
+T18199,Billing and Payments,medium
+T05476,Technical Support,low
+T19086,Sales and Pre-Sales,low
+T11711,Technical Support,medium
+T08082,Product Support,low
+T18172,Sales and Pre-Sales,low
+T04647,Technical Support,low
+T25248,Product Support,low
+T18464,IT Support,low
+T13574,Technical Support,medium
+T18691,IT Support,low
+T11151,Product Support,low
+T10365,Sales and Pre-Sales,low
+T01172,Customer Service,medium
+T27356,Technical Support,medium
+T15980,Technical Support,medium
+T15659,Customer Service,medium
+T19076,IT Support,medium
+T19790,Customer Service,medium
+T22127,IT Support,low
+T03020,Technical Support,high
+T11660,Sales and Pre-Sales,low
+T14146,Technical Support,medium
+T23585,Billing and Payments,medium
+T14575,Sales and Pre-Sales,low
+T19257,Technical Support,medium
+T14556,Technical Support,medium
+T13020,Technical Support,medium
+T00823,IT Support,high
+T01187,Service Outages and Maintenance,high

@@ -1,0 +1,29 @@
+{
+  "dataset": "Tobi-Bueck/customer-support-tickets",
+  "revision": "ddf1c81a5475992c4fa6752bf1e8b4e31f07bbeb",
+  "filename": "aa_dataset-tickets-multi-lang-5-2-50-version.csv",
+  "url": "https://huggingface.co/datasets/Tobi-Bueck/customer-support-tickets/resolve/ddf1c81a5475992c4fa6752bf1e8b4e31f07bbeb/aa_dataset-tickets-multi-lang-5-2-50-version.csv",
+  "sha256": "f187c090e59581c2bbf3aa1377c8db4dd647464ecf2ae51bf8966e42e0ed6bc0",
+  "bytes": 25996354,
+  "license": "cc-by-nc-4.0",
+  "checked": "2026-09-27",
+  "creator": "Tobi-Bueck (dataset publisher)",
+  "source_card": "https://huggingface.co/datasets/Tobi-Bueck/customer-support-tickets",
+  "changes": "English only; 60 seeded rows; original labels retained separately; source-row IDs added; empty subjects marked; bodies capped at 1200 characters; source replies and other fields omitted.",
+  "sampling": "Python random.Random(6620).sample of first occurrences of normalized subject+body, in source CSV order; 10 development, 20 validation, 30 final.",
+  "prediction_provenance": {
+    "date": "2026-09-27",
+    "producer": "Preparing AI assistant in this Codex conversation",
+    "method": "One input-only classification pass in two displayed batches of 20 and 30 records, following the task rules saved in S5_prompt.txt. Labels transcribed to CSV before reference scores were computed; no score-based revision.",
+    "limitations": "This was an assistant preparation pass, not a separately executed headless runner or independent blind study. Earlier context included corpus facts and other ticket examples. Exact backend revision and sampling parameters are unavailable. The saved labels are the reproducible artifact; no runtime, price, or repeated-run result was measured."
+  },
+  "class_file_sha256": {
+    "S5_tickets.csv": "dfed3c1bc5d8c953f6b782a85e772c987f2499a925c985fa4901e49a570eb55d",
+    "S5_labels.csv": "d0049e2ceffebd27256db68acae3441db772e106a2f8cc9ca91058cfa3ab8cdf",
+    "S5_saved_predictions.csv": "dc0d22c9efdd4a0ea40445cd3d3b266aee4cf15674a824da35e685edc9147c8b",
+    "S5_schema.json": "c58d23a52ff082f148490b1c5ba45cda756db86e1bf2b51c741ad1cb5c25f3eb",
+    "S5_schema_flawed.json": "a01ef9911090cfb92e10162ab148bee0ac328edc8eb9f0204f4635ee48a192bb",
+    "S5_prompt.txt": "d49e02222c803d2688b7a813559a1f129d5d1c40e7c3b8bd6281a1d186b0c9d3"
+  },
+  "license_url": "https://creativecommons.org/licenses/by-nc/4.0/"
+}

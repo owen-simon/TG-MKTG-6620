@@ -1,0 +1,1 @@
+run_id,harness_version,provider,model_id,instruction_profile,input_sha256,task,raw_response_saved,artifact_paths,correct_totals,correct_denominators,claim_limits_preserved,clean_rerun,human_review_minutes,elapsed_seconds,reported_cost_usd,cost_status,notes

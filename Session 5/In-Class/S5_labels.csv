@@ -1,0 +1,61 @@
+ticket_id,split,queue,priority
+T00495,development,Sales and Pre-Sales,low
+T11392,development,Service Outages and Maintenance,medium
+T15265,development,Customer Service,high
+T18719,development,Technical Support,high
+T14428,development,Billing and Payments,high
+T07132,development,Product Support,low
+T11859,development,Sales and Pre-Sales,medium
+T14788,development,IT Support,high
+T18800,development,Billing and Payments,high
+T04469,development,Returns and Exchanges,high
+T04539,validation,Billing and Payments,medium
+T12622,validation,Returns and Exchanges,medium
+T02698,validation,Product Support,high
+T09586,validation,Technical Support,medium
+T08200,validation,Returns and Exchanges,low
+T14700,validation,Service Outages and Maintenance,medium
+T04746,validation,Product Support,low
+T25026,validation,Technical Support,low
+T12810,validation,IT Support,high
+T06746,validation,Technical Support,high
+T04164,validation,Product Support,high
+T03521,validation,Product Support,high
+T01509,validation,Product Support,high
+T18481,validation,Product Support,medium
+T01069,validation,Technical Support,high
+T08751,validation,Customer Service,low
+T17141,validation,Product Support,medium
+T16358,validation,Technical Support,medium
+T16998,validation,Billing and Payments,medium
+T27606,validation,Product Support,medium
+T18199,final,Billing and Payments,high
+T05476,final,IT Support,high
+T19086,final,Sales and Pre-Sales,medium
+T11711,final,IT Support,medium
+T08082,final,Technical Support,high
+T18172,final,Billing and Payments,low
+T04647,final,Technical Support,high
+T25248,final,Billing and Payments,medium
+T18464,final,Technical Support,high
+T13574,final,Technical Support,high
+T18691,final,IT Support,high
+T11151,final,Customer Service,high
+T10365,final,Technical Support,medium
+T01172,final,Product Support,medium
+T27356,final,Technical Support,medium
+T15980,final,Product Support,medium
+T15659,final,Customer Service,low
+T19076,final,Technical Support,medium
+T19790,final,Customer Service,low
+T22127,final,Product Support,high
+T03020,final,Product Support,low
+T11660,final,Customer Service,medium
+T14146,final,Human Resources,medium
+T23585,final,Billing and Payments,medium
+T14575,final,Billing and Payments,high
+T19257,final,Product Support,medium
+T14556,final,Service Outages and Maintenance,high
+T13020,final,Technical Support,medium
+T00823,final,IT Support,high
+T01187,final,Technical Support,high
