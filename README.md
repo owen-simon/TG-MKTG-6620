@@ -3,7 +3,7 @@
 ## Case 1 — Which Customers Should the Retention Team Contact?
 
 ### File Locations
-- `1 - Classical Machine Learning`
+- `1 - Classical Machine Learning/`
   - `outputs/`: Folder containing codex output files.
   - `PowerShell_Transcript.txt`: Time-stamped transcript of the Codex session in PowerShell.
   - `agent_dialog.md`: Transcript of provided prompts and AI responses.
@@ -13,7 +13,7 @@
 ## Case 2 — Which Sales Forecast Should the Planning Team Use?
 
 ### File Locations
-- `2 - Foundation Models for Forecasting`
+- `2 - Foundation Models for Forecasting/`
 <!--
 
   - `outputs/`: Folder containing codex output files.
