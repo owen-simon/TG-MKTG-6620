@@ -90,3 +90,7 @@ Token usage: total=79,283 input=63,895 (+ 815,104 cached) output=15,388 (reasoni
 To continue this session, run:
   codex resume 01a0eaba-1947-7320-b5af-14e6300c1b09
 Or run codex resume and select Check status.
+
+# Lesson
+
+If you need a classifier, do not use an LLM. Find a classifier model and fine tune it to your needed parameters.
