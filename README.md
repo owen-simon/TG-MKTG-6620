@@ -2,7 +2,7 @@
 
 ## Case 1 — Which Customers Should the Retention Team Contact?
 
-### File Locations
+### Assignment Files
 - `1 - Classical Machine Learning/`
   - `outputs/`: Folder containing codex output files.
   - `PowerShell_Transcript.txt`: Time-stamped transcript of the Codex session in PowerShell.
@@ -12,7 +12,7 @@
 
 ## Case 2 — Which Sales Forecast Should the Planning Team Use?
 
-### File Locations
+### Assignment Files
 - `2 - Foundation Models for Forecasting/`
 <!--
 
