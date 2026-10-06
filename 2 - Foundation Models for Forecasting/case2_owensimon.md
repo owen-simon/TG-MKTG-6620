@@ -1,4 +1,4 @@
-# Case 2 — [Your name]
+# Case 2 — Owen Simon
 
 Choice record: On October 5, 2026, after seeing the validation table,
 I chose timesfm because it had the lowest validation mae.
@@ -25,16 +25,15 @@ Recorded choice: timesfm Keep it visible if the final ordering changes.
 
 ### 1b Methods
 
-- **Seasonal naive:** The seasonal naive method uses the last complete week of training data and repeats it to forecast the next 42 days.
-- **Weekday mean:** The weekday mean method uses the last 56 days of training data to calculate an average for each day of the week. These weekday averages are then used to forecast the next 42 days.
-- **TimesFM:** TimesFM uses the last 84 observed days of training data to forecast the next 42 days. 
-    - The TimesFM forecasts were supplied to me rather than generated or fitted by me.
+- **Seasonal naive**: The seasonal naive method uses the last complete week of training data and repeats it to forecast the next 42 days.
+- **Weekday mean**: The weekday mean method uses the last 56 training days, including observed zero-sales days, to calculate seven averages, one for each day of the week.
+- **TimesFM**: TimesFM uses the last 84 observed days of training data to forecast the next 42 days. *The TimesFM forecasts were supplied to me rather than generated or fitted by me.*
 
 ### 1c AI use, commands, and versions
 
 I used AI to help troubleshoot my Python environment and clarify the assignment instructions. I checked and understood that TimesFM had the lowest validation MAE of 1198.04 and that it also had the lowest final MAE of 1161.34. 
 
-I ran the following using Python 3.11.17, pandas 2.0.0, and NumPy 1.24.2.:
+I ran the following using Python 3.11.17, pandas 2.0.0, and NumPy 1.24.2.
 
 ```
 python VD2_analysis.py compare --csv data/train.csv --out outputs 
@@ -49,9 +48,30 @@ The final window included 20 stores and 840 store-days for each method. The agen
 
 ### 2b Fair test
 
-codex resume 01a10e7e-42f9-7ba3-a13b-6c536a735db5
+You cannot test on randomly chosen days because you could accidentally train the forecasting method on data from a day that occurred after a test day. That would allow information from the future to influence an earlier forecast.
+
+The agent ran a no-peeking check on store 1. The seasonal naive forecast for June 27 was 4,256, which equals its actual sales of 4,256 on June 13 rather than its June 20 actual sales of 4,097. This is correct because June 13 was part of the training data available before the forecast window began, while June 20 was inside the forecast window. Using June 20 sales would mean the forecast was using future information that would not have been available when the forecast was made.
+
+The script sets the forecast to zero on days the store was closed under the assumption that the retailer knows whether each store will be open or closed for every day in the six-week forecast period. This is somewhat realistic, as retailers often plan closures in advance. However, this is also unrealistic because unexpected closures could occur.
 
 ### 2c Accuracy
+
+| Method | Final MAE | Final WAPE |
+|:--|:--:|:--:|
+| Seasonal naive | 1208.00 | 0.1742 |
+| Weekday mean | 1163.40 | 0.1678 |
+| TimesFM | 1161.34 | 0.1675 |
+
+**MAE** measures the average absolute difference between actual sales and forecasted sales per store-day.
+
+$$
+\text{WAPE}_{\text{TimesFM}}
+= \frac{975{,}525.746459961}{5{,}824{,}198}
+= 0.1674952923
+$$
+
+- **Numerator** (`absolute_error_sum`): The total absolute error between actual and forecasted sales across the 840 store-days in the final window.
+- **Denominator** (`actual_sum`): The total actual sales across those same 840 store-days in the final window.
 
 ## Q3 — How sure are we, and does the result hold up?
 
