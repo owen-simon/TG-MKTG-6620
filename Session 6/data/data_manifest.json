@@ -1,0 +1,17 @@
+{
+  "dataset": "CLASS",
+  "created": "2026-09-28",
+  "origin": "Original fictional course policies and questions authored during lesson preparation. Not real company policies or observed customer traffic.",
+  "reuse": "Course-authored teaching data may be copied and adapted for coursework. Model weights are not included.",
+  "documents": 30,
+  "queries": 24,
+  "eligibility": "brand from request form and status=current; filters are exercise scope, not production authorization",
+  "label_rule": "One intended current policy per answerable query; controls have none. Inspect the text before treating the key as correct.",
+  "files": {
+    "documents.csv": "85250a779f71f6c92eae1c3d51ea708cada62a177c5f7c7381f28782193e8378",
+    "labels_dev.csv": "8705cd307528e67601e62b21688494ec67f8f981f11f2d89c08f7fcfde6af5e4",
+    "labels_final.csv": "f20758bc47913f0f2a7dd70c27cd763988a30410c2c4bb4524ae63f9891e1bb1",
+    "labels_validation.csv": "86d5fffda03c06b6c8f232044fbaf19b819b653a8e8fa5dab64cf136ad9e6dbc",
+    "queries.csv": "ea1568eefb0667ae928fab2041dc9c546532d6705da5ea21cc43bb599b0759a0"
+  }
+}

@@ -45,9 +45,7 @@ python VD2_analysis.py evaluate --csv data/train.csv --out outputs --choice time
 
 ### 2a Data
 
-The final window included 20 stores and 840 store-days for each method. The agent confirmed that there were no repeated store-dates or missing forecasts.
-
-The `Customers` column was excluded because it is a contemporaneous count; customer count for a future day would not be known at the time the forecast is made, so using it would introduce future information.
+The final window included 20 stores and 840 store-days for each method. The agent confirmed that there were no repeated store-dates or missing forecasts. The `Customers` column was excluded because it represents a contemporaneous count; customer count for a future day would not be known when the forecast is made, so using it would introduce future information.
 
 ### 2b Fair test
 

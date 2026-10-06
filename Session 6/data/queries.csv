@@ -1,0 +1,25 @@
+query_id,split,brand,question
+CLASS-dev-01,dev,Alta,When is the deadline for sending an unused purchase back?
+CLASS-validation-01,validation,Canyon,I changed my mind about an unworn jacket. How long do I have to get my money back?
+CLASS-final-01,final,BRG,What is the return window if I still have the receipt and have never used the item?
+CLASS-dev-02,dev,Canyon,How long does standard shipping take?
+CLASS-validation-02,validation,BRG,My parcel has left the warehouse. When should I expect it?
+CLASS-final-02,final,Alta,What arrival estimate should staff quote for an ordinary shipment?
+CLASS-dev-03,dev,BRG,How long are manufacturing faults covered?
+CLASS-validation-03,validation,Alta,The stitching came apart without heavy use. What proof is needed for a defect claim?
+CLASS-final-03,final,Canyon,Does the product guarantee include ordinary wear?
+CLASS-dev-04,dev,Alta,Can I cancel before my order is packed?
+CLASS-validation-04,validation,Canyon,I ordered the wrong size five minutes ago. How can I stop the shipment?
+CLASS-final-04,final,BRG,What happens to a cancellation request after warehouse packing begins?
+CLASS-dev-05,dev,Canyon,Do gift cards have an expiry date?
+CLASS-validation-05,validation,BRG,I lost a gift certificate. What records do I need to recover the balance?
+CLASS-final-05,final,Alta,Can this service turn my store credit card into cash?
+CLASS-dev-06,dev,BRG,How long will a store hold my pickup order?
+CLASS-validation-06,validation,Alta,What should I bring to collect an order at the shop?
+CLASS-final-06,final,Canyon,What happens if I never collect the parcel waiting at the store?
+CLASS-dev-07,dev,Alta,What do I do about an item damaged in shipping?
+CLASS-validation-07,validation,Canyon,The box arrived crushed and the contents are broken. What evidence should I save?
+CLASS-final-07,final,BRG,How soon must damage during transport be reported?
+CLASS-dev-08,dev,Canyon,Can I get a refund when your price drops?
+CLASS-validation-08,validation,BRG,I bought this yesterday and your site now lists it for less. Is there a price protection policy?
+CLASS-final-08,final,Alta,Will you match a cheaper price from a different retailer?

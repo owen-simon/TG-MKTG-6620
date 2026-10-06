@@ -1,0 +1,27 @@
+[
+  {
+    "tool": "search",
+    "arguments": {
+      "query_id": "CLASS-dev-01"
+    }
+  },
+  {
+    "tool": "read_policy",
+    "arguments": {
+      "doc_id": "CLASS-1-01"
+    }
+  },
+  {
+    "tool": "finish",
+    "arguments": {
+      "status": "answer",
+      "answer": "Unused purchases with a receipt may be returned within 14 days of delivery. Worn items are excluded. Refunds go to the original payment method.",
+      "citations": [
+        {
+          "doc_id": "CLASS-1-01",
+          "quote": "Unused purchases with a receipt may be returned within 14 days of delivery. Worn items are excluded. Refunds go to the original payment method."
+        }
+      ]
+    }
+  }
+]

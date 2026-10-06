@@ -1,0 +1,9 @@
+query_id,relevant_id,answerable
+CLASS-dev-01,CLASS-1-01,1
+CLASS-dev-02,CLASS-2-02,1
+CLASS-dev-03,CLASS-3-03,1
+CLASS-dev-04,CLASS-1-04,1
+CLASS-dev-05,CLASS-2-05,1
+CLASS-dev-06,CLASS-3-06,1
+CLASS-dev-07,CLASS-1-07,1
+CLASS-dev-08,CLASS-2-08,1

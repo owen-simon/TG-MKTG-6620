@@ -1,0 +1,9 @@
+query_id,relevant_id,answerable
+CLASS-validation-01,CLASS-2-01,1
+CLASS-validation-02,CLASS-3-02,1
+CLASS-validation-03,CLASS-1-03,1
+CLASS-validation-04,CLASS-2-04,1
+CLASS-validation-05,CLASS-3-05,1
+CLASS-validation-06,CLASS-1-06,1
+CLASS-validation-07,CLASS-2-07,1
+CLASS-validation-08,CLASS-3-08,1

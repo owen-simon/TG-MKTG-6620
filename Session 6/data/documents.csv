@@ -1,0 +1,31 @@
+doc_id,brand,status,title,text,version
+CLASS-1-01,Alta,current,Returns,Unused purchases with a receipt may be returned within 14 days of delivery. Worn items are excluded. Refunds go to the original payment method.,2026-10
+CLASS-1-02,Alta,current,Delivery,Standard delivery takes 5 business days after dispatch. The dispatch email contains tracking. Weather delays may extend this estimate; it is not a guaranteed arrival date.,2026-10
+CLASS-1-03,Alta,current,Warranty,Manufacturing defects are covered for 12 months after purchase. Submit a receipt and a photograph. Accidental damage and ordinary wear are excluded.,2026-10
+CLASS-1-04,Alta,current,Cancellation,"An order can be cancelled within 30 minutes of payment if packing has not started. Once packing starts, use the returns process after delivery.",2026-10
+CLASS-1-05,Alta,current,Gift cards,Gift cards do not expire. They cannot be exchanged for cash through this service. A lost card can be replaced only with the original purchase receipt and card number.,2026-10
+CLASS-1-06,Alta,current,Store pickup,Pickup orders are held for 7 days after the ready notice. Bring photo identification and the order confirmation. Uncollected orders are cancelled and refunded.,2026-10
+CLASS-1-07,Alta,current,Damaged delivery,Report transit damage within 3 days of receipt. Keep the packaging and send photographs of the parcel and item. Staff arrange a replacement or refund after review.,2026-10
+CLASS-1-08,Alta,current,Price adjustment,One price adjustment is available within 10 days of purchase when this same brand reduces its own public price. Competitor prices and clearance purchases are excluded.,2026-10
+CLASS-1-01-old,Alta,archived,Returns,Unused purchases with a receipt may be returned within 45 days of delivery. Worn items are excluded. Refunds go to the original payment method.,2025-01
+CLASS-1-02-old,Alta,archived,Delivery,Standard delivery takes 45 business days after dispatch. The dispatch email contains tracking. Weather delays may extend this estimate; it is not a guaranteed arrival date.,2025-01
+CLASS-2-01,Canyon,current,Returns,Unused purchases with a receipt may be returned within 15 days of delivery. Worn items are excluded. Refunds go to the original payment method.,2026-10
+CLASS-2-02,Canyon,current,Delivery,Standard delivery takes 6 business days after dispatch. The dispatch email contains tracking. Weather delays may extend this estimate; it is not a guaranteed arrival date.,2026-10
+CLASS-2-03,Canyon,current,Warranty,Manufacturing defects are covered for 13 months after purchase. Submit a receipt and a photograph. Accidental damage and ordinary wear are excluded.,2026-10
+CLASS-2-04,Canyon,current,Cancellation,"An order can be cancelled within 31 minutes of payment if packing has not started. Once packing starts, use the returns process after delivery.",2026-10
+CLASS-2-05,Canyon,current,Gift cards,Gift cards do not expire. They cannot be exchanged for cash through this service. A lost card can be replaced only with the original purchase receipt and card number.,2026-10
+CLASS-2-06,Canyon,current,Store pickup,Pickup orders are held for 8 days after the ready notice. Bring photo identification and the order confirmation. Uncollected orders are cancelled and refunded.,2026-10
+CLASS-2-07,Canyon,current,Damaged delivery,Report transit damage within 4 days of receipt. Keep the packaging and send photographs of the parcel and item. Staff arrange a replacement or refund after review.,2026-10
+CLASS-2-08,Canyon,current,Price adjustment,One price adjustment is available within 11 days of purchase when this same brand reduces its own public price. Competitor prices and clearance purchases are excluded.,2026-10
+CLASS-2-01-old,Canyon,archived,Returns,Unused purchases with a receipt may be returned within 46 days of delivery. Worn items are excluded. Refunds go to the original payment method.,2025-01
+CLASS-2-02-old,Canyon,archived,Delivery,Standard delivery takes 46 business days after dispatch. The dispatch email contains tracking. Weather delays may extend this estimate; it is not a guaranteed arrival date.,2025-01
+CLASS-3-01,BRG,current,Returns,Unused purchases with a receipt may be returned within 16 days of delivery. Worn items are excluded. Refunds go to the original payment method.,2026-10
+CLASS-3-02,BRG,current,Delivery,Standard delivery takes 7 business days after dispatch. The dispatch email contains tracking. Weather delays may extend this estimate; it is not a guaranteed arrival date.,2026-10
+CLASS-3-03,BRG,current,Warranty,Manufacturing defects are covered for 14 months after purchase. Submit a receipt and a photograph. Accidental damage and ordinary wear are excluded.,2026-10
+CLASS-3-04,BRG,current,Cancellation,"An order can be cancelled within 32 minutes of payment if packing has not started. Once packing starts, use the returns process after delivery.",2026-10
+CLASS-3-05,BRG,current,Gift cards,Gift cards do not expire. They cannot be exchanged for cash through this service. A lost card can be replaced only with the original purchase receipt and card number.,2026-10
+CLASS-3-06,BRG,current,Store pickup,Pickup orders are held for 9 days after the ready notice. Bring photo identification and the order confirmation. Uncollected orders are cancelled and refunded.,2026-10
+CLASS-3-07,BRG,current,Damaged delivery,Report transit damage within 5 days of receipt. Keep the packaging and send photographs of the parcel and item. Staff arrange a replacement or refund after review.,2026-10
+CLASS-3-08,BRG,current,Price adjustment,One price adjustment is available within 12 days of purchase when this same brand reduces its own public price. Competitor prices and clearance purchases are excluded.,2026-10
+CLASS-3-01-old,BRG,archived,Returns,Unused purchases with a receipt may be returned within 47 days of delivery. Worn items are excluded. Refunds go to the original payment method.,2025-01
+CLASS-3-02-old,BRG,archived,Delivery,Standard delivery takes 47 business days after dispatch. The dispatch email contains tracking. Weather delays may extend this estimate; it is not a guaranteed arrival date.,2025-01
