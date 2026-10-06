@@ -1,0 +1,43 @@
+{
+  "data_sha256": "f6e4597c142d7d909a13d53b68a8e85c00b9a4c7b5ff40adbb37d6829cc1f4cc",
+  "forecast_sha256": "410d3baf78e5fc35aa504d2e999652cc06bbc1aad353da936901671735df85a6",
+  "code_sha256": "4296e026675a2bb598d789baa5baa5a2e91ae11eccdfcf55dd62f35f537fab14",
+  "methods": [
+    "seasonal_naive",
+    "weekday_mean",
+    "timesfm"
+  ],
+  "stores": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    85,
+    122,
+    209,
+    259,
+    262
+  ],
+  "origins": [
+    "2015-03-28",
+    "2015-05-09",
+    "2015-06-20"
+  ],
+  "horizon": 42,
+  "context_days": 84,
+  "calendar_assumption": "Recorded Open is treated as the planned schedule known at each origin.",
+  "python": "3.11.17",
+  "pandas": "2.0.0",
+  "numpy": "1.24.2"
+}
