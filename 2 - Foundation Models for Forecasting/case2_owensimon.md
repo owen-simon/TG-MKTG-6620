@@ -273,3 +273,11 @@ Codex found 90 closed store-days. Seasonal naive and weekday mean already had ze
 - Coverage should be considered with interval width because wider intervals can produce greater coverage while being less precise.
 - The TimesFM `q10` to `q90` interval represents uncertainty about the sales outcome for an individual store-day.
 - The Q3a bootstrap 95% interval instead represents uncertainty in the estimated difference in MAE between forecasting methods across the evaluation sample.
+
+### Prompt 9:
+
+> Can you save a transcript of this codex session to case2_owensimon.csv under the AI disclosure section 6? Include only my prompts and key parts of each reply
+
+**Confirmation Response:**
+
+Updated the `## AI record` section in /C:/Users/owens/Repositories/TG-MKTG-6620/2 - Foundation Models for Forecasting/case2_owensimon.md with the substantive prompts and key replies.
