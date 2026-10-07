@@ -46,7 +46,7 @@ python VD2_analysis.py evaluate --csv data/train.csv --out outputs --choice time
 
 ### 2a Data
 
-The final window included 20 stores and 840 store-days for each method. The agent confirmed that there were no repeated store-dates or missing forecasts. The `Customers` column was excluded because it represents a contemporaneous count; customer count for a future day would not be known when the forecast is made, so using it would introduce future information.
+The final window includes 20 stores and 840 store-days for each method. The agent confirmed that there were no repeated store-dates or missing forecasts. The `Customers` column was excluded because it represents a contemporaneous count; customer count for a future day would not be known when the forecast is made, so using it would introduce future information.
 
 ### 2b Fair test
 
@@ -54,7 +54,7 @@ You cannot test on randomly chosen days because you could accidentally train the
 
 The agent ran a no-peeking check on store 1. The seasonal naive forecast for June 27 was 4256, which equals its actual sales on June 13 (4256) rather than its actual sales on June 20 (4097). This is correct because June 13 was part of the training data available before the forecast window began, while June 20 was inside the forecast window. Using June 20 sales would mean the forecast was using future information that would not have been available when the forecast was made.
 
-The script sets the forecast to zero on days the store was closed under the assumption that the retailer knows whether each store will be open or closed for every day in the six-week forecast period. This assumption is somewhat realistic, as retailers often plan closures in advance. However, the assumption may not always hold if a store has an unexpected closure.
+The script sets the forecast to zero on days the store was closed under the assumption that the retailer knows whether each store will be open or closed for every day in the six-week forecast period. This assumption is somewhat realistic, as stores often maintain regular schedules, such as opening earlier or closing on weekends. However, the assumption may not always hold if a store has an unexpected closure.
 
 ### 2c Accuracy
 
@@ -80,13 +80,13 @@ $$
 ### 3a Uncertainty
 
 | Comparison | MAE Difference | 95% CI | Includes 0? |
-|---|---:|---:|---|
+|---|:--:|:--:|:--:|
 | TimesFM − weekday mean | -2.06 | [-59.26, 77.64] | Yes |
 | TimesFM − seasonal naive | -46.66 | [-157.20, 79.58] | Yes |
 
-Both comparisons favor TimesFM, becuase it had a lower MAE than weekday mean by 2.06 and seasonal naive by 46.66. However, both 95% intervals include zero, so the results do not provide clear evidence that TimesFM has lower MAE than either weekday mean or seasonal naive.
+Both comparisons favor TimesFM, because it had a lower MAE than weekday mean by 2.06 and seasonal naive by 46.66. However, both 95% confidence intervals include zero, so the results do not provide clear evidence that TimesFM has lower MAE than either weekday mean or seasonal naive.
 
-The script resamples stores rather than individual days because the 42 daily observations within each store may be related, so resampling stores keeps each store's daily observations together. These intervals do not account for uncertainty across different future time periods.
+The script resamples stores rather than individual days because the 42-day forecasts within each store may be related. Keeping each store's 42 days together accounts for differences in forecasting performance across stores. However, these intervals do not account for how the methods might perform during different future time periods.
 
 ### 3b Does the ranking hold?
 
@@ -100,7 +100,7 @@ The script resamples stores rather than individual days because the 42 daily obs
 
 The order and size of the gaps do not stay the same. Weekday mean had the lowest MAE in Validation A, TimesFM had the lowest MAE in Validation B and the final window, and seasonal naive had the lowest MAE among the Sunday-trading stores. The differences also varied in size, with TimesFM and weekday mean separated by only 0.31 in Validation A, compared to 90.74 in Validation B.
 
-These results are based on only 20 stores and three forecast windows, so they do not show that the same method would perform best for every store or in a future forecast window. The analysis also measures sales forecast accuracy rather than staffing outcomes, so it cannot show that a more accurate sales forecast would necessarily lead to better staffing decisions.
+These results are based on only 20 stores and three forecast windows, so they do not guarantee that the same method would perform best for every store or for a different forecast window. The analysis also evaluates sales forecast accuracy, not staffing outcomes, so a lower forecast error does not necessarily mean better staffing decisions.
 
 ### 3c The closed-day adjustment
 
@@ -110,7 +110,7 @@ These results are based on only 20 stores and three forecast windows, so they do
 | Weekday mean | 1163.40 | 1163.40 | 0.00 |
 | TimesFM | 1198.02 | 1161.34 | -36.68 |
 
-The known-schedule adjustment did not affect seasonal naive or weekday mean because both methods already forecasted zero sales on all closed days. However, TimesFM had nonzero forecasts on 45 closed store-days, so setting those forecasts to zero reduced its MAE by 36.68. If the store schedule was not known in advance, I would trust the raw MAE of 1198.02 because it measures the forecasts before using future store-closure information.
+The known-schedule adjustment did not affect seasonal naive or weekday mean because both methods already forecasted zero sales on all closed store-days. However, TimesFM had nonzero forecasts on 45 closed store-days, so setting those forecasts to zero reduced its MAE by 36.68. If the store schedule was not known in advance, I would trust the raw MAEs because they measure each method's forecasts without using future store-closure information.
 
 ### 3d TimesFM's forecast range
 
@@ -119,11 +119,11 @@ The known-schedule adjustment did not affect seasonal naive or weekday mean beca
 | All days | 840 | 765 | 0.9107 (91.07%) | 4888.34 |
 | Open days only | 750 | 675 | 0.9000 (90.00%) | 5474.94 |
 
-Actual sales fell within TimesFM's q10-q90 range on 765 of the 840 store-days, for 91.07% coverage, and on 675 of the 750 open store-days, for 90.00% coverage. Open days are reported separately because all 90 closed store-days had actual sales, q10, and q90 equal to zero, so they were automatically covered, which increased the overall coverage from 90.00% to 91.07%.
+Actual sales fell within TimesFM's q10-q90 range on 765 of the 840 store-days, for 91.07% coverage, and on 675 of the 750 open store-days, for 90.00% coverage. Open days are reported separately because all 90 closed store-days had zero actual sales and a forecast range of zero, so they were automatically counted as covered, increasing the overall coverage from 90.00% to 91.07%.
 
-Coverage above the intended 80% is not automatically good news because wider forecast ranges make it easier to capture actual sales. TimesFM's average interval width was 4,888.34 sales across all days and 5,474.94 sales on open days, so the high coverage needs to be considered along with the width of the range.
+Coverage above the intended 80% is not automatically good news, because wider forecast ranges make it easier to capture actual sales. TimesFM's average interval width was 4,888.34 sales across all days and 5,474.94 sales on open days, so the high coverage needs to be considered along with the width of the range.
 
-The q10-q90 forecast range represents uncertainty about actual future sales, while the interval in 3a represents uncertainty about the difference in MAE between forecasting methods.
+The q10-q90 forecast range represents uncertainty about actual future sales, while the interval in 3a represents uncertainty about the difference in MAE between the forecasting methods.
 
 ## Q4 — Your choice and what would change it
 
@@ -145,7 +145,16 @@ I chose TimesFM because it had the lowest validation MAE.
 A further test that could change my recommendation would be evaluating TimesFM and weekday mean on another six-week forecast window using raw forecasts. If TimesFM had a meaningfully lower raw MAE than weekday mean and the 95% interval for the MAE difference did not include zero, I would consider changing the operational choice to TimesFM.
 
 ## Q5 — Memo to Rina Kapoor
-(at most about 400 words)
+
+**To:** Rina Kapoor
+
+**From:** Owen Simon
+
+**Subject:** Sales Forecasting Recommendation
+
+I recommend that Bonneville Retail Group continue to use the weekday mean method for six-week sales forecasting. Three forecasting methods were tested, with TimesFM achieving the lowest MAE of 1161.34, compared to 1163.40 for weekday mean and 1208.00 for seasonal naive. However, TimesFM's MAE was only 2.06 lower than weekday mean, and the 95% confidence interval for the MAE difference between the methods included zero, meaning there is not clear evidence that TimesFM provides a meaningful improvement over the current weekday mean method. TimesFM's slightly better performance was also partially dependent on knowing the store schedules in advance. Before adjusting the forecasts for known store closures, TimesFM predicted nonzero sales on 45 closed store-days, with a raw MAE of 1198.02. TimesFM's forecast range covered 90.00% of actual sales on open store-days, exceeding its intended 80% coverage. However, the average range was 5,474.94, meaning the high coverage does not necessarily indicate more precise forecasts.
+
+I recommend launching a pilot study to evaluate TimesFM against the weekday mean method across more stores and additional six-week forecast windows. The current results are based on only 20 stores and three forecast windows, and the best-performing method varied across those windows and groups of stores. The analysis was also limited to evaluating sales forecast accuracy rather than staffing outcomes, so a more accurate forecast does not necessarily lead to better staffing decisions. If TimesFM consistently produces a meaningfully lower raw MAE and the 95% confidence interval for the MAE difference does not include zero, I would recommend considering TimesFM as a replacement for the weekday mean method.
 
 ## AI record
 (your prompts and the key parts of the AI's replies,
@@ -223,13 +232,29 @@ Codex explained that the script:
 
 **Key parts of Codex's reply:**
 
-| Window/group | Seasonal naive | Weekday mean | TimesFM | Lowest MAE |
+MAEs from `outputs/validation_by_origin.csv`:
+
+Window | Seasonal naive | Weekday mean | TimesFM | Lowest MAE |
 |---|---:|---:|---:|---|
-| Validation A | 1763.56 | 1368.75 | 1369.06 | Weekday mean |
-| Validation B | 1095.47 | 1117.76 | 1027.02 | TimesFM |
-| Final window | 1208.00 | 1163.40 | 1161.34 | TimesFM |
-| Sunday-trading stores | 1324.15 | 1500.38 | 1582.48 | Seasonal naive |
-| Other 15 stores | 1169.29 | 1051.08 | 1020.96 | TimesFM |
+| Validation A (origin 2015-03-28) | 1763\.56 | 1368\.75 | 1369\.06 | Weekday mean |
+| Validation B (origin 2015-05-09) | 1095\.47 | 1117\.76 | 1027\.02 | TimesFM |
+
+<br>
+
+Final-window MAEs from `outputs/final_scores.csv`:
+
+| Window | Seasonal naive | Weekday mean | TimesFM | Lowest MAE |
+|---|---:|---:|---:|---|
+| Final (origin 2015-06-20) | 1208\.00 | 1163\.40 | 1161\.34 | TimesFM |
+
+<br>
+
+Final-window subgroup MAEs from `outputs/final_groups.csv`:
+
+| Store group | Stores | Seasonal naive | Weekday mean | TimesFM | Lowest MAE |
+|---|---:|---:|---:|---:|---|
+| Sunday-trading | 5 | 1324\.15 | 1500\.38 | 1582\.48 | Seasonal naive |
+| Other 15 | 15 | 1169\.29 | 1051\.08 | 1020\.96 | TimesFM |
 
 ### Prompt 6:
 
