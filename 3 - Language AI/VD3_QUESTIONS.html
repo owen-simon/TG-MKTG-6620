@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Case 3 — Can Embeddings Fix BRG Direct's Site Search?">
+<meta name="generator" content="MKTG 4600 handout renderer">
+<title>Case 3 — Can Embeddings Fix BRG Direct's Site Search?</title>
+<style>
+:root {
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --accent-color: #1f3864;
+    --muted-color: #404040;
+    --table-header-bg: #d9e1f2;
+    --table-stripe-bg: #f5f5f7;
+    --code-bg: #f3f3f3;
+    --border-color: #707070;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; margin-top: 0; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p, ul, ol, table, blockquote, pre {
+    margin: 0 0 1rem 0;
+}
+
+ul, ol { padding-left: 1.75rem; }
+li { margin-bottom: 0.25rem; }
+li > p { margin-bottom: 0.5rem; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+tbody tr:nth-child(even) td { background-color: var(--table-stripe-bg); }
+
+code {
+    background-color: var(--code-bg);
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding: 0.25rem 1rem;
+    color: var(--muted-color);
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+strong { font-weight: 600; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+a:hover { text-decoration: none; }
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    text-decoration: none;
+    background-color: var(--table-header-bg);
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+    outline: 2px solid #fff;
+}
+
+/* Honor reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* Print stylesheet — letter, 0.75in margins, preserved table contrast */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+    html { font-size: 11pt; }
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+        page-break-after: avoid;
+    }
+    h2 {
+        border-bottom: 1.5pt solid #000;
+        page-break-before: auto;
+    }
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+    th {
+        background-color: #ddd !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    tbody tr:nth-child(even) td {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+    blockquote {
+        border-left: 1pt solid #000;
+        color: #000;
+        font-style: italic;
+    }
+    hr { border-top: 0.5pt solid #999; }
+    .skip-link { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+<h1>Case 3 — Can Embeddings Fix BRG Direct's Site Search?</h1>
+<h2>What to answer · MKTG 6620 · Fall 2026</h2>
+<p><strong>Released:</strong> Thursday, October 8.
+<strong>Due:</strong> Friday, October 23, at 11:59 p.m. Mountain Time.
+Individual work, 100 points, 20% of the course grade. You hand in <strong>one
+Markdown file</strong>.</p>
+<hr>
+<h2>What this case is about</h2>
+<p>BRG Direct's merchandisers keep hearing the same complaint: shoppers type
+"farmhouse dining table with bench" or "small loveseat for an apartment" and
+the site shows them the wrong things. Junho Park, who runs BRG's search and
+service tools, wants to move site search from keyword matching to
+embeddings, the method you met in Session 6. Marisol Vance, BRG's Chief
+Marketing Officer, asks three questions before she funds it:</p>
+<ol>
+<li>Does embedding search find better products for real shopper queries?</li>
+<li>By how much, and how sure are we?</li>
+<li>What would it take to run it?</li>
+</ol>
+<p>In Session 6 the vectors were made for you. This time <strong>your coding agent
+builds the embedding search itself</strong>: it loads a real product catalog, embeds
+every product and every shopper query with two small open models on your own
+computer, and ranks the products. A supplied scorer then grades the rankings
+against human relevance labels. You check the work, choose a method, read
+what it gets wrong, try one improvement, and advise Marisol.</p>
+<h2>Who does what</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Your agent builds</th>
+<th scope="col">The supplied files do</th>
+<th scope="col">You do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A script that embeds the 42,994 products and 479 queries with the two pinned models and writes each query's top 10 products</td>
+<td><code>score.py</code> checks your rankings file and scores it against the labels; <code>data/keyword_rankings.csv</code> is everyone's keyword baseline</td>
+<td>Check that the embeddings make sense, choose a method before seeing the test set, read results, judge unlabelled products yourself, design one improvement, and write the memo</td>
+</tr>
+</tbody>
+</table>
+<p>Everyone follows the same recipe, so everyone should get nearly the same
+numbers. That's expected. <strong>Your points come from checking the work and
+explaining what it means.</strong></p>
+<h2>The data</h2>
+<p>The catalog, queries, and labels are <strong>real</strong>: WANDS, the Wayfair ANnotation
+Dataset that Wayfair published for search research (Chen et al., ECIR 2022;
+MIT licence, in <code>data/WANDS_LICENSE.txt</code>). Here it stands in for BRG Direct's
+home-goods catalog. BRG, Marisol, and Junho are fictional, so your findings
+describe Wayfair's catalog and Wayfair's annotators, not any BRG data.</p>
+<p>Wayfair's annotators judged products for each query as <strong>Exact</strong> (what the
+shopper asked for), <strong>Partial</strong> (related but not a full match, such as the right kind of
+product in a different color or size), or <strong>Irrelevant</strong>. Most queries have a
+few hundred judged products (the median is about 220), a few have only a
+handful, and nobody judged all 42,994 for any query. A product nobody judged
+for a query is <strong>unjudged</strong>.</p>
+<p>We left out one query whose judged products were all irrelevant ("drudge
+report"), so 479 of WANDS's 480 queries remain. They are split at random into
+<strong>79 development, 200 validation, and 200 test</strong> queries.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">File</th>
+<th scope="col">What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/products.csv</code></td>
+<td><code>product_id</code>, <code>product_name</code>, <code>product_class</code>, <code>category_hierarchy</code>, <code>product_description</code>, and <code>search_text</code>, the exact text to embed: the name and the class joined by a vertical bar, or the name alone when the class is blank.</td>
+</tr>
+<tr>
+<td><code>data/queries.csv</code></td>
+<td><code>query_id</code>, <code>query</code> (what the shopper typed), and <code>split</code> (dev, validation, or test).</td>
+</tr>
+<tr>
+<td><code>data/labels_dev.csv</code>, <code>data/labels_validation.csv</code>, <code>data/labels_test.csv</code></td>
+<td><code>query_id</code>, <code>product_id</code>, <code>label</code>: the human judgments.</td>
+</tr>
+<tr>
+<td><code>data/keyword_rankings.csv</code></td>
+<td>The keyword baseline's top 10 for every query (BM25, the standard keyword score, over <code>search_text</code>). When fewer than ten products share a word with the query, it fills the rest of its top 10 with the lowest product IDs (for example, for "printers").</td>
+</tr>
+<tr>
+<td><code>data/data_manifest.json</code></td>
+<td>Where everything came from, the file fingerprints, and how the baseline was built.</td>
+</tr>
+<tr>
+<td><code>score.py</code>, <code>requirements.txt</code></td>
+<td>The scorer and the one package it needs (NumPy).</td>
+</tr>
+<tr>
+<td><code>SOURCE.md</code></td>
+<td>The data source, licence, and citation.</td>
+</tr>
+</tbody>
+</table>
+<p>For example, product 0's <code>search_text</code> is <code>solid wood platform bed | Beds</code>.
+Product names in WANDS are lower-case with spaces around punctuation, such as
+<code>dunston 28 '' square storage ottoman</code>. That is how Wayfair published them.
+The CSV files are UTF-8, since some product text has accented letters and
+symbols.</p>
+<h2>The recipe (follow it exactly)</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Setting</th>
+<th scope="col">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model 1, method name <code>minilm</code></td>
+<td><code>sentence-transformers/all-MiniLM-L6-v2</code>, revision <code>1110a243fdf4706b3f48f1d95db1a4f5529b4d41</code></td>
+</tr>
+<tr>
+<td>Model 2, method name <code>bge_small</code></td>
+<td><code>BAAI/bge-small-en-v1.5</code>, revision <code>5c38ec7c405ec4b44b94cc5a9bb96e735b38267a</code></td>
+</tr>
+<tr>
+<td>Product text</td>
+<td>The <code>search_text</code> column, unchanged</td>
+</tr>
+<tr>
+<td>Query text</td>
+<td>The <code>query</code> column. For BGE only, put <code>Represent this sentence for searching relevant passages:</code> in front of each query (Session 6, section 2)</td>
+</tr>
+<tr>
+<td>Vectors</td>
+<td>Normalized to length 1 (<code>normalize_embeddings=True</code>), float32</td>
+</tr>
+<tr>
+<td>Device</td>
+<td>The CPU (<code>device="cpu"</code>), even on a Mac with Apple silicon or a laptop with a graphics card, so your numbers match ours</td>
+</tr>
+<tr>
+<td>Ranking</td>
+<td>Dot product of the query vector with every product vector; keep the 10 highest; break a tie with the lower <code>product_id</code></td>
+</tr>
+<tr>
+<td>Output</td>
+<td>One CSV with the columns <code>query_id</code>, <code>method</code>, <code>rank</code>, <code>product_id</code>: ten rows per query, ranks 1 to 10, for all 479 queries and both methods</td>
+</tr>
+</tbody>
+</table>
+<p>If your recipe matches ours, <strong>validation nDCG@10 comes out within 0.003 of
+0.736 for MiniLM and 0.739 for BGE-small</strong> (keyword: 0.675). A bigger gap
+means a setting differs, and finding it is part of 2a. BGE-small near 0.744
+means the query prefix is missing; sentence-transformers' <code>encode_query()</code>
+doesn't add it for this model. On a computer using four CPU
+cores, embedding the catalog took us about 1 minute with MiniLM and 2 minutes
+with BGE-small.</p>
+<h2>Key terms</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Term</th>
+<th scope="col">Plain meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedding, normalization, dot product</td>
+<td>From Session 6: a model turns text into a list of numbers. Scaling each list to length 1 makes the dot product equal the cosine similarity.</td>
+</tr>
+<tr>
+<td>Top 10</td>
+<td>The ten products a shopper would see first.</td>
+</tr>
+<tr>
+<td>nDCG@10</td>
+<td>Normalized discounted cumulative gain of the top 10. A result earns 1 if Exact, 0.5 if Partial, and 0 if Irrelevant or unjudged. The result at rank r counts 1 ÷ log₂(r + 1), so rank 1 counts fully and rank 10 counts 0.289. The total is divided by the best total the query's labels allow, so 1.0 is a perfect top 10.</td>
+</tr>
+<tr>
+<td>Exact@1</td>
+<td>The share of queries whose first result is labelled Exact. Some queries have no Exact product at all, so no method reaches 100%.</td>
+</tr>
+<tr>
+<td>judged@10</td>
+<td>The share of top-10 results that have any label. Unjudged results score 0 even when they would suit the shopper.</td>
+</tr>
+<tr>
+<td>Wilson 95% interval</td>
+<td>A range for a share (such as Exact@1) that stays sensible with a few hundred queries.</td>
+</tr>
+<tr>
+<td>Paired interval</td>
+<td><code>score.py</code> redraws the query set 2,000 times, scores both methods on the same draw each time, and keeps the middle 95% of their nDCG@10 differences. If it includes zero, the data fit "no advantage."</td>
+</tr>
+</tbody>
+</table>
+<p>The rank discounts, for working nDCG by hand:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Rank</th>
+<th scope="col">1</th>
+<th scope="col">2</th>
+<th scope="col">3</th>
+<th scope="col">4</th>
+<th scope="col">5</th>
+<th scope="col">6</th>
+<th scope="col">7</th>
+<th scope="col">8</th>
+<th scope="col">9</th>
+<th scope="col">10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 ÷ log₂(rank + 1)</td>
+<td>1.000</td>
+<td>0.631</td>
+<td>0.500</td>
+<td>0.431</td>
+<td>0.387</td>
+<td>0.356</td>
+<td>0.333</td>
+<td>0.315</td>
+<td>0.301</td>
+<td>0.289</td>
+</tr>
+</tbody>
+</table>
+<h2>Keep the test honest</h2>
+<p>Use the <strong>development</strong> queries to build and debug. Use the <strong>validation</strong>
+queries to compare methods and choose. Save your choice with <code>score.py
+select</code>, and only then score the <strong>test</strong> queries, once. <code>score.py</code> won't
+score or show test queries until <code>selection.json</code> exists. Don't open
+<code>data/labels_test.csv</code> before then. If you or your agent looked early, say so
+in 2c; an honest note earns the points.</p>
+<hr>
+<h2>Steps</h2>
+<p><strong>Step 1. Set up a folder.</strong> Unzip <code>VD3_student_files.zip</code> into a new, empty
+folder on your computer's own disk (not OneDrive, iCloud Drive, or Dropbox),
+for example <code>~/mktg6620/case3</code>. Run every command from this folder.</p>
+<p><strong>Step 2. Install.</strong> You need Python 3.11 to 3.14. Make an environment and
+install the scorer's package and the embedding packages:</p>
+<pre><code class="language-bash">python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip install &quot;torch==2.11.0&quot; --index-url https://download.pytorch.org/whl/cpu
+python -m pip install &quot;torch==2.11.0&quot; &quot;sentence-transformers==5.4.1&quot; &quot;transformers==4.57.6&quot;
+</code></pre>
+<p>Run every line, on any computer. The first torch line installs PyTorch's
+CPU-only build, which on Linux avoids a 3 GB download for graphics cards.
+On Windows, in PowerShell, the first two lines are <code>python -m venv .venv</code> and
+<code>.venv\Scripts\Activate.ps1</code>.</p>
+<p>In a new terminal, activate <code>.venv</code> again from the same folder. If PowerShell
+says running scripts is disabled, run
+<code>Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass</code> in that window
+and activate again. It affects only that window.</p>
+<p>The last install downloads about 150 MB on a Mac and 200 MB on Windows
+(about 1 GB once installed), and the first model run downloads about 220 MB
+more. These versions install on Macs with Apple silicon (M1 or later) on
+macOS 12 or newer, Windows x64 laptops, and Linux. <strong>PyTorch has no
+installer for Intel Macs or Windows on ARM laptops</strong> (such as Snapdragon). On
+one of those, see "If PyTorch won't install on your laptop" at the end of this
+sheet.</p>
+<p><strong>Step 3. Check the scorer.</strong> This scores the keyword baseline alone on the
+development queries; you should see nDCG@10 of 0.743.</p>
+<pre><code class="language-bash">python score.py score --split dev
+</code></pre>
+<p><strong>Step 4. Start your agent.</strong> A good first prompt:</p>
+<pre><code class="language-text">Work only with the files in this folder. Read VD3_QUESTIONS.md, &quot;The recipe&quot;
+section, and follow it exactly. Do not open data/labels_test.csv. Write one
+Python script, embed_and_rank.py, that embeds data/products.csv's search_text
+and data/queries.csv's query with both pinned models on the CPU, normalizes
+the vectors, ranks products by dot product, and writes my_rankings.csv with
+the columns query_id, method, rank, product_id for all queries and both
+methods (method names minilm and bge_small). Print each model's vector shape,
+vector lengths, and encoding time. Then run
+python score.py check --rankings my_rankings.csv. I will write my own
+judgments and memo.
+</code></pre>
+<p>Read the script before you run it. Check the model names, revisions, the BGE
+prefix, the CPU device, and that queries and products use the same model.</p>
+<p><strong>Step 5. Answer the questions below.</strong> Most answers are two to four
+sentences plus a number or a small table.</p>
+<hr>
+<h2>Q1 — Embed the catalog (20 points)</h2>
+<p><strong>1a The data (5 points).</strong> Ask your agent to count from the CSVs: the
+products, the products with a blank class, the queries in each split, and the
+development and validation labels by grade (Exact, Partial, Irrelevant). Then
+pick one development query, quote one product labelled Exact and one labelled
+Irrelevant, and say in a sentence why each label fits.</p>
+<p><strong>1b Your embeddings (10 points).</strong> Fill in one row per model:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">Model ID</th>
+<th scope="col">Revision (first 7 characters)</th>
+<th scope="col">Query prefix</th>
+<th scope="col">Product vectors (rows × dimensions)</th>
+<th scope="col">Number format</th>
+<th scope="col">Smallest and largest vector length</th>
+<th scope="col">Raw bytes</th>
+<th scope="col">Encoding time, and your computer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>minilm</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bge_small</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Raw bytes are products × dimensions × 4. Then, in two or three sentences:
+why can't you compare a MiniLM vector with a BGE-small vector, even though
+both have 384 numbers? And why normalize before taking dot products?</p>
+<p><strong>1c Sanity check and AI use (5 points).</strong> For one development query (query
+1, "smart coffee table", is fine), list the five products each model ranks
+highest. Do they look sensible? Then, in two or three sentences, say what your
+agent did and what you checked yourself. Give your Python, torch,
+sentence-transformers, transformers, and NumPy versions. Paste your final
+<code>embed_and_rank.py</code> in the <strong>Code</strong> section of your file, and your prompts and
+the agent's key replies in the <strong>AI record</strong>.</p>
+<h2>Q2 — Score it, choose, then test once (25 points)</h2>
+<pre><code class="language-bash">python score.py check --rankings my_rankings.csv
+python score.py score --split validation --rankings my_rankings.csv
+</code></pre>
+<p><strong>2a Validation table (8 points).</strong> From <code>outputs/validation_metrics.csv</code>,
+fill in one row per method:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Method</th>
+<th scope="col">n</th>
+<th scope="col">nDCG@10</th>
+<th scope="col">Exact@1 (95% interval)</th>
+<th scope="col">judged@10</th>
+<th scope="col">nDCG@10 difference vs. keyword (paired 95% interval)</th>
+<th scope="col">Queries better / worse than keyword</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyword</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>minilm</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bge_small</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>In the CSV, the intervals are <code>exact1_low</code> to <code>exact1_high</code> and <code>diff_low</code> to
+<code>diff_high</code>, and better / worse are <code>beats_baseline</code> and <code>loses_to_baseline</code>.
+Ties count as neither, so better and worse don't add up to n.</p>
+<p>Do your MiniLM and BGE-small values match the recipe's within 0.003? If not,
+find the setting that differs (ask your agent to compare its script with the
+recipe table) and say what it was. Explaining a mismatch earns full credit.</p>
+<p><strong>2b One query by hand (6 points).</strong> Pick one validation query and run
+<code>show</code> with its ID (query 0 here):</p>
+<pre><code class="language-bash">python score.py show --query-id 0 --rankings my_rankings.csv
+</code></pre>
+<p>For your preferred method, work out its nDCG@10 by hand: list the ten gains, multiply each by its rank discount, and add them up
+(DCG). The ideal DCG comes from the query's best ten labels: <code>show</code> prints how
+many Exact and Partial products the query has, so fill the ten slots with
+Exact (1) first, then Partial (0.5). Divide, and compare your answer with the
+query's row in <code>outputs/validation_per_query.csv</code>.</p>
+<p><strong>2c Your choice (3 points).</strong> Save your choice and your reason:</p>
+<pre><code class="language-bash">python score.py select --method bge_small --reason &quot;your reason here&quot;
+</code></pre>
+<p>Paste <code>selection.json</code>. Say whether you or your agent had seen any test
+labels or test results before saving it. <code>select</code> won't overwrite, so your
+first choice stays on record.</p>
+<p><strong>2d Test once (8 points).</strong></p>
+<pre><code class="language-bash">python score.py score --split test --selection selection.json --rankings my_rankings.csv
+</code></pre>
+<p>From <code>outputs/test_metrics.csv</code>, give the same columns for keyword and your
+method. Then, in a few sentences: did the difference you saw on validation
+hold up on test? Does the test interval include zero, and what does that
+mean? Why can the method that looked best on validation look less impressive
+on fresh queries? What can 200 queries tell Marisol, and what can't they?</p>
+<h2>Q3 — Read the results (25 points)</h2>
+<p><strong>3a Where the methods disagree (10 points).</strong> From
+<code>outputs/validation_per_query.csv</code>, have your agent list the three validation
+queries where your method beat keyword by the most nDCG@10, and the three where
+keyword beat it by the most. For each of the six, run <code>show</code> and say in one
+sentence what went right or wrong, naming the products involved. Then sort
+the six into failure types, in your own words. Examples include a brand or
+collection name the model doesn't know, an attribute (color, material, size)
+that gets ignored, the wrong kind of product, a misspelled query, and a label
+you disagree with.</p>
+<p><strong>3b Unjudged results (10 points).</strong> Copy judged@10 for keyword and your
+method from your 2a table. Then have your agent list ten unjudged results from
+your method's validation top 10 (different queries if possible), each with the
+query, the product name, class, and the start of its description. <strong>Judge
+each one yourself</strong> as you think an annotator would have (Exact, Partial, or
+Irrelevant), with a few words of reason:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Query ID</th>
+<th scope="col">Query</th>
+<th scope="col">Product ID</th>
+<th scope="col">Product name and class</th>
+<th scope="col">My judgment</th>
+<th scope="col">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>How many look relevant? Unjudged results score 0 in nDCG@10, so what does your
+spot check suggest about the scores, and about comparing a new method with the
+products annotators happened to judge? Would your Q2 conclusion change?</p>
+<p><strong>3c Where keyword still wins (5 points).</strong> Name two validation queries where
+keyword clearly beat your method (they can come from 3a) and say what kind of
+query each is. What kinds of searches would BRG Direct still want keyword
+search for?</p>
+<h2>Q4 — One improvement, and what it would take to run (20 points)</h2>
+<p><strong>4a Your improvement (12 points).</strong> Design one change with your agent, give
+it a new method name, and score it <strong>on validation only</strong>. Some ideas:</p>
+<ul>
+<li>Richer product text, such as adding <code>category_hierarchy</code> or the first
+  sentence of <code>product_description</code> to <code>search_text</code>.</li>
+<li>A hybrid that merges the keyword top 10 with your method's list, for
+  example by reciprocal rank fusion (each list adds 1 ÷ (60 + rank) to a
+  product's score).</li>
+<li>A larger model, such as <code>BAAI/bge-base-en-v1.5</code> (768 dimensions; use a
+  pinned revision and record it).</li>
+</ul>
+<p>Don't use the labels or the test queries to build the method. Put its
+rankings in a new file, such as <code>my_change.csv</code>, and compare it with your Q2 method (here <code>bge_small</code>) instead of keyword:</p>
+<pre><code class="language-bash">python score.py score --split validation --rankings my_rankings.csv my_change.csv --baseline bge_small --out outputs_q4
+</code></pre>
+<p>Report what you changed and why you expected it to help; its validation
+nDCG@10, judged@10, and paired difference from your Q2 method; and what it
+costs in encoding time and storage. A change that doesn't help earns full
+credit when it's tested and explained well.</p>
+<p><strong>4b Running it for BRG Direct (8 points).</strong> Suppose BRG Direct lists 2 million
+products (a planning figure for this case). Using your own timings and vector
+sizes:</p>
+<ul>
+<li>How much raw vector storage would your chosen method need, and how long
+  would embedding the whole catalog take on a computer like yours?</li>
+<li>What should trigger re-embedding? Think of new products, edited product
+  text, and a model change.</li>
+<li>What one check would you run before shoppers see a new index, and what would
+  you watch after launch?</li>
+</ul>
+<h2>Q5 — Memo to Marisol Vance (10 points)</h2>
+<p>Write this as the last answer section of your file, in at most 400 words,
+naming Junho Park as the person who would run the search.</p>
+<ul>
+<li>Recommend one: switch to embedding search, test it on live shoppers first,
+  combine it with keyword search, or keep keyword search. Name the model.
+  (2 points)</li>
+<li>Your strongest evidence, with numbers and their intervals. (3 points)</li>
+<li>The main limitation. (2 points)</li>
+<li>One measure of success for a live test, and one condition for stopping it.
+  (3 points)</li>
+</ul>
+<p>Any well-supported recommendation can earn full credit, including keeping
+keyword search.</p>
+<hr>
+<h2>What to hand in</h2>
+<p>Upload <strong>one Markdown file</strong>, named like <code>case3_yourname.md</code>, on Canvas. Don't
+upload the rankings, vectors, data, or a ZIP. Any text editor works; save the
+file with a <code>.md</code> ending, not <code>.md.txt</code>. Your agent may paste output and tables
+into the file, but the judgments and explanations must be yours.</p>
+<pre><code class="language-markdown"># Case 3 — [Your name]
+
+## Q1 — Embed the catalog
+### 1a The data
+### 1b My embeddings
+### 1c Sanity check and AI use
+
+## Q2 — Score it, choose, then test once
+### 2a Validation table
+### 2b One query by hand
+### 2c My choice
+### 2d Test once
+
+## Q3 — Read the results
+### 3a Where the methods disagree
+### 3b Unjudged results
+### 3c Where keyword still wins
+
+## Q4 — One improvement, and what it would take to run
+### 4a My improvement
+### 4b Running it for BRG Direct
+
+## Q5 — Memo to Marisol Vance
+(at most 400 words)
+
+## Code
+(your final embed_and_rank.py, and your Q4 change)
+
+## AI record
+(your prompts and the key parts of the agent's replies,
+including anything that went wrong)
+</code></pre>
+<h2>Grading</h2>
+<p>Points go to the parts listed above. Within a part, correct and explained
+work earns full credit; a small gap, about three-quarters; a substantive error
+with some valid reasoning, about half; a missing or unsupported part, zero. No
+question is zeroed automatically. Your score doesn't depend on which method
+wins, how high any metric is, whether your improvement helps, or whether your
+first prompt worked.</p>
+<h2>AI use</h2>
+<p>Your agent may write and run the code, fix errors, count and sort, and format
+tables. <strong>You write the judgments and explanations yourself:</strong> the label
+examples in 1a, the sanity check in 1c, the nDCG arithmetic in 2b, your
+selection reason, the Q3 failure types and unjudged judgments, the Q4 reasons,
+and the memo. Don't ask an AI to draft or rewrite them.</p>
+<p>Plan for about 5–6 hours. A sensible pace: Q1 and Q2 by October 14, Q3 and Q4
+by October 20, and the memo and upload by October 23. The final exam is
+Monday, October 26.</p>
+<h2>If PyTorch won't install on your laptop</h2>
+<p>On an Intel Mac or a Windows on ARM laptop, email me for a loaner laptop, or
+run the case in a free Google Colab notebook, the browser path in the
+Onboarding Note ("If your laptop is locked down by corporate IT"). In a new
+notebook at colab.research.google.com, upload <code>VD3_student_files.zip</code> in the
+Files panel (the folder icon), then run these lines in a code cell:</p>
+<pre><code class="language-python">!unzip -oq VD3_student_files.zip
+!pip install -r requirements.txt &quot;sentence-transformers==5.4.1&quot; &quot;transformers==4.57.6&quot;
+!python score.py score --split dev
+</code></pre>
+<p>Colab already has PyTorch; don't reinstall it there. Your agent still writes
+<code>embed_and_rank.py</code> on your laptop in Step 4; tell it the script will run in
+Colab. Upload the script the same way, run it with <code>!python embed_and_rank.py</code>,
+and run each later command with <code>!python</code> in place of <code>python</code>. pip prints an
+ERROR about dependency conflicts with other Colab packages, then "Successfully
+installed", and TensorFlow prints startup messages; both are expected and don't
+affect this case. If Colab offers to restart the session after the install, you
+can skip it. Colab deletes your uploads and outputs when its runtime shuts down,
+so download <code>my_rankings.csv</code>, and <code>selection.json</code> once you have it.</p>
+</main>
+</body>
+</html>
