@@ -1,0 +1,2 @@
+method,split,n,ndcg10,exact1_hits,exact1,exact1_low,exact1_high,judged10,baseline,ndcg10_diff,diff_low,diff_high,beats_baseline,loses_to_baseline
+keyword,dev,79,0.7429,42,0.5316,0.4227,0.6376,0.8823,keyword,0.0000,0.0000,0.0000,0,0

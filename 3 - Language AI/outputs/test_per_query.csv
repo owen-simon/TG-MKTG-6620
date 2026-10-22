@@ -1,0 +1,401 @@
+method,query_id,query,ndcg10,exact1,judged10
+keyword,3,turquoise pillows,0.866948,1,1.0
+keyword,6,acrylic clear chair,0.351068,0,1.0
+keyword,11,ombre rug,1.000000,1,1.0
+keyword,13,outdoor privacy wall,0.478422,0,1.0
+keyword,14,beds that have leds,0.000000,0,0.2
+keyword,15,black 5 drawer dresser by guilford,0.757065,0,1.0
+keyword,17,closet storage with zipper,0.198974,0,0.5
+keyword,19,gurney slade 56,0.690648,0,0.6
+keyword,21,living curtains pearl,0.052144,0,0.1
+keyword,26,leather chairs,0.881596,1,1.0
+keyword,27,outdoor welcome rug,0.397192,0,0.5
+keyword,32,dark gray dresser,0.299648,1,1.0
+keyword,33,non slip shower floor tile,0.000000,0,0.9
+keyword,36,laundry basket with wheels,0.808642,1,1.0
+keyword,37,bar stool 24 inches height,0.847383,0,1.0
+keyword,38,calvin patio chair,0.886187,1,0.9
+keyword,39,door jewelry organizer,0.714193,1,1.0
+keyword,40,elegant executive chair,0.601242,0,1.0
+keyword,43,solid teak end table,0.965284,1,1.0
+keyword,44,chrome shower head and valve,0.754237,1,1.0
+keyword,45,70s inspired furniture,0.356827,0,1.0
+keyword,55,tollette teal outdoor rug,1.000000,1,1.0
+keyword,58,medium size chandelier,0.000000,0,0.1
+keyword,59,broadway lever,1.000000,1,1.0
+keyword,61,overstreet rustic pub stools,0.544376,1,0.3
+keyword,63,monthly calendar,0.952606,1,1.0
+keyword,64,zachary 72.5,0.836647,1,0.7
+keyword,65,gnome fairy garden,0.718676,1,1.0
+keyword,69,wall sconce with usb port,0.236447,0,1.0
+keyword,70,annex dresser,0.886187,1,1.0
+keyword,77,sancroft armchair,0.819610,0,1.0
+keyword,79,palram harmony greenhouses,0.000000,0,0.1
+keyword,80,7 draw white dresser,0.610046,1,1.0
+keyword,81,orren ellis l shape desk,0.663083,0,1.0
+keyword,83,wall art fiji,0.448215,0,0.5
+keyword,84,full metal bed rose gold,0.749826,0,0.9
+keyword,86,aloe vera plant pot,0.662532,0,1.0
+keyword,87,vlad modular sectional,1.000000,0,1.0
+keyword,90,filaret outdoor sofa,0.861138,0,1.0
+keyword,94,kohler whitehaven farmhouse kitchen sink,0.681840,0,1.0
+keyword,95,entertainment stand end table,0.069431,0,0.1
+keyword,96,bar room wall decor,0.808642,1,1.0
+keyword,97,regner power loom red,1.000000,1,1.0
+keyword,99,arched christmas tree,1.000000,0,1.0
+keyword,103,kitchen anti fatigue mats,0.952606,1,1.0
+keyword,116,brockham solid blackout thermal grommet curtain panels,1.000000,0,1.0
+keyword,120,zodiac pillow,0.717879,1,1.0
+keyword,123,entrance table,0.110046,0,1.0
+keyword,124,unique coffee tables,0.683022,1,1.0
+keyword,127,wine bar,0.642548,0,1.0
+keyword,128,block coffee table,1.000000,1,1.0
+keyword,131,kids chair,1.000000,1,1.0
+keyword,132,farmhouse cabinet,0.315163,0,1.0
+keyword,139,auburn throw pillows,1.000000,0,1.0
+keyword,141,podium with locking cabinet,0.201902,0,1.0
+keyword,142,kitchen wooden stand,0.606453,0,1.0
+keyword,144,rug plum,1.000000,1,1.0
+keyword,145,liberty hardware francisco,0.034716,0,0.6
+keyword,146,laundry vanity cabinet,0.639473,0,1.0
+keyword,148,industrial,1.000000,1,1.0
+keyword,150,dumbbells,0.220092,1,0.1
+keyword,157,velvet chaise,0.702621,0,1.0
+keyword,164,modern outdoor furniture,0.349257,1,0.6
+keyword,169,coffee bar buffet,0.390493,0,0.5
+keyword,171,nectar queen mattress,1.000000,0,1.0
+keyword,174,star wars rug,0.000000,0,1.0
+keyword,175,basket planter,1.000000,1,1.0
+keyword,176,mexican art,1.000000,1,1.0
+keyword,178,almost heaven sauna,0.342236,0,0.9
+keyword,180,outdoor lounge cushions,0.960801,1,1.0
+keyword,185,lunch bag,1.000000,1,1.0
+keyword,189,big basket for dirty cloths,0.501317,0,0.9
+keyword,193,belchertown table lamp,0.835780,0,0.8
+keyword,197,desk for kids tjat ate 10 year old,0.288674,0,0.3
+keyword,199,blue faux throw with pillows,0.936379,0,1.0
+keyword,201,delta trinsic double towel hook in champagne bronze,1.000000,0,1.0
+keyword,204,fleur de lis living candle wall sconce bronze,0.423423,1,1.0
+keyword,206,grill cover 73,1.000000,1,1.0
+keyword,207,dull bed with shirt head board,0.000000,0,0.0
+keyword,208,"fawkes 36"" blue vanity",1.000000,0,1.0
+keyword,211,memory foam rug galveston,1.000000,0,1.0
+keyword,214,light wood nightstand with silver accents,0.699474,0,1.0
+keyword,215,king adjustable bed including mattress,0.540615,1,1.0
+keyword,216,music plug wall plate,0.738525,1,1.0
+keyword,218,wand bunk beds,0.538411,0,0.5
+keyword,228,bee,1.000000,1,1.0
+keyword,229,waterfall faucet,0.968190,1,1.0
+keyword,230,gold,0.855348,1,0.9
+keyword,231,anti fatigue mat,1.000000,1,1.0
+keyword,233,kelly clarkson light fixtures,0.321093,0,0.5
+keyword,234,artificial orchid arrangement,1.000000,1,1.0
+keyword,235,bathroom wastebasket,1.000000,1,1.0
+keyword,237,cloud modular sectional,0.639473,0,1.0
+keyword,238,outdoor seat/back cushion,1.000000,1,1.0
+keyword,239,bathroom single faucet,1.000000,1,1.0
+keyword,240,eiffel tower wall art,1.000000,1,1.0
+keyword,250,multi color rug,1.000000,1,1.0
+keyword,254,comfortable accent chair,0.334153,0,0.6
+keyword,255,desk and chair set,1.000000,1,1.0
+keyword,256,high weight capacity bunk beds,0.472894,0,0.7
+keyword,257,living room coffee table sets,0.901664,1,0.9
+keyword,261,semi flush foyer light,0.963318,1,1.0
+keyword,265,candace wingback upholstered bed,1.000000,0,1.0
+keyword,267,dolomite subway tile,1.000000,1,1.0
+keyword,268,betty resin free standing umbrella,1.000000,1,1.0
+keyword,273,stainless steel free standing shower caddy,0.742455,0,1.0
+keyword,276,chaves l-shape floating desk with hutch,1.000000,0,1.0
+keyword,277,barstool patio sets,0.136794,0,0.5
+keyword,278,parakeet toy,0.390631,0,1.0
+keyword,280,johan desk by laurel foundry,0.469000,0,0.3
+keyword,283,gaia driftwood table,0.621677,1,0.9
+keyword,284,family lamp,0.000000,0,0.6
+keyword,285,"48"" sliding single track , barn door for laundry",0.555342,0,1.0
+keyword,286,hitchcock mid-century wall shelf,0.727330,0,1.0
+keyword,288,round outdoor patio cover,0.936379,0,1.0
+keyword,289,coma inducer comforter king set,1.000000,1,1.0
+keyword,291,front door cabinet with doors,0.149245,0,0.2
+keyword,293,wood floor protector mat,0.542572,0,1.0
+keyword,294,moen multi function dual shower head,1.000000,0,1.0
+keyword,296,zakariyah twin platform,0.922310,1,0.9
+keyword,300,animal print handmade tufted wool beige/black area rug by allmodern,0.805611,0,1.0
+keyword,304,merlyn 6,0.000000,0,0.1
+keyword,305,ligth bulb,1.000000,1,1.0
+keyword,307,real touch roses floral arrangements in glass vase,0.790089,1,1.0
+keyword,309,moen 5995 arbor one,0.138862,0,0.7
+keyword,311,odum velvet,0.798643,0,1.0
+keyword,312,coat rack for bedroom,0.500000,0,1.0
+keyword,313,malachi sled,0.983048,1,1.0
+keyword,318,sunjoy lantern,0.819610,0,1.0
+keyword,323,hub leaning full length mirror,1.000000,1,1.0
+keyword,326,bowersville ladder writing desk,1.000000,1,1.0
+keyword,327,kohler purist brushed bronze,0.516428,0,1.0
+keyword,328,golub dining table,1.000000,1,1.0
+keyword,329,wayfair tension rod,1.000000,1,1.0
+keyword,336,mystic swivel,0.637946,1,1.0
+keyword,337,iittala bowl,0.564938,0,1.0
+keyword,338,mahone porch rocking chair,1.000000,1,1.0
+keyword,340,berenice 4 storage cabinet,0.989614,1,1.0
+keyword,341,canvas map art,1.000000,1,1.0
+keyword,343,navy and peach bedding,0.469000,0,0.3
+keyword,344,ottoman bed queen,0.000000,0,0.1
+keyword,351,white bathroom vanity black hardware,1.000000,0,1.0
+keyword,353,pennfield playhouse,1.000000,1,1.0
+keyword,354,tressler rug,1.000000,0,1.0
+keyword,355,argenteuil,1.000000,1,1.0
+keyword,356,platform bed side table,0.779908,0,1.0
+keyword,357,tall free standing pet gate,0.772751,0,1.0
+keyword,358,sliding closet mirror,0.610515,0,0.8
+keyword,364,croscill ashton,0.701510,0,1.0
+keyword,369,wrought tv stand,0.735860,0,1.0
+keyword,370,rug for teen room,0.000000,0,0.0
+keyword,371,milk cow chair,0.190242,0,1.0
+keyword,372,verden callan,0.875614,1,1.0
+keyword,373,togo chair,1.000000,0,1.0
+keyword,374,sinks bed frame,1.000000,0,1.0
+keyword,376,island estate coffee table,1.000000,1,1.0
+keyword,377,glinda upholstered bench,0.921602,0,0.9
+keyword,379,urban outfitters duvet,1.000000,0,1.0
+keyword,380,gravity feeder,0.914417,1,1.0
+keyword,381,farmhouse hood vent,0.535254,0,0.4
+keyword,384,dining table vinyl cloth,0.914857,1,0.9
+keyword,386,alter furniture,0.624330,0,1.0
+keyword,387,self enclosed planters,1.000000,0,1.0
+keyword,388,outdoor sectional doning,0.542042,0,0.6
+keyword,389,brush nickel faucet bathroom,0.375546,0,0.8
+keyword,392,china clock,0.138862,0,0.3
+keyword,395,pantry grey,0.094788,0,0.1
+keyword,398,super bright lights,0.936379,1,1.0
+keyword,401,glass lsmp shades,0.262644,0,0.5
+keyword,403,wood rack wide,0.413167,0,1.0
+keyword,405,queen ann style living room chair,0.779908,0,0.9
+keyword,407,huge bookcase,0.569431,0,1.0
+keyword,413,burruss patio sectional with cushions,0.695225,0,0.8
+keyword,414,shower hooks,1.000000,1,1.0
+keyword,415,toilet paper stand,0.963318,1,1.0
+keyword,417,twin bed frame,0.746141,0,1.0
+keyword,420,tile backsplash,1.000000,1,1.0
+keyword,424,wayfair comforters,0.737848,1,0.9
+keyword,426,outdoor storage,0.721519,1,1.0
+keyword,428,kitchen storage cabinet,0.457428,0,1.0
+keyword,430,30 inch bathroom vanity,0.957428,1,1.0
+keyword,433,trundle daybed,0.965284,1,1.0
+keyword,437,kitchen islands with seating,0.330916,0,0.6
+keyword,439,parsons chairs,1.000000,1,1.0
+keyword,441,desk for kids,0.220092,1,1.0
+keyword,445,chaise lounge couch,0.952606,1,1.0
+keyword,448,bed side table,0.500000,0,1.0
+keyword,449,living room designs,0.164220,0,0.2
+keyword,451,aiden black velvet bed,0.492762,0,0.6
+keyword,452,day bed indian,0.358954,0,0.2
+keyword,453,midcentury tv unit,0.179477,0,0.2
+keyword,454,carpet 5x6,0.836459,0,1.0
+keyword,459,tye dye duvet cover,0.416013,0,0.5
+keyword,468,glow in the dark silent wall clock,0.751729,1,1.0
+keyword,469,garage sports storage rack,0.890902,1,1.0
+keyword,475,rattan truck,1.000000,0,1.0
+keyword,479,garage door mail slot,1.000000,0,1.0
+keyword,480,pictures to hang over fireplace,0.469279,0,0.1
+keyword,482,48 inch kitchen hood,0.936379,1,1.0
+keyword,487,rack glass,0.000000,0,0.0
+bge_small,3,turquoise pillows,0.835409,1,0.8
+bge_small,6,acrylic clear chair,0.782739,1,0.8
+bge_small,11,ombre rug,1.000000,1,1.0
+bge_small,13,outdoor privacy wall,0.813615,1,0.8
+bge_small,14,beds that have leds,0.572756,1,1.0
+bge_small,15,black 5 drawer dresser by guilford,0.816838,1,1.0
+bge_small,17,closet storage with zipper,0.422950,0,0.6
+bge_small,19,gurney slade 56,0.722295,0,0.6
+bge_small,21,living curtains pearl,0.444527,0,0.4
+bge_small,26,leather chairs,1.000000,1,1.0
+bge_small,27,outdoor welcome rug,0.554383,1,0.7
+bge_small,32,dark gray dresser,0.353017,1,0.4
+bge_small,33,non slip shower floor tile,0.000000,0,0.8
+bge_small,36,laundry basket with wheels,0.734480,0,0.9
+bge_small,37,bar stool 24 inches height,0.779540,0,1.0
+bge_small,38,calvin patio chair,0.943093,1,0.9
+bge_small,39,door jewelry organizer,0.722049,1,1.0
+bge_small,40,elegant executive chair,0.676940,0,1.0
+bge_small,43,solid teak end table,0.707640,1,1.0
+bge_small,44,chrome shower head and valve,0.679477,1,1.0
+bge_small,45,70s inspired furniture,0.378451,0,0.8
+bge_small,55,tollette teal outdoor rug,0.815864,1,0.7
+bge_small,58,medium size chandelier,0.143173,0,0.2
+bge_small,59,broadway lever,1.000000,1,1.0
+bge_small,61,overstreet rustic pub stools,0.706732,1,0.5
+bge_small,63,monthly calendar,1.000000,1,1.0
+bge_small,64,zachary 72.5,0.360779,1,0.1
+bge_small,65,gnome fairy garden,0.808882,1,1.0
+bge_small,69,wall sconce with usb port,0.500000,0,1.0
+bge_small,70,annex dresser,1.000000,1,1.0
+bge_small,77,sancroft armchair,0.755354,0,0.9
+bge_small,79,palram harmony greenhouses,0.779908,0,1.0
+bge_small,80,7 draw white dresser,0.610046,1,1.0
+bge_small,81,orren ellis l shape desk,0.816271,1,1.0
+bge_small,83,wall art fiji,0.000000,0,0.0
+bge_small,84,full metal bed rose gold,0.755354,0,1.0
+bge_small,86,aloe vera plant pot,0.745590,1,1.0
+bge_small,87,vlad modular sectional,1.000000,0,1.0
+bge_small,90,filaret outdoor sofa,0.926636,0,0.9
+bge_small,94,kohler whitehaven farmhouse kitchen sink,0.730290,0,1.0
+bge_small,95,entertainment stand end table,0.500000,0,1.0
+bge_small,96,bar room wall decor,1.000000,1,1.0
+bge_small,97,regner power loom red,1.000000,1,1.0
+bge_small,99,arched christmas tree,1.000000,0,1.0
+bge_small,103,kitchen anti fatigue mats,0.952606,1,1.0
+bge_small,116,brockham solid blackout thermal grommet curtain panels,1.000000,0,1.0
+bge_small,120,zodiac pillow,0.607509,0,1.0
+bge_small,123,entrance table,0.591055,0,1.0
+bge_small,124,unique coffee tables,0.684201,1,1.0
+bge_small,127,wine bar,1.000000,1,1.0
+bge_small,128,block coffee table,1.000000,1,1.0
+bge_small,131,kids chair,0.936379,1,1.0
+bge_small,132,farmhouse cabinet,0.424443,0,1.0
+bge_small,139,auburn throw pillows,0.889954,0,1.0
+bge_small,141,podium with locking cabinet,0.197590,0,1.0
+bge_small,142,kitchen wooden stand,0.368916,0,0.6
+bge_small,144,rug plum,0.930569,1,1.0
+bge_small,145,liberty hardware francisco,0.081771,0,0.5
+bge_small,146,laundry vanity cabinet,0.730290,0,1.0
+bge_small,148,industrial,1.000000,1,1.0
+bge_small,150,dumbbells,0.921602,1,1.0
+bge_small,157,velvet chaise,0.716861,1,1.0
+bge_small,164,modern outdoor furniture,0.213244,0,0.4
+bge_small,169,coffee bar buffet,0.073364,0,0.1
+bge_small,171,nectar queen mattress,0.866948,0,0.8
+bge_small,174,star wars rug,0.000000,0,1.0
+bge_small,175,basket planter,1.000000,1,1.0
+bge_small,176,mexican art,0.963318,1,1.0
+bge_small,178,almost heaven sauna,0.757001,1,1.0
+bge_small,180,outdoor lounge cushions,0.881208,1,1.0
+bge_small,185,lunch bag,1.000000,1,1.0
+bge_small,189,big basket for dirty cloths,0.338397,0,0.5
+bge_small,193,belchertown table lamp,0.930569,0,0.9
+bge_small,197,desk for kids tjat ate 10 year old,0.179477,0,0.2
+bge_small,199,blue faux throw with pillows,0.861138,0,1.0
+bge_small,201,delta trinsic double towel hook in champagne bronze,0.823700,0,0.8
+bge_small,204,fleur de lis living candle wall sconce bronze,0.738681,1,1.0
+bge_small,206,grill cover 73,1.000000,1,1.0
+bge_small,207,dull bed with shirt head board,0.000000,0,0.0
+bge_small,208,"fawkes 36"" blue vanity",0.756448,0,0.7
+bge_small,211,memory foam rug galveston,1.000000,0,1.0
+bge_small,214,light wood nightstand with silver accents,0.426310,0,0.5
+bge_small,215,king adjustable bed including mattress,0.500000,0,1.0
+bge_small,216,music plug wall plate,0.956380,1,1.0
+bge_small,218,wand bunk beds,0.603262,0,0.6
+bge_small,228,bee,1.000000,1,1.0
+bge_small,229,waterfall faucet,0.957428,1,1.0
+bge_small,230,gold,0.870125,1,0.9
+bge_small,231,anti fatigue mat,1.000000,1,1.0
+bge_small,233,kelly clarkson light fixtures,0.424030,0,0.8
+bge_small,234,artificial orchid arrangement,1.000000,1,1.0
+bge_small,235,bathroom wastebasket,1.000000,1,1.0
+bge_small,237,cloud modular sectional,0.592558,0,0.9
+bge_small,238,outdoor seat/back cushion,0.952606,1,1.0
+bge_small,239,bathroom single faucet,1.000000,1,1.0
+bge_small,240,eiffel tower wall art,1.000000,1,1.0
+bge_small,250,multi color rug,1.000000,1,1.0
+bge_small,254,comfortable accent chair,0.406560,0,0.5
+bge_small,255,desk and chair set,1.000000,1,1.0
+bge_small,256,high weight capacity bunk beds,0.341062,1,0.3
+bge_small,257,living room coffee table sets,0.779908,0,1.0
+bge_small,261,semi flush foyer light,0.960801,1,1.0
+bge_small,265,candace wingback upholstered bed,0.933746,0,1.0
+bge_small,267,dolomite subway tile,1.000000,1,1.0
+bge_small,268,betty resin free standing umbrella,1.000000,1,1.0
+bge_small,273,stainless steel free standing shower caddy,0.770459,0,1.0
+bge_small,276,chaves l-shape floating desk with hutch,1.000000,0,1.0
+bge_small,277,barstool patio sets,0.033127,0,0.2
+bge_small,278,parakeet toy,0.551393,0,1.0
+bge_small,280,johan desk by laurel foundry,0.469000,0,0.3
+bge_small,283,gaia driftwood table,0.642476,1,0.7
+bge_small,284,family lamp,0.660159,0,0.6
+bge_small,285,"48"" sliding single track , barn door for laundry",0.555342,0,1.0
+bge_small,286,hitchcock mid-century wall shelf,1.000000,0,1.0
+bge_small,288,round outdoor patio cover,0.930569,0,1.0
+bge_small,289,coma inducer comforter king set,0.965284,1,1.0
+bge_small,291,front door cabinet with doors,0.280306,0,0.5
+bge_small,293,wood floor protector mat,0.542572,0,1.0
+bge_small,294,moen multi function dual shower head,1.000000,0,1.0
+bge_small,296,zakariyah twin platform,0.816403,1,0.9
+bge_small,300,animal print handmade tufted wool beige/black area rug by allmodern,0.735860,0,1.0
+bge_small,304,merlyn 6,0.000000,0,0.0
+bge_small,305,ligth bulb,0.870125,1,0.8
+bge_small,307,real touch roses floral arrangements in glass vase,0.829209,1,1.0
+bge_small,309,moen 5995 arbor one,0.655548,0,0.7
+bge_small,311,odum velvet,0.770459,0,1.0
+bge_small,312,coat rack for bedroom,0.581771,0,1.0
+bge_small,313,malachi sled,0.765981,1,0.7
+bge_small,318,sunjoy lantern,0.672137,0,0.8
+bge_small,323,hub leaning full length mirror,1.000000,1,1.0
+bge_small,326,bowersville ladder writing desk,1.000000,1,1.0
+bge_small,327,kohler purist brushed bronze,0.480572,0,0.9
+bge_small,328,golub dining table,0.878072,1,0.8
+bge_small,329,wayfair tension rod,1.000000,1,1.0
+bge_small,336,mystic swivel,0.575061,1,1.0
+bge_small,337,iittala bowl,0.575699,0,1.0
+bge_small,338,mahone porch rocking chair,1.000000,1,1.0
+bge_small,340,berenice 4 storage cabinet,0.925088,1,1.0
+bge_small,341,canvas map art,1.000000,1,1.0
+bge_small,343,navy and peach bedding,0.138862,0,0.1
+bge_small,344,ottoman bed queen,0.373269,0,0.4
+bge_small,351,white bathroom vanity black hardware,0.674571,0,0.6
+bge_small,353,pennfield playhouse,0.849675,1,0.8
+bge_small,354,tressler rug,0.857205,0,0.8
+bge_small,355,argenteuil,1.000000,1,1.0
+bge_small,356,platform bed side table,0.779908,0,1.0
+bge_small,357,tall free standing pet gate,0.654676,0,1.0
+bge_small,358,sliding closet mirror,0.900720,1,1.0
+bge_small,364,croscill ashton,0.697596,0,0.8
+bge_small,369,wrought tv stand,0.735860,0,1.0
+bge_small,370,rug for teen room,0.000000,0,0.0
+bge_small,371,milk cow chair,0.191941,0,0.2
+bge_small,372,verden callan,0.756273,1,1.0
+bge_small,373,togo chair,1.000000,0,1.0
+bge_small,374,sinks bed frame,0.796761,0,1.0
+bge_small,376,island estate coffee table,1.000000,1,1.0
+bge_small,377,glinda upholstered bench,0.926636,0,0.9
+bge_small,379,urban outfitters duvet,0.848603,0,0.8
+bge_small,380,gravity feeder,0.954613,1,1.0
+bge_small,381,farmhouse hood vent,0.715186,0,0.6
+bge_small,384,dining table vinyl cloth,0.960801,1,1.0
+bge_small,386,alter furniture,0.425208,0,0.3
+bge_small,387,self enclosed planters,1.000000,0,1.0
+bge_small,388,outdoor sectional doning,0.220092,0,0.1
+bge_small,389,brush nickel faucet bathroom,0.390752,0,0.8
+bge_small,392,china clock,1.000000,0,1.0
+bge_small,395,pantry grey,0.110046,0,0.2
+bge_small,398,super bright lights,1.000000,1,1.0
+bge_small,401,glass lsmp shades,0.631233,0,0.8
+bge_small,403,wood rack wide,0.440955,0,0.8
+bge_small,405,queen ann style living room chair,0.687195,0,0.6
+bge_small,407,huge bookcase,0.430569,0,0.9
+bge_small,413,burruss patio sectional with cushions,1.000000,1,1.0
+bge_small,414,shower hooks,1.000000,1,1.0
+bge_small,415,toilet paper stand,1.000000,1,1.0
+bge_small,417,twin bed frame,0.733930,0,1.0
+bge_small,420,tile backsplash,1.000000,1,1.0
+bge_small,424,wayfair comforters,0.599825,1,1.0
+bge_small,426,outdoor storage,1.000000,1,1.0
+bge_small,428,kitchen storage cabinet,0.500000,0,1.0
+bge_small,430,30 inch bathroom vanity,0.930569,1,1.0
+bge_small,433,trundle daybed,0.968190,1,1.0
+bge_small,437,kitchen islands with seating,0.571020,0,0.9
+bge_small,439,parsons chairs,0.952606,1,1.0
+bge_small,441,desk for kids,0.601392,1,1.0
+bge_small,445,chaise lounge couch,0.746850,1,1.0
+bge_small,448,bed side table,0.357593,0,0.6
+bge_small,449,living room designs,0.306239,0,0.4
+bge_small,451,aiden black velvet bed,0.554143,0,0.7
+bge_small,452,day bed indian,0.926636,0,0.9
+bge_small,453,midcentury tv unit,0.406899,0,0.6
+bge_small,454,carpet 5x6,0.623574,0,0.9
+bge_small,459,tye dye duvet cover,0.450188,0,0.5
+bge_small,468,glow in the dark silent wall clock,0.770459,0,1.0
+bge_small,469,garage sports storage rack,0.918229,1,1.0
+bge_small,475,rattan truck,0.272670,0,0.5
+bge_small,479,garage door mail slot,1.000000,0,1.0
+bge_small,480,pictures to hang over fireplace,0.156426,0,0.1
+bge_small,482,48 inch kitchen hood,0.963318,1,1.0
+bge_small,487,rack glass,0.000000,0,0.0

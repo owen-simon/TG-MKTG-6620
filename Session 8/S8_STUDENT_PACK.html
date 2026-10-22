@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Session 8 — Run Your Own Model">
+<meta name="generator" content="MKTG 4600 handout renderer">
+<title>Session 8 — Run Your Own Model</title>
+<style>
+:root {
+    --text-color: #1a1a1a;
+    --bg-color: #ffffff;
+    --accent-color: #1f3864;
+    --muted-color: #404040;
+    --table-header-bg: #d9e1f2;
+    --table-stripe-bg: #f5f5f7;
+    --code-bg: #f3f3f3;
+    --border-color: #707070;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    line-height: 1.25;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+h1 { font-size: 2rem; margin-top: 0; }
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.25rem;
+}
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p, ul, ol, table, blockquote, pre {
+    margin: 0 0 1rem 0;
+}
+
+ul, ol { padding-left: 1.75rem; }
+li { margin-bottom: 0.25rem; }
+li > p { margin-bottom: 0.5rem; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--border-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--table-header-bg);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+tbody tr:nth-child(even) td { background-color: var(--table-stripe-bg); }
+
+code {
+    background-color: var(--code-bg);
+    padding: 0.125rem 0.375rem;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin-left: 0;
+    padding: 0.25rem 1rem;
+    color: var(--muted-color);
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 2rem 0;
+}
+
+strong { font-weight: 600; }
+
+a {
+    color: var(--accent-color);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+a:hover { text-decoration: none; }
+a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    text-decoration: none;
+    background-color: var(--table-header-bg);
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.skip-link:focus {
+    position: fixed;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 100;
+    border-radius: 4px;
+    text-decoration: none;
+    outline: 2px solid #fff;
+}
+
+/* Honor reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+/* Print stylesheet — letter, 0.75in margins, preserved table contrast */
+@media print {
+    @page {
+        size: letter;
+        margin: 0.75in;
+    }
+    html { font-size: 11pt; }
+    body {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4;
+        color: #000;
+        background: #fff;
+    }
+    h1, h2, h3, h4 {
+        color: #000;
+        page-break-after: avoid;
+    }
+    h2 {
+        border-bottom: 1.5pt solid #000;
+        page-break-before: auto;
+    }
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+    table, pre, blockquote {
+        page-break-inside: avoid;
+    }
+    th {
+        background-color: #ddd !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    tbody tr:nth-child(even) td {
+        background-color: #f4f4f4 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.85em;
+        color: #555;
+    }
+    blockquote {
+        border-left: 1pt solid #000;
+        color: #000;
+        font-style: italic;
+    }
+    hr { border-top: 0.5pt solid #999; }
+    .skip-link { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+<h1>Session 8 — Run Your Own Model</h1>
+<h2>Student handout · MKTG 6620 · October 19, 2026</h2>
+<style>
+/* Deck layout: one idea per screen, figures sized to fit a projector. Figures come from S8_figures.py. */
+@media screen and (min-width: 1100px) { html { font-size: 18px; } body { max-width: 62rem; } }
+@media screen and (min-width: 1600px) { html { font-size: 21px; } body { max-width: 64rem; } }
+main > hr { border: 0; border-top: 3px solid #d9e1f2; margin: 3rem 0 2rem; }
+main > h3 { font-size: 1.45rem; }
+main > blockquote { font-style: normal; color: #1a1a1a; background: #f5f7fb; border-left-width: 6px; padding: 0.75rem 1.25rem; }
+.s8fig { margin: 1.25rem 0 1.75rem; }
+.s8fig pre.s8svg { margin: 0; padding: 0; border: 0; background: none; white-space: normal; overflow: visible; font: inherit; color: inherit; }
+.s8fig svg { display: block; width: 100%; height: auto; max-height: 80vh; }
+.s8fig figcaption { color: #404040; font-size: 0.95rem; margin-top: 0.6rem; }
+.box { border: 1px solid #707070; border-radius: 6px; padding: 0.75rem 1.1rem; margin: 0 0 1.25rem; }
+.box p { margin: 0 0 0.4rem; }
+.box ul { margin: 0; }
+.idea { background: #eef2f9; border-color: #1f3864; font-size: 1.1rem; }
+.watch + p { background: #fdf6f0; border: 1px solid #b04e0f; border-bottom: 0; border-radius: 6px 6px 0 0; padding: 0.75rem 1.1rem 0.25rem; margin: 0; }
+.watch + p + ul { background: #fdf6f0; border: 1px solid #b04e0f; border-top: 0; border-radius: 0 0 6px 6px; padding: 0.25rem 1.1rem 0.75rem 2.6rem; margin: 0 0 1.25rem; }
+.bignums { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1rem 0 1.25rem; }
+.bignums div { flex: 1 1 10rem; border: 1px solid #707070; border-radius: 6px; padding: 0.75rem 1rem; }
+.bignums b { display: block; font-size: 2.4rem; line-height: 1.1; color: #1f3864; }
+@media print { .s8fig { break-inside: avoid; } .s8fig svg { max-height: none; } main > hr { margin: 1.5rem 0; } }
+/* Room below the last screen, so it too can be scrolled to the top of the projector view. */
+@media screen { main::after { content: ""; display: block; height: 70vh; } }
+</style>
+
+<p>Every model in this course so far has run on someone else's computer: you
+typed into ChatGPT or your coding agent, and a data center answered. Tonight
+the model runs on your laptop. You install llama.cpp, a free program that
+runs language models on ordinary computers, download two small models, and
+build a private AI assistant that works with the Wi-Fi off. Along the way you
+learn what is inside a model file, what each setting does, why the newest
+models are built the way they are, and why those designs make them hard to
+run yourself. The evening ends with a walkthrough of the final exam.</p>
+<p><strong>Case 3 is due Friday, October 23, at 11:59 p.m. Mountain.</strong> Tonight adds no
+graded work. The whole handout, every command, and the results we got are
+yours from the start, so you can check your screen against the page as you
+go.</p>
+<figure class="s8fig" id="fig-roadmap">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 190" role="img" aria-labelledby="fig-roadmap-t"><title id="fig-roadmap-t">Tonight in thirteen sections</title><line x1="60" y1="30" x2="900" y2="30" stroke="#d9e1f2" stroke-width="6"/><circle cx="60" cy="30" r="21" fill="#1f3864"/><text x="60" y="37" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">1</text><text x="60" y="80" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Why</text><circle cx="200" cy="30" r="21" fill="#1f3864"/><text x="200" y="37" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">2</text><text x="200" y="80" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Install</text><circle cx="340" cy="30" r="21" fill="#1f3864"/><text x="340" y="37" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">3</text><text x="340" y="80" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">First chat</text><circle cx="480" cy="30" r="21" fill="#1f3864"/><text x="480" y="37" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">4</text><text x="480" y="80" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">The file</text><circle cx="620" cy="30" r="21" fill="#1f3864"/><text x="620" y="37" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">5</text><text x="620" y="80" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Memory</text><circle cx="760" cy="30" r="21" fill="#1f3864"/><text x="760" y="37" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">6</text><text x="760" y="80" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Speed</text><circle cx="900" cy="30" r="21" fill="#1f3864"/><text x="900" y="37" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">7</text><text x="900" y="80" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Settings</text><line x1="60" y1="122" x2="760" y2="122" stroke="#d9e1f2" stroke-width="6"/><circle cx="60" cy="122" r="21" fill="#1f3864"/><text x="60" y="129" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">8</text><text x="60" y="172" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Check it</text><circle cx="200" cy="122" r="21" fill="#c55a11"/><text x="200" y="129" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">9</text><text x="200" y="172" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Thinking</text><circle cx="340" cy="122" r="21" fill="#c55a11"/><text x="340" y="129" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">10</text><text x="340" y="172" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Five jumps</text><circle cx="480" cy="122" r="21" fill="#1f3864"/><text x="480" y="129" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">11</text><text x="480" y="172" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Guessing</text><circle cx="620" cy="122" r="21" fill="#1f3864"/><text x="620" y="129" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">12</text><text x="620" y="172" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">Your API</text><circle cx="760" cy="122" r="21" fill="#707070"/><text x="760" y="129" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="600">13</text><text x="760" y="172" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">The final</text></svg></pre>
+<figcaption>Tonight in thirteen sections. Most are hands-on. Sections 9 and 10 (orange) are the two big ideas: what thinking buys and costs, and how the newest models are built and why that makes them hard to run yourself.</figcaption>
+</figure>
+
+<hr>
+<h2>Key concepts</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Term</th>
+<th scope="col">Plain meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self-hosting</td>
+<td>Running a model on hardware you control, instead of sending your text to a provider.</td>
+</tr>
+<tr>
+<td>llama.cpp</td>
+<td>A free, open-source program that runs language models on laptops and servers: on the processor (CPU), on an Apple chip's graphics (Metal), or on a graphics card.</td>
+</tr>
+<tr>
+<td>GGUF</td>
+<td>The single file llama.cpp loads: the model's weights plus its tokenizer and chat template.</td>
+</tr>
+<tr>
+<td>Parameters (weights)</td>
+<td>The numbers a model learned in training. Qwen3.5-2B has about two billion.</td>
+</tr>
+<tr>
+<td>Bits per weight</td>
+<td>How much storage each parameter takes. Fewer bits make a smaller file and usually a less accurate model.</td>
+</tr>
+<tr>
+<td>Quantization</td>
+<td>Storing weights with fewer bits than they were trained with, such as 4 bits instead of 16.</td>
+</tr>
+<tr>
+<td>Ternary weights</td>
+<td>Weights that are only −1, 0, or +1 (times a shared scale), about 1.6 bits of information each.</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>The unit a model reads and writes: a word, part of a word, or a symbol.</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td>How many tokens the model can hold at once: your messages, its replies, and any documents.</td>
+</tr>
+<tr>
+<td>KV cache</td>
+<td>The model's notes on every token already in the context. It grows with the conversation.</td>
+</tr>
+<tr>
+<td>Prompt processing and generation</td>
+<td>Reading the input (many tokens at once) and writing the reply (one token at a time).</td>
+</tr>
+<tr>
+<td>Temperature, top-k, top-p, min-p</td>
+<td>Settings that decide how the next token is picked from the model's probabilities.</td>
+</tr>
+<tr>
+<td>Thinking (reasoning)</td>
+<td>Writing out working before the answer. A thinking budget caps how many tokens it may spend.</td>
+</tr>
+<tr>
+<td>Mixture of experts (MoE)</td>
+<td>A model split into many expert blocks, of which only a few run for each token.</td>
+</tr>
+<tr>
+<td>Speculative decoding</td>
+<td>A cheap guesser drafts several tokens; the model checks them all in one step and keeps the ones it agrees with.</td>
+</tr>
+<tr>
+<td>Multi-token prediction (MTP)</td>
+<td>Extra layers trained to guess the next few tokens, used as the model's own guesser.</td>
+</tr>
+<tr>
+<td>K-quants, I-quants, imatrix</td>
+<td>Families of rounding recipes named in GGUF files (<code>Q4_K_M</code>, <code>IQ2_M</code>), and the importance matrix that tells the rounding which weights matter most.</td>
+</tr>
+<tr>
+<td>Micro-batch (<code>-ub</code>)</td>
+<td>How many prompt tokens the chip processes at once.</td>
+</tr>
+<tr>
+<td>Abliterated model</td>
+<td>A copy of a model with its refusal behaviour edited out of the weights.</td>
+</tr>
+<tr>
+<td>n-gram</td>
+<td>A run of n tokens in a row, used to guess ahead or, in the newest models, as a lookup memory.</td>
+</tr>
+<tr>
+<td><code>mmproj</code></td>
+<td>The vision add-on: a second file that turns an image into tokens the language model can read.</td>
+</tr>
+<tr>
+<td>OpenAI-compatible API</td>
+<td>The request format most AI apps use. llama.cpp's server speaks it, so those apps can use your laptop's model.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>1. Why run a model yourself?</h2>
+<div class="box idea"><p><b>The idea in one line.</b> A model is a file of numbers plus a program that does arithmetic with them. If the file fits in your computer's memory, your computer can run it, and nothing you type leaves the machine.</p></div>
+
+<table>
+<thead>
+<tr>
+<th scope="col">Reason</th>
+<th scope="col">What it means</th>
+<th scope="col">The catch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Privacy</td>
+<td>Prompts, files, and replies never leave the laptop. Useful for client data, contracts, health records.</td>
+<td>You now secure the laptop and the files.</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>No bill per question. A thousand questions cost electricity.</td>
+<td>The hardware isn't free, and someone has to maintain the setup.</td>
+</tr>
+<tr>
+<td>Works offline</td>
+<td>On a plane, in a plant, behind a firewall.</td>
+<td>Updates and new models still need a download.</td>
+</tr>
+<tr>
+<td>Control</td>
+<td>The file never changes. The same settings give the same answer next month. Hosted chat models change without notice.</td>
+<td>You have to choose and check the model yourself.</td>
+</tr>
+<tr>
+<td>Quality</td>
+<td>—</td>
+<td>The models that fit on a laptop are far smaller than the ones behind ChatGPT or Claude. Section 10 explains why the gap is growing.</td>
+</tr>
+</tbody>
+</table>
+<figure class="s8fig" id="fig-where">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 332" role="img" aria-labelledby="fig-where-t"><title id="fig-where-t">Hosted models run in a data center; tonight the model runs on your laptop</title><defs><marker id="fig-where-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#707070"/></marker></defs><text x="10" y="22" font-size="16" fill="#1f3864" font-weight="600">Hosted: ChatGPT, Claude, your coding agent</text><rect x="10" y="36" width="200" height="70" fill="#f2f2f2" stroke="#707070" stroke-width="1.5" rx="6"/><text x="110" y="67" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Your laptop</text><text x="110" y="85.7" font-size="15" fill="#1a1a1a" text-anchor="middle">types the question</text><rect x="380" y="36" width="200" height="70" fill="#ffffff" stroke="#707070" stroke-width="1.5" stroke-dasharray="5 4" rx="6"/><text x="480" y="67" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">The internet</text><text x="480" y="85.7" font-size="15" fill="#1a1a1a" text-anchor="middle">carries your text</text><rect x="750" y="36" width="200" height="70" fill="#1f3864" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="850" y="67" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">A data center</text><text x="850" y="85.7" font-size="15" fill="#ffffff" text-anchor="middle">runs the model</text><line x1="212" y1="71" x2="376" y2="71" stroke="#707070" stroke-width="2" marker-end="url(#fig-where-a)"/><line x1="582" y1="71" x2="746" y2="71" stroke="#707070" stroke-width="2" marker-end="url(#fig-where-a)"/><text x="480" y="128" font-size="14" fill="#404040" text-anchor="middle">Every prompt and file leaves your laptop; the provider’s model and settings can change.</text><text x="10" y="178" font-size="16" fill="#b04e0f" font-weight="600">Self-hosted, tonight</text><rect x="10" y="190" width="940" height="110" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="8"/><rect x="30" y="210" width="220" height="70" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="140" y="240.9" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Browser page</text><text x="140" y="259.7" font-size="15" fill="#1a1a1a" text-anchor="middle">or your own script</text><rect x="370" y="210" width="220" height="70" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="480" y="240.9" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">llama-server</text><text x="480" y="259.7" font-size="15" fill="#1a1a1a" text-anchor="middle">llama.cpp b11714</text><rect x="710" y="210" width="220" height="70" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="820" y="240.9" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Model file</text><text x="820" y="259.7" font-size="15" fill="#1a1a1a" text-anchor="middle">qwen3.5-2b.gguf</text><line x1="252" y1="245" x2="366" y2="245" stroke="#c55a11" stroke-width="2" marker-end="url(#fig-where-a)"/><line x1="592" y1="245" x2="706" y2="245" stroke="#c55a11" stroke-width="2" marker-end="url(#fig-where-a)"/><text x="480" y="322" font-size="14" fill="#404040" text-anchor="middle">Everything inside the orange box is your laptop. It works with the Wi-Fi off.</text></svg></pre>
+<figcaption>Same idea, different place. Self-hosting moves the model, the program that runs it, and your data onto hardware you control.</figcaption>
+</figure>
+
+<hr>
+<h2>2. Install llama.cpp and download two models</h2>
+<p>You download three things: the llama.cpp programs (12 to 20 MB), and two
+models that share one design.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">File</th>
+<th scope="col">What it is</th>
+<th scope="col" align="right">Size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>llama.cpp release <strong>b11714</strong></td>
+<td>The programs <code>llama-cli</code> (chat in the terminal), <code>llama-server</code> (chat in your browser, and an API), and <code>llama-bench</code> (speed test). Released October 17, 2026; MIT licence.</td>
+<td align="right">12–20 MB</td>
+</tr>
+<tr>
+<td><code>qwen3.5-2b.gguf</code></td>
+<td><strong>Qwen3.5-2B</strong> from Alibaba's Qwen team, stored at about 5 bits per weight (the <code>Q4_K_M</code> file from Unsloth), including its multi-token-prediction layer. Apache 2.0.</td>
+<td align="right">1.33 GB</td>
+</tr>
+<tr>
+<td><code>bonsai-2b.gguf</code></td>
+<td><strong>Ternary Bonsai 2 2B</strong> from PrismML: the same Qwen3.5-2B design, retrained so every weight is −1, 0, or +1, stored at 2.3 bits per weight (<code>Q2_0</code>). Apache 2.0.</td>
+<td align="right">0.55 GB</td>
+</tr>
+</tbody>
+</table>
+<p>Both model links below are pinned to one version of each file, so everyone
+downloads exactly the file we measured. Work in a new folder outside OneDrive,
+iCloud Drive, and Dropbox.</p>
+<hr>
+<h3>Mac (Apple silicon, macOS 13.3 or later)</h3>
+<p>Open <strong>Terminal</strong> and run these lines one at a time. Downloading with <code>curl</code>
+in Terminal, not in the browser, avoids macOS blocking the programs.</p>
+<pre><code class="language-bash">mkdir -p ~/s8 &amp;&amp; cd ~/s8
+curl -L -o llama.tar.gz https://github.com/ggml-org/llama.cpp/releases/download/b11714/llama-b11714-bin-macos-arm64.tar.gz
+tar -xzf llama.tar.gz
+curl -L -o qwen3.5-2b.gguf https://huggingface.co/unsloth/Qwen3.5-2B-MTP-GGUF/resolve/e05864f8066d874d5f85aaff007ae57a2a7d1efe/Qwen3.5-2B-Q4_K_M.gguf
+curl -L -o bonsai-2b.gguf https://huggingface.co/prism-ml/Ternary-Bonsai-2-2B-gguf/resolve/683f7be2629342a50987627b40881e54761a2430/Ternary-Bonsai-2-2B-Q2_0.gguf
+shasum -a 256 qwen3.5-2b.gguf bonsai-2b.gguf
+./llama-b11714/llama-cli --version
+</code></pre>
+<p>If you downloaded the programs in your browser instead and macOS says they
+can't be opened, run <code>xattr -dr com.apple.quarantine llama-b11714</code> in the same
+folder.</p>
+<hr>
+<h3>Windows (Intel or AMD processor)</h3>
+<p>Open <strong>PowerShell</strong> and run these lines one at a time. Type <code>curl.exe</code>, not
+<code>curl</code>: in PowerShell, plain <code>curl</code> is a different command.</p>
+<pre><code class="language-powershell">mkdir $HOME\s8; cd $HOME\s8
+curl.exe -L -o llama.zip https://github.com/ggml-org/llama.cpp/releases/download/b11714/llama-b11714-bin-win-cpu-x64.zip
+Expand-Archive llama.zip -DestinationPath llama-b11714
+curl.exe -L -o qwen3.5-2b.gguf https://huggingface.co/unsloth/Qwen3.5-2B-MTP-GGUF/resolve/e05864f8066d874d5f85aaff007ae57a2a7d1efe/Qwen3.5-2B-Q4_K_M.gguf
+curl.exe -L -o bonsai-2b.gguf https://huggingface.co/prism-ml/Ternary-Bonsai-2-2B-gguf/resolve/683f7be2629342a50987627b40881e54761a2430/Ternary-Bonsai-2-2B-Q2_0.gguf
+Get-FileHash qwen3.5-2b.gguf, bonsai-2b.gguf
+.\llama-b11714\llama-cli.exe --version
+</code></pre>
+<p>If Windows says <strong>MSVCP140.dll was not found</strong>, install Microsoft's Visual
+C++ runtime with <code>winget install --id Microsoft.VCRedist.2015+.x64 -e</code>,
+accept the prompt, and run the last line again. On a laptop with a separate
+graphics card you may also try the Vulkan build later
+(<code>llama-b11714-bin-win-vulkan-x64.zip</code>); tonight's commands don't need it.</p>
+<hr>
+<h3>Check the downloads</h3>
+<p>The two fingerprints must start with these characters:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">File</th>
+<th scope="col">SHA-256 starts with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>qwen3.5-2b.gguf</code></td>
+<td><code>18c92228fc14</code></td>
+</tr>
+<tr>
+<td><code>bonsai-2b.gguf</code></td>
+<td><code>c2893fa6f951</code></td>
+</tr>
+</tbody>
+</table>
+<p>A different fingerprint means the download was cut short: delete the file and
+download it again. If the room's Wi-Fi is slow, ask for a USB drive with all
+three files.</p>
+<p>From here on, every command runs in your <code>s8</code> folder. On a Mac each program
+starts with <code>./llama-b11714/</code>; on Windows, with <code>.\llama-b11714\</code> and ends in
+<code>.exe</code>. The handout prints the Mac form.</p>
+<hr>
+<h2>3. Your first private conversation</h2>
+<p>Start a chat in the terminal:</p>
+<pre><code class="language-bash">./llama-b11714/llama-cli -m qwen3.5-2b.gguf -c 8192 --reasoning off
+</code></pre>
+<p>Wait for the <code>&gt;</code> prompt, type a question, and press Enter. After each reply
+it prints its speed, such as <code>[ Prompt: 14.0 t/s | Generation: 5.0 t/s ]</code>
+(tokens per second). Ask it anything you like, then try one thing you'd never
+paste into a hosted chatbot, such as a made-up customer complaint with a name
+and an order number in it.</p>
+<p><strong>Now turn your Wi-Fi off and ask another question.</strong> It still answers. The
+whole model is in your laptop's memory; nothing is sent anywhere. Press
+Ctrl+C to leave the chat, and turn the Wi-Fi back on.</p>
+<p><code>--reasoning off</code> stops the model from <strong>thinking</strong> first, writing out its
+working before the answer. Section 9 measures what thinking buys and what it
+costs.</p>
+<hr>
+<h2>4. What's in a 1.33 GB file</h2>
+<p>A model file is mostly a very long list of numbers: the <strong>parameters</strong>, also
+called weights. llama.cpp prints what it loaded:</p>
+<!-- fig-load -->
+
+<table>
+<thead>
+<tr>
+<th scope="col">What llama.cpp printed</th>
+<th scope="col">Qwen3.5-2B (<code>qwen3.5-2b.gguf</code>)</th>
+<th scope="col">Bonsai 2 2B (<code>bonsai-2b.gguf</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File size</td>
+<td>1,268 MiB</td>
+<td>521 MiB</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td>1.94 billion</td>
+<td>1.88 billion</td>
+</tr>
+<tr>
+<td>Bits per weight</td>
+<td>5.43</td>
+<td>2.28</td>
+</tr>
+<tr>
+<td>Layers</td>
+<td>24</td>
+<td>24</td>
+</tr>
+<tr>
+<td>Layers that keep notes on every token</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Possible tokens (vocabulary)</td>
+<td>248,320</td>
+<td>248,320</td>
+</tr>
+<tr>
+<td>Longest context it was trained for</td>
+<td>262,144 tokens</td>
+<td>262,144 tokens</td>
+</tr>
+</tbody>
+</table>
+<p>Qwen3.5-2B counts slightly more parameters because its file also holds the multi-token-prediction layer (section 10).</p>
+<!-- /fig-load -->
+
+<p>The file's size follows from two numbers:</p>
+<div class="box idea"><p><b>File size ≈ parameters × bits per weight ÷ 8</b> (bytes). The model's design sets the parameters; the file format sets the bits.</p></div>
+
+<p>For Qwen3.5-2B: 1.94 billion parameters × 5.43 bits ÷ 8 ≈ 1.3 GB. For Bonsai
+2 2B: 1.88 billion × 2.28 bits ÷ 8 ≈ 0.54 GB. The same design, stored with
+fewer bits, makes a file less than half the size.</p>
+<figure class="s8fig" id="fig-size">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 314" role="img" aria-labelledby="fig-size-t"><title id="fig-size-t">The same 2-billion-parameter design stored five ways</title><text x="238" y="42" font-size="15" fill="#1a1a1a" text-anchor="end">BF16 (as released)</text><text x="238" y="60" font-size="13" fill="#404040" text-anchor="end">Qwen3.5-2B</text><rect x="250" y="26" width="633.3" height="30" fill="#1f3864" fill-opacity="0.55"/><text x="891.3" y="47" font-size="15" fill="#1a1a1a">3.90 GB</text><text x="238" y="92" font-size="15" fill="#1a1a1a" text-anchor="end">Q8_0</text><text x="238" y="110" font-size="13" fill="#404040" text-anchor="end">Qwen3.5-2B</text><rect x="250" y="76" width="337.5" height="30" fill="#1f3864" fill-opacity="0.55"/><text x="595.5" y="97" font-size="15" fill="#1a1a1a">2.08 GB</text><text x="238" y="142" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">Q4_K_M · tonight</text><text x="238" y="160" font-size="13" fill="#404040" text-anchor="end">Qwen3.5-2B</text><rect x="250" y="126" width="216.1" height="30" fill="#1f3864"/><text x="474.1" y="147" font-size="15" fill="#1a1a1a" font-weight="600">1.33 GB</text><text x="238" y="192" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">Q2_0 ternary · tonight</text><text x="238" y="210" font-size="13" fill="#404040" text-anchor="end">Bonsai 2 2B</text><rect x="250" y="176" width="88.9" height="30" fill="#c55a11"/><text x="346.9" y="197" font-size="15" fill="#1a1a1a" font-weight="600">0.55 GB</text><text x="238" y="242" font-size="15" fill="#1a1a1a" text-anchor="end">PTQ1_0 ternary (fork only)</text><text x="238" y="260" font-size="13" fill="#404040" text-anchor="end">Bonsai 2 2B</text><rect x="250" y="226" width="69.9" height="30" fill="#c55a11" fill-opacity="0.55"/><text x="327.9" y="247" font-size="15" fill="#1a1a1a">0.43 GB</text><line x1="250" y1="280" x2="900" y2="280" stroke="#707070" stroke-width="1"/><line x1="250" y1="280" x2="250" y2="286" stroke="#707070" stroke-width="1"/><text x="250" y="302" font-size="13" fill="#404040" text-anchor="middle">0 GB</text><line x1="412.5" y1="280" x2="412.5" y2="286" stroke="#707070" stroke-width="1"/><text x="412.5" y="302" font-size="13" fill="#404040" text-anchor="middle">1 GB</text><line x1="575" y1="280" x2="575" y2="286" stroke="#707070" stroke-width="1"/><text x="575" y="302" font-size="13" fill="#404040" text-anchor="middle">2 GB</text><line x1="737.5" y1="280" x2="737.5" y2="286" stroke="#707070" stroke-width="1"/><text x="737.5" y="302" font-size="13" fill="#404040" text-anchor="middle">3 GB</text><line x1="900" y1="280" x2="900" y2="286" stroke="#707070" stroke-width="1"/><text x="900" y="302" font-size="13" fill="#404040" text-anchor="middle">4 GB</text></svg></pre>
+<figcaption>The same design, stored five ways. The first three are Qwen3.5-2B files from one Hugging Face repository; the last two are Bonsai 2 2B. Fewer bits per weight, smaller file. Only the ternary files were trained for so few bits.</figcaption>
+</figure>
+
+<hr>
+<h3>Quantization: fewer bits per weight</h3>
+<p>Most models are released with 16 bits per weight. Storing each weight with
+fewer bits is called <strong>quantization</strong>. The usual way rounds a finished model's
+weights to a coarser grid, and the smaller the grid, the more the model's
+answers drift. File names tell you the format:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Name in the file</th>
+<th scope="col" align="right">Bits per weight (about)</th>
+<th scope="col">What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BF16</code>, <code>F16</code></td>
+<td align="right">16</td>
+<td>The weights as trained.</td>
+</tr>
+<tr>
+<td><code>Q8_0</code></td>
+<td align="right">8.5</td>
+<td>8 bits per weight plus a scale per block of 32. Close to the original.</td>
+</tr>
+<tr>
+<td><code>Q4_K_M</code></td>
+<td align="right">4.5–5</td>
+<td>The popular default: 4-bit blocks, with more bits kept for the most sensitive layers.</td>
+</tr>
+<tr>
+<td><code>Q2_K</code>, <code>IQ2_M</code></td>
+<td align="right">2.5–3</td>
+<td>Rounded hard. Ordinary models lose noticeable quality here.</td>
+</tr>
+<tr>
+<td><code>Q2_0</code> (Bonsai)</td>
+<td align="right">2.3</td>
+<td>Ternary weights, −1, 0, or +1, two bits each plus scales. Works only because the model was <strong>trained</strong> to use those three values.</td>
+</tr>
+</tbody>
+</table>
+<p>PrismML reports that its ternary Bonsai 2 models keep most of the original
+model's benchmark scores. That is the company's own measurement; section 8
+lets you check the 2B model on a few questions of your own.</p>
+<hr>
+<h3>Deeper: one model, twenty-one files</h3>
+<p>Open the Hugging Face page our Qwen file came from and you find 21
+versions of the same model. Every one holds the same 1.94 billion
+parameters; they differ only in how each weight was rounded.</p>
+<figure class="s8fig" id="fig-quants">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 533" role="img" aria-labelledby="fig-quants-t"><title id="fig-quants-t">All 21 versions of Qwen3.5-2B in one Hugging Face repository, by file size</title><text x="150" y="18" font-size="14" fill="#404040" font-weight="600">File size in GB · Qwen3.5-2B, one Hugging Face repository</text><text x="140" y="45" font-size="13" fill="#1a1a1a" text-anchor="end">BF16</text><rect x="150" y="33" width="691.8" height="15" fill="#707070"/><text x="847.8" y="45" font-size="13" fill="#1a1a1a">3.90</text><text x="140" y="66" font-size="13" fill="#1a1a1a" text-anchor="end">UD-Q8_K_XL</text><rect x="150" y="54" width="513.5" height="15" fill="#c55a11"/><text x="669.5" y="66" font-size="13" fill="#1a1a1a">2.89</text><text x="140" y="87" font-size="13" fill="#1a1a1a" text-anchor="end">Q8_0</text><rect x="150" y="75" width="368.6" height="15" fill="#8fa5c8"/><text x="524.6" y="87" font-size="13" fill="#1a1a1a">2.08</text><text x="140" y="108" font-size="13" fill="#1a1a1a" text-anchor="end">UD-Q6_K_XL</text><rect x="150" y="96" width="341" height="15" fill="#c55a11"/><text x="497" y="108" font-size="13" fill="#1a1a1a">1.92</text><text x="140" y="129" font-size="13" fill="#1a1a1a" text-anchor="end">Q6_K</text><rect x="150" y="117" width="289.4" height="15" fill="#1f3864"/><text x="445.4" y="129" font-size="13" fill="#1a1a1a">1.63</text><text x="140" y="150" font-size="13" fill="#1a1a1a" text-anchor="end">UD-Q5_K_XL</text><rect x="150" y="138" width="266.1" height="15" fill="#c55a11"/><text x="422.1" y="150" font-size="13" fill="#1a1a1a">1.50</text><text x="140" y="171" font-size="13" fill="#1a1a1a" text-anchor="end">Q5_K_M</text><rect x="150" y="159" width="261.3" height="15" fill="#1f3864"/><text x="417.3" y="171" font-size="13" fill="#1a1a1a">1.47</text><text x="140" y="192" font-size="13" fill="#1a1a1a" text-anchor="end">Q5_K_S</text><rect x="150" y="180" width="254.4" height="15" fill="#1f3864"/><text x="410.4" y="192" font-size="13" fill="#1a1a1a">1.43</text><text x="140" y="213" font-size="13" fill="#1a1a1a" text-anchor="end">UD-Q4_K_XL</text><rect x="150" y="201" width="245.8" height="15" fill="#c55a11"/><text x="401.8" y="213" font-size="13" fill="#1a1a1a">1.38</text><text x="140" y="234" font-size="13" fill="#1a1a1a" text-anchor="end">Q4_1</text><rect x="150" y="222" width="237.6" height="15" fill="#8fa5c8"/><text x="393.6" y="234" font-size="13" fill="#1a1a1a">1.34</text><text x="140" y="255" font-size="13" fill="#1a1a1a" text-anchor="end" font-weight="600">Q4_K_M · tonight</text><rect x="150" y="243" width="236" height="15" fill="#1f3864" stroke="#1a1a1a" stroke-width="2"/><text x="392" y="255" font-size="13" fill="#1a1a1a" font-weight="600">1.33</text><text x="140" y="276" font-size="13" fill="#1a1a1a" text-anchor="end">IQ4_NL</text><rect x="150" y="264" width="227.8" height="15" fill="#2e6b30"/><text x="383.8" y="276" font-size="13" fill="#1a1a1a">1.28</text><text x="140" y="297" font-size="13" fill="#1a1a1a" text-anchor="end">Q4_K_S</text><rect x="150" y="285" width="224.4" height="15" fill="#1f3864"/><text x="380.4" y="297" font-size="13" fill="#1a1a1a">1.26</text><text x="140" y="318" font-size="13" fill="#1a1a1a" text-anchor="end">Q4_0</text><rect x="150" y="306" width="223.1" height="15" fill="#8fa5c8"/><text x="379.1" y="318" font-size="13" fill="#1a1a1a">1.26</text><text x="140" y="339" font-size="13" fill="#1a1a1a" text-anchor="end">IQ4_XS</text><rect x="150" y="327" width="222" height="15" fill="#2e6b30"/><text x="378" y="339" font-size="13" fill="#1a1a1a">1.25</text><text x="140" y="360" font-size="13" fill="#1a1a1a" text-anchor="end">UD-Q3_K_XL</text><rect x="150" y="348" width="213.9" height="15" fill="#c55a11"/><text x="369.9" y="360" font-size="13" fill="#1a1a1a">1.21</text><text x="140" y="381" font-size="13" fill="#1a1a1a" text-anchor="end">Q3_K_M</text><rect x="150" y="369" width="203.7" height="15" fill="#1f3864"/><text x="359.7" y="381" font-size="13" fill="#1a1a1a">1.15</text><text x="140" y="402" font-size="13" fill="#1a1a1a" text-anchor="end">Q3_K_S</text><rect x="150" y="390" width="189.2" height="15" fill="#1f3864"/><text x="345.2" y="402" font-size="13" fill="#1a1a1a">1.07</text><text x="140" y="423" font-size="13" fill="#1a1a1a" text-anchor="end">UD-Q2_K_XL</text><rect x="150" y="411" width="186.5" height="15" fill="#c55a11"/><text x="342.5" y="423" font-size="13" fill="#1a1a1a">1.05</text><text x="140" y="444" font-size="13" fill="#1a1a1a" text-anchor="end">UD-IQ3_XXS</text><rect x="150" y="432" width="178.4" height="15" fill="#c55a11"/><text x="334.4" y="444" font-size="13" fill="#1a1a1a">1.01</text><text x="140" y="465" font-size="13" fill="#1a1a1a" text-anchor="end">UD-IQ2_M</text><rect x="150" y="453" width="167.6" height="15" fill="#c55a11"/><text x="323.6" y="465" font-size="13" fill="#1a1a1a">0.94</text><line x1="150" y1="477" x2="860" y2="477" stroke="#707070" stroke-width="1"/><line x1="150" y1="477" x2="150" y2="482" stroke="#707070" stroke-width="1"/><text x="150" y="496" font-size="12" fill="#404040" text-anchor="middle">0 GB</text><line x1="327.5" y1="477" x2="327.5" y2="482" stroke="#707070" stroke-width="1"/><text x="327.5" y="496" font-size="12" fill="#404040" text-anchor="middle">1 GB</text><line x1="505" y1="477" x2="505" y2="482" stroke="#707070" stroke-width="1"/><text x="505" y="496" font-size="12" fill="#404040" text-anchor="middle">2 GB</text><line x1="682.5" y1="477" x2="682.5" y2="482" stroke="#707070" stroke-width="1"/><text x="682.5" y="496" font-size="12" fill="#404040" text-anchor="middle">3 GB</text><line x1="860" y1="477" x2="860" y2="482" stroke="#707070" stroke-width="1"/><text x="860" y="496" font-size="12" fill="#404040" text-anchor="middle">4 GB</text><rect x="20" y="509" width="16" height="13" fill="#707070"/><text x="42" y="521" font-size="13" fill="#404040">Original, 16 bits</text><rect x="176.4" y="509" width="16" height="13" fill="#8fa5c8"/><text x="198.4" y="521" font-size="13" fill="#404040">Legacy (Q4_0, Q8_0)</text><rect x="347.2" y="509" width="16" height="13" fill="#1f3864"/><text x="369.2" y="521" font-size="13" fill="#404040">K-quants</text><rect x="438.8" y="509" width="16" height="13" fill="#2e6b30"/><text x="460.8" y="521" font-size="13" fill="#404040">I-quants</text><rect x="530.4" y="509" width="16" height="13" fill="#c55a11"/><text x="552.4" y="521" font-size="13" fill="#404040">Unsloth Dynamic (UD)</text></svg></pre>
+<figcaption>Same model, same 1.94 billion parameters, 21 files. Colour shows the rounding family. The UD files are often a little larger than the standard file of the same name, because they keep sensitive layers at higher precision; UD-Q8_K_XL even keeps some at 16 bits. The repository also holds three <code>mmproj</code> files, the vision add-on (section 12).</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th scope="col">Family</th>
+<th scope="col">File names</th>
+<th scope="col">How it rounds</th>
+<th scope="col">When to use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Legacy (2023)</td>
+<td><code>Q4_0</code>, <code>Q4_1</code>, <code>Q5_0</code>, <code>Q8_0</code></td>
+<td>Each block of 32 weights shares one scale (and, in the <code>_1</code> types, an offset). Simple, and fast on every chip.</td>
+<td><code>Q8_0</code> as a near-perfect copy; <code>Q4_0</code> for older or unusual chips.</td>
+</tr>
+<tr>
+<td>K-quants (2023)</td>
+<td><code>Q2_K</code> to <code>Q6_K</code>, with <code>_S</code>, <code>_M</code>, <code>_L</code></td>
+<td>Blocks inside super-blocks of 256, with the scales themselves rounded. The last letter says how many sensitive layers get extra bits: small, medium, large.</td>
+<td>The everyday choice: <code>Q4_K_M</code>, or <code>Q5_K_M</code> and <code>Q6_K</code> if memory allows.</td>
+</tr>
+<tr>
+<td>I-quants (2024)</td>
+<td><code>IQ1_S</code> to <code>IQ4_XS</code>, <code>IQ4_NL</code></td>
+<td>Rounds small groups of weights to the nearest entry in a fixed codebook, so fewer bits lose less. Made with an importance matrix (next screen). Slower on some processors.</td>
+<td>Below about 4 bits, where K-quants fall apart.</td>
+</tr>
+<tr>
+<td>Unsloth Dynamic</td>
+<td><code>UD-Q4_K_XL</code>, <code>UD-IQ2_M</code>, …</td>
+<td>Chooses the type layer by layer, after measuring which layers suffer most, and keeps those at higher precision.</td>
+<td>When you want the most quality per gigabyte.</td>
+</tr>
+</tbody>
+</table>
+<p>Two things the names hide, seen in tonight's own file:</p>
+<ul>
+<li><strong><code>Q4_K_M</code> is a recipe, not a promise of 4 bits.</strong> Our file mixes five
+  types: 113 tensors at <code>Q4_K</code>, 27 at <code>Q6_K</code>, 18 at <code>Q5_K</code>, 1 at <code>Q8_0</code>, and
+  176 small ones left at 32 bits. That's why llama.cpp reported 5.43 bits
+  per weight.</li>
+<li><strong>Small models shrink less.</strong> The vocabulary table alone, 248,320 tokens
+  × 2,048 numbers, is 0.51 billion parameters, a quarter of the model, and
+  it is kept at 6 bits. So the 3-bit file (<code>Q3_K_S</code>, 1.07 GB) is only about
+  20% smaller than tonight's.</li>
+</ul>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=vW30o4U9BFE&amp;t=329s">Julia Turc, “Reverse-engineering GGUF | Post-Training Quantization”</a>, 25 minutes; from 5:29: legacy quants, K-quants, I-quants, the importance matrix, and the <code>_S</code>, <code>_M</code>, <code>_L</code>, and <code>_XL</code> mixes.</li>
+</ul>
+<hr>
+<h3>Deeper: who makes the files, and how to choose</h3>
+<p>The Qwen team released the model in 16 bits. Almost everyone runs a copy
+that someone else rounded, and who rounded it matters as much as the format.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Who</th>
+<th scope="col">What they publish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The model's makers</td>
+<td>Some labs publish their own GGUF files. Fewest choices; the most trusted source.</td>
+</tr>
+<tr>
+<td>ggml-org</td>
+<td>llama.cpp's own organization: standard files for popular models, often with the vision and MTP parts as separate files.</td>
+</tr>
+<tr>
+<td>Unsloth</td>
+<td>Many sizes, including their Dynamic (<code>UD</code>) files, tuned on more than 1.5 million tokens of hand-picked chat text; MTP versions, like tonight's. Dynamic 3.0, launched in August with Qwen3.8, claims better accuracy at the same size than every other maker; that is Unsloth's own measurement.</td>
+</tr>
+<tr>
+<td>bartowski, mradermacher</td>
+<td>Community uploaders with very wide sets of K- and I-quants, most made with an importance matrix.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The importance matrix (imatrix).</strong> Before rounding, run some sample text
+through the model and record which weights matter most for its outputs; then
+round those more carefully. Unsloth's is in the same folder as a 1.9 MB file,
+<code>imatrix_unsloth.gguf_file</code>. The sample text matters: rounding tuned on
+English chat can hurt code or other languages a little more.</p>
+<div class="box idea"><p><b>How to choose a file.</b> (1) Take the largest file that fits in memory with room left for the KV cache (section 5). (2) Start at <code>Q4_K_M</code> or <code>UD-Q4_K_XL</code>; go up to Q5 or Q6 if there's room; <code>Q8_0</code> is close to the original. (3) Below 4 bits, prefer I-quant or UD files. (4) At the same memory, a bigger model at 4 bits usually beats a smaller model at 8 bits. (5) Check it on your own questions, as in section 8.</p></div>
+
+<p>Other formats you'll meet: <strong>MLX</strong> (Apple's own engine, in 4-bit and 8-bit
+folders); <strong>GPTQ</strong> and <strong>AWQ</strong> (graphics cards, used by vLLM); <strong>FP8</strong>, and the
+4-bit floating-point formats <strong>MXFP4</strong> and <strong>NVFP4</strong> on newer NVIDIA chips
+(OpenAI released its gpt-oss models in MXFP4). And <strong>QAT</strong> files, like Bonsai,
+were <em>trained</em> to be rounded, rather than rounded afterwards.</p>
+<hr>
+<h2>5. Memory: the file plus the conversation</h2>
+<p>Loading a model takes more memory than the file. llama.cpp also keeps a
+<strong>KV cache</strong>, the model's notes on every token in the conversation, so it
+doesn't have to reread everything to write the next word. The cache grows
+with the context length you allow with <code>-c</code>.</p>
+<figure class="s8fig" id="fig-memory">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 334" role="img" aria-labelledby="fig-memory-t"><title id="fig-memory-t">Qwen3.5-2B memory at three context lengths</title><text x="170" y="18" font-size="14" fill="#404040" font-weight="600">Memory in MiB (1,024 MiB = 1 GiB)</text><text x="158" y="56" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">4,096 tokens</text><rect x="170" y="38" width="57.9" height="26" fill="#1f3864"/><rect x="227.9" y="38" width="0.9" height="26" fill="#8fa5c8"/><rect x="228.7" y="38" width="2.2" height="26" fill="#c55a11"/><text x="238.9" y="57" font-size="14" fill="#1a1a1a">1,336 MiB with the cache</text><rect x="170" y="74" width="67.5" height="22" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" stroke-dasharray="5 4"/><text x="245.5" y="90" font-size="13" fill="#b04e0f">if all 24 layers kept notes: 1,480 MiB</text><text x="158" y="148" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">32,768 tokens</text><rect x="170" y="130" width="57.9" height="26" fill="#1f3864"/><rect x="227.9" y="130" width="0.9" height="26" fill="#8fa5c8"/><rect x="228.7" y="130" width="17.5" height="26" fill="#c55a11"/><text x="254.3" y="149" font-size="14" fill="#1a1a1a">1,672 MiB with the cache</text><rect x="170" y="166" width="128.8" height="22" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" stroke-dasharray="5 4"/><text x="306.8" y="182" font-size="13" fill="#b04e0f">if all 24 layers kept notes: 2,824 MiB</text><text x="158" y="240" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">262,144 tokens</text><rect x="170" y="222" width="57.9" height="26" fill="#1f3864"/><rect x="227.9" y="222" width="0.9" height="26" fill="#8fa5c8"/><rect x="228.7" y="222" width="140.2" height="26" fill="#c55a11"/><text x="376.9" y="241" font-size="14" fill="#1a1a1a">4,360 MiB with the cache</text><rect x="170" y="258" width="619.4" height="22" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" stroke-dasharray="5 4"/><text x="178" y="274" font-size="13" fill="#b04e0f">if all 24 layers kept notes: 13,576 MiB</text><rect x="170" y="310" width="18" height="14" fill="#1f3864"/><text x="194" y="322" font-size="13" fill="#404040">weights</text><rect x="270" y="310" width="18" height="14" fill="#8fa5c8"/><text x="294" y="322" font-size="13" fill="#404040">fixed-size summaries (18 layers)</text><rect x="530" y="310" width="18" height="14" fill="#c55a11"/><text x="554" y="322" font-size="13" fill="#404040">KV cache (6 layers)</text></svg></pre>
+<figcaption>Qwen3.5-2B as llama.cpp loaded it. The weights and the 18 summary layers stay the same size; the KV cache grows with the context. The dashed bars show what the cache would be if every layer kept per-token notes, as older designs do.</figcaption>
+</figure>
+
+<p>At 4,096 tokens of context Qwen3.5-2B's cache is 48 MiB; at 32,768 tokens,
+384 MiB; at its full 262,144 tokens, 3,072 MiB, which is 3 GiB and more than
+twice the weights. On top of that llama.cpp reserves about half a gigabyte of
+scratch space for the arithmetic. Only 6 of the model's 24 layers keep notes
+on every token; the other 18 keep a fixed-size summary, 19 MiB in all,
+however long the conversation (section 10, jump 2). That's why tonight's
+commands set <code>-c 8192</code>: plenty for a chat, with a cache under 100 MiB.</p>
+<div class="box idea"><p><b>Rule of thumb.</b> You need memory for the whole file, plus the cache for the context you allow, plus some scratch space. A laptop that can't hold all three either refuses to load the model or slows to a crawl.</p></div>
+
+<hr>
+<h3>Deeper: the cache can be rounded too</h3>
+<p>The KV cache is numbers, just like the weights, so it too can be stored with
+fewer bits. By default llama.cpp keeps each note in 16 bits (<code>f16</code>). Two
+settings change that:</p>
+<pre><code class="language-bash">./llama-b11714/llama-server -m qwen3.5-2b.gguf -c 262144 -ctk q8_0 -ctv q8_0 -lv 4
+</code></pre>
+<p><code>-ctk</code> sets the type for the keys and <code>-ctv</code> for the values; <code>-lv 4</code> makes
+the server print its memory details. Search the terminal (Cmd+F or Ctrl+F)
+for <code>llama_kv_cache: size</code>, then stop the server and start it again without
+<code>-ctk q8_0 -ctv q8_0</code> to compare. Rounding the values needs flash attention:
+llama.cpp turns it on by itself ("enabling flash_attn since it is required
+for quantized V cache"), and refuses to start if you force it off with
+<code>-fa off</code>. At this full context the server needs 3 to 5 GB, so skip it on
+an 8 GB laptop.</p>
+<figure class="s8fig" id="fig-kvtypes">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 204" role="img" aria-labelledby="fig-kvtypes-t"><title id="fig-kvtypes-t">Qwen3.5-2B KV cache at full context with three cache types</title><text x="230" y="18" font-size="14" fill="#404040" font-weight="600">KV cache at the full 262,144-token context, in MiB</text><text x="218" y="55" font-size="14" fill="#1a1a1a" text-anchor="end" font-weight="600">-ctk f16 -ctv f16</text><text x="218" y="72" font-size="12" fill="#404040" text-anchor="end">16 bits (the default)</text><rect x="230" y="40" width="604.8" height="28" fill="#1f3864"/><text x="842.8" y="60" font-size="14" fill="#1a1a1a" font-weight="600">3,072 MiB</text><text x="218" y="103" font-size="14" fill="#1a1a1a" text-anchor="end" font-weight="600">-ctk q8_0 -ctv q8_0</text><text x="218" y="120" font-size="12" fill="#404040" text-anchor="end">8 bits</text><rect x="230" y="88" width="321.3" height="28" fill="#8fa5c8"/><text x="559.3" y="108" font-size="14" fill="#1a1a1a" font-weight="600">1,632 MiB</text><text x="218" y="151" font-size="14" fill="#1a1a1a" text-anchor="end" font-weight="600">-ctk q4_0 -ctv q4_0</text><text x="218" y="168" font-size="12" fill="#404040" text-anchor="end">4 bits</text><rect x="230" y="136" width="170.1" height="28" fill="#c55a11"/><text x="408.1" y="156" font-size="14" fill="#1a1a1a" font-weight="600">864 MiB</text><line x1="479.7" y1="26" x2="479.7" y2="178" stroke="#2e6b30" stroke-width="1.5" stroke-dasharray="4 4"/><text x="479.7" y="194" font-size="12" fill="#2e6b30" text-anchor="middle">the weights: 1,268 MiB</text></svg></pre>
+<figcaption>Measured on our server: the same context, with the notes stored in 16, 8, and 4 bits. At 8 bits the cache is about half the size; at 4 bits, under a third. The green line is the size of the weights, for scale.</figcaption>
+</figure>
+
+<ul>
+<li><strong>8 bits (<code>q8_0</code>) halves the cache</strong>, with almost no change in the
+  answers. It is the common choice.</li>
+<li><strong>4 bits (<code>q4_0</code>) cuts it to under a third</strong>, but every step of a long
+  conversation now reads slightly blurred notes. llama.cpp's developers
+  suggest keeping the keys at least as precise as the values, for example
+  <code>-ctk q8_0 -ctv q4_0</code>. How much it hurts depends on the model; test it.</li>
+<li><strong>When it matters.</strong> At tonight's <code>-c 8192</code> the cache is under 100 MiB, so
+  leave it alone. An older 32-billion-parameter design that keeps notes in
+  all 64 of its layers (Qwen2.5-32B) needs 8 GiB of cache for 32,768 tokens
+  at 16 bits, and 4.25 GiB at <code>q8_0</code>. There it decides whether the model fits.</li>
+</ul>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=80bIUggRJf4&amp;t=247s">Efficient NLP, “The KV Cache: Memory Usage in Transformers”</a>, 9 minutes; from 4:07: how the cache works and how big it gets.</li>
+</ul>
+<hr>
+<h2>6. Speed: reading is fast, writing is slow</h2>
+<p>Measure your laptop. <code>llama-bench</code> times two things: reading a 512-token
+prompt (<code>pp512</code>, prompt processing) and writing 128 tokens (<code>tg128</code>, token
+generation).</p>
+<pre><code class="language-bash">./llama-b11714/llama-bench -m qwen3.5-2b.gguf -m bonsai-2b.gguf
+</code></pre>
+<p>It takes a minute or two and prints a table. The <code>t/s</code> column is tokens per
+second. <strong>Write your two <code>tg128</code> numbers and your laptop model on the board.</strong></p>
+<!-- fig-speed -->
+
+<table>
+<thead>
+<tr>
+<th scope="col">Our run: 16 cores of a server processor, no GPU</th>
+<th scope="col">Reading, pp512 (tokens/s)</th>
+<th scope="col">Writing, tg128 (tokens/s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qwen3.5-2B (<code>qwen3.5-2b.gguf</code>)</td>
+<td>156.3</td>
+<td>32.7</td>
+</tr>
+<tr>
+<td>Bonsai 2 2B (<code>bonsai-2b.gguf</code>)</td>
+<td>95.4</td>
+<td>16.6</td>
+</tr>
+</tbody>
+</table>
+<!-- /fig-speed -->
+
+<p>Two lessons are in that table:</p>
+<ul>
+<li><strong>Reading is much faster than writing.</strong> Reading a prompt handles all its
+  tokens together, so the chip works on many at once. Writing produces one
+  token at a time, and each token needs every weight read from memory once.
+  So writing speed depends mostly on how fast the chip can read its memory
+  (its <strong>memory bandwidth</strong>) divided by the size of the weights, as long as
+  the arithmetic keeps up. Qwen3.5-2B wrote 32.7 tokens per second on 16
+  cores of our server processor, with no GPU.</li>
+<li><strong>A smaller file isn't always faster.</strong> Bonsai's file is less than half the
+  size of Qwen's, yet it wrote at about half Qwen's speed on our server. Its
+  new number format needs extra arithmetic for every weight, and the fast
+  code for ordinary Intel and AMD processors only arrived on October 13
+  (section 10, jump 5). On your laptop it may come out differently; that's
+  what the board is for.</li>
+</ul>
+<p>The board will show a wide spread. Apple's Pro and Max chips read memory several times
+faster than the base chips, and a Windows laptop running on its processor
+alone is usually slower than a Mac using its GPU. llama.cpp picks sensible
+settings for your machine; the ones you may meet later are <code>-t</code> (processor
+threads), <code>-ngl</code> (how many layers go to the GPU; on a Mac, all of them), and
+<code>-fa</code> (a faster way to compute attention, on by default where it helps).</p>
+<hr>
+<h3>Deeper: <code>-b</code> and <code>-ub</code>, how much of the prompt is read at once</h3>
+<p>llama.cpp doesn't push a long prompt through the model in one go. It cuts it
+up twice:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Setting</th>
+<th scope="col" align="right">Default</th>
+<th scope="col">What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-b</code> (batch)</td>
+<td align="right">2,048</td>
+<td>The most prompt tokens llama.cpp hands the model in one call.</td>
+</tr>
+<tr>
+<td><code>-ub</code> (micro-batch)</td>
+<td align="right">512</td>
+<td>The most tokens the chip actually computes at once. Each batch is split into micro-batches.</td>
+</tr>
+</tbody>
+</table>
+<p>Section 6 said reading is fast because one fetch of the weights serves many
+prompt tokens at once. <code>-ub</code> is how many. Measure it on your laptop:</p>
+<pre><code class="language-bash">./llama-b11714/llama-bench -m qwen3.5-2b.gguf -p 2048 -n 0 -ub 32,128,512,2048
+</code></pre>
+<figure class="s8fig" id="fig-ubatch">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 262" role="img" aria-labelledby="fig-ubatch-t"><title id="fig-ubatch-t">Prompt-reading speed and scratch memory at five micro-batch sizes</title><text x="20" y="18" font-size="14" fill="#404040" font-weight="600">Reading a 2,048-token prompt (tokens/s)</text><text x="500" y="18" font-size="14" fill="#404040" font-weight="600">Scratch space at 8,192 tokens of context (MiB)</text><text x="100" y="53" font-size="14" fill="#1a1a1a" text-anchor="end">-ub 8</text><rect x="110" y="36" width="144" height="26" fill="#8fa5c8"/><text x="260" y="54" font-size="14" fill="#1a1a1a">67</text><text x="100" y="93" font-size="14" fill="#1a1a1a" text-anchor="end">-ub 32</text><rect x="110" y="76" width="230.4" height="26" fill="#8fa5c8"/><text x="346.4" y="94" font-size="14" fill="#1a1a1a">107</text><text x="100" y="133" font-size="14" fill="#1a1a1a" text-anchor="end">-ub 128</text><rect x="110" y="116" width="253.4" height="26" fill="#8fa5c8"/><text x="369.4" y="134" font-size="14" fill="#1a1a1a">117</text><text x="100" y="173" font-size="14" fill="#1a1a1a" text-anchor="end" font-weight="600">-ub 512</text><rect x="110" y="156" width="278.3" height="26" fill="#1f3864"/><text x="394.3" y="174" font-size="14" fill="#1a1a1a" font-weight="600">129</text><text x="100" y="213" font-size="14" fill="#1a1a1a" text-anchor="end">-ub 2048</text><rect x="110" y="196" width="243.3" height="26" fill="#8fa5c8"/><text x="359.3" y="214" font-size="14" fill="#1a1a1a">113</text><rect x="580" y="76" width="3.9" height="26" fill="#fbe5d6" stroke="#c55a11" stroke-width="1"/><text x="589.9" y="94" font-size="14" fill="#1a1a1a">32</text><rect x="580" y="116" width="15.6" height="26" fill="#fbe5d6" stroke="#c55a11" stroke-width="1"/><text x="601.6" y="134" font-size="14" fill="#1a1a1a">129</text><rect x="580" y="156" width="62.5" height="26" fill="#c55a11" stroke="#c55a11" stroke-width="1"/><text x="648.5" y="174" font-size="14" fill="#1a1a1a" font-weight="600">517</text><rect x="580" y="196" width="250" height="26" fill="#fbe5d6" stroke="#c55a11" stroke-width="1"/><text x="836" y="214" font-size="14" fill="#1a1a1a">2,068</text><text x="480" y="250" font-size="13" fill="#404040" text-anchor="middle">Bold: llama.cpp’s default, -ub 512. Writing speed doesn’t change with -ub: writing is one token at a time.</text></svg></pre>
+<figcaption>Measured on our 16-core server with Qwen3.5-2B. Left: how fast a 2,048-token prompt is read. Right: the scratch space llama.cpp reserves. A bigger micro-batch lets each fetch of the weights serve more tokens, until the arithmetic becomes the limit; it costs scratch memory.</figcaption>
+</figure>
+
+<p>On our 16-core server the default, <code>-ub 512</code>, read fastest: 129 tokens per
+second, against 67 at <code>-ub 8</code> and 113 at <code>-ub 2048</code>. Larger was slower here,
+and the scratch space grew with it, by about 1 MiB for every token in the
+micro-batch: llama.cpp reserves room to score all 248,320 possible next
+tokens for each one. At <code>-ub 2048</code> that is 2,068 MiB, more than the model.
+A graphics card has far more arithmetic to spare, so there larger
+micro-batches keep paying off for longer.</p>
+<p><strong>When to change them.</strong> On a graphics card with long prompts (documents,
+code), raise both, for example <code>-b 4096 -ub 4096</code>, if memory allows. It
+matters most for mixture-of-experts models whose experts are kept in
+ordinary memory (<code>--n-cpu-moe</code>), because each micro-batch copies the experts
+to the graphics card once. Short of memory, lower <code>-ub</code> to shrink the
+scratch space. Writing speed doesn't change: writing is one token at a time.</p>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=4b6KpFN7Rio&amp;t=505s">IBM Technology, “The AI Memory Wall: Why LLMs &amp; AI Accelerators Hit a Bottleneck”</a>, 12 minutes; from 8:25: reading (prefill) versus writing (decode), and why batching helps.</li>
+</ul>
+<hr>
+<h2>7. The settings, and what they mean</h2>
+<p>Now run the model as a server. This is the build you'll keep using tonight:</p>
+<pre><code class="language-bash">./llama-b11714/llama-server -m qwen3.5-2b.gguf -c 8192 -np 1 --port 8080
+</code></pre>
+<p>When the terminal says <code>listening on http://127.0.0.1:8080</code>, open
+<strong>http://127.0.0.1:8080</strong> in your browser. That chat page is served by your
+own laptop. Leave this terminal window open; closing it stops the server.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Part of the command</th>
+<th scope="col">What it sets</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-m qwen3.5-2b.gguf</code></td>
+<td>Which model file to load.</td>
+</tr>
+<tr>
+<td><code>-c 8192</code></td>
+<td>The context window: at most 8,192 tokens of conversation. More costs memory (section 5).</td>
+</tr>
+<tr>
+<td><code>-np 1</code></td>
+<td>One conversation at a time. Each extra slot gets its own context.</td>
+</tr>
+<tr>
+<td><code>--port 8080</code></td>
+<td>The address on your laptop: <code>127.0.0.1</code> means this computer only, and 8080 is the door number.</td>
+</tr>
+</tbody>
+</table>
+<p>In the chat page, the <strong>lightbulb</strong> next to the model's name sets thinking for
+each message. Set it to <strong>Off</strong> for now; section 9 turns it on. Under each
+reply the page shows how many tokens it wrote and how many per second.</p>
+<hr>
+<h3>How the next word is chosen</h3>
+<p>At every step the model gives each of its 248,320 possible tokens a
+probability. We asked Qwen3.5-2B "What is the best national park in Utah?
+Reply with the park's name only." Here are its probabilities for the first
+token of its answer:</p>
+<figure class="s8fig" id="fig-nexttoken">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 324" role="img" aria-labelledby="fig-nexttoken-t"><title id="fig-nexttoken-t">Qwen3.5-2B probabilities for the first token of its answer about Utah’s best national park</title><text x="10" y="20" font-size="15" fill="#404040" font-weight="600">temperature 0.5</text><text x="114" y="50" font-size="14" fill="#1a1a1a" text-anchor="end">“Great”</text><rect x="122" y="38" width="73.3" height="18" fill="#8fa5c8"/><text x="199.3" y="52" font-size="13" fill="#404040">39%</text><text x="114" y="76" font-size="14" fill="#1a1a1a" text-anchor="end">“Ar”</text><rect x="122" y="64" width="68.9" height="18" fill="#8fa5c8"/><text x="194.9" y="78" font-size="13" fill="#404040">36%</text><text x="114" y="102" font-size="14" fill="#1a1a1a" text-anchor="end">“Death”</text><rect x="122" y="90" width="19" height="18" fill="#8fa5c8"/><text x="145" y="104" font-size="13" fill="#404040">10%</text><text x="114" y="128" font-size="14" fill="#1a1a1a" text-anchor="end">“Grand”</text><rect x="122" y="116" width="6.6" height="18" fill="#8fa5c8"/><text x="132.6" y="130" font-size="13" fill="#404040">3%</text><text x="114" y="154" font-size="14" fill="#1a1a1a" text-anchor="end">“·Zion”</text><rect x="122" y="142" width="6" height="18" fill="#8fa5c8"/><text x="132" y="156" font-size="13" fill="#404040">3%</text><text x="114" y="180" font-size="14" fill="#1a1a1a" text-anchor="end">“Z”</text><rect x="122" y="168" width="5.6" height="18" fill="#8fa5c8"/><text x="131.6" y="182" font-size="13" fill="#404040">3%</text><text x="114" y="206" font-size="14" fill="#1a1a1a" text-anchor="end">“Se”</text><rect x="122" y="194" width="4.4" height="18" fill="#8fa5c8"/><text x="130.4" y="208" font-size="13" fill="#404040">2%</text><text x="114" y="232" font-size="14" fill="#1a1a1a" text-anchor="end">“Red”</text><rect x="122" y="220" width="3.6" height="18" fill="#8fa5c8"/><text x="129.6" y="234" font-size="13" fill="#404040">2%</text><text x="114" y="258" font-size="14" fill="#1a1a1a" text-anchor="end">“Dead”</text><rect x="122" y="246" width="1" height="18" fill="#8fa5c8"/><text x="126.4" y="260" font-size="13" fill="#404040">&lt;1%</text><text x="114" y="284" font-size="14" fill="#1a1a1a" text-anchor="end">“The”</text><rect x="122" y="272" width="1" height="18" fill="#8fa5c8"/><text x="126.3" y="286" font-size="13" fill="#404040">&lt;1%</text><text x="328" y="20" font-size="15" fill="#1f3864" font-weight="600">temperature 1.0 (the model’s own)</text><text x="432" y="50" font-size="14" fill="#1a1a1a" text-anchor="end">“Great”</text><rect x="440" y="38" width="42.7" height="18" fill="#1f3864"/><text x="486.7" y="52" font-size="13" fill="#404040">22%</text><text x="432" y="76" font-size="14" fill="#1a1a1a" text-anchor="end">“Ar”</text><rect x="440" y="64" width="41.4" height="18" fill="#1f3864"/><text x="485.4" y="78" font-size="13" fill="#404040">22%</text><text x="432" y="102" font-size="14" fill="#1a1a1a" text-anchor="end">“Death”</text><rect x="440" y="90" width="21.7" height="18" fill="#1f3864"/><text x="465.7" y="104" font-size="13" fill="#404040">11%</text><text x="432" y="128" font-size="14" fill="#1a1a1a" text-anchor="end">“Grand”</text><rect x="440" y="116" width="12.8" height="18" fill="#1f3864"/><text x="456.8" y="130" font-size="13" fill="#404040">7%</text><text x="432" y="154" font-size="14" fill="#1a1a1a" text-anchor="end">“·Zion”</text><rect x="440" y="142" width="12.2" height="18" fill="#1f3864"/><text x="456.2" y="156" font-size="13" fill="#404040">6%</text><text x="432" y="180" font-size="14" fill="#1a1a1a" text-anchor="end">“Z”</text><rect x="440" y="168" width="11.8" height="18" fill="#1f3864"/><text x="455.8" y="182" font-size="13" fill="#404040">6%</text><text x="432" y="206" font-size="14" fill="#1a1a1a" text-anchor="end">“Se”</text><rect x="440" y="194" width="10.5" height="18" fill="#1f3864"/><text x="454.5" y="208" font-size="13" fill="#404040">6%</text><text x="432" y="232" font-size="14" fill="#1a1a1a" text-anchor="end">“Red”</text><rect x="440" y="220" width="9.4" height="18" fill="#1f3864"/><text x="453.4" y="234" font-size="13" fill="#404040">5%</text><text x="432" y="258" font-size="14" fill="#1a1a1a" text-anchor="end">“Dead”</text><rect x="440" y="246" width="3.1" height="18" fill="#1f3864"/><text x="447.1" y="260" font-size="13" fill="#404040">2%</text><text x="432" y="284" font-size="14" fill="#1a1a1a" text-anchor="end">“The”</text><rect x="440" y="272" width="2.8" height="18" fill="#1f3864"/><text x="446.8" y="286" font-size="13" fill="#404040">1%</text><text x="646" y="20" font-size="15" fill="#404040" font-weight="600">temperature 1.5</text><text x="750" y="50" font-size="14" fill="#1a1a1a" text-anchor="end">“Great”</text><rect x="758" y="38" width="29.8" height="18" fill="#8fa5c8"/><text x="791.8" y="52" font-size="13" fill="#404040">16%</text><text x="750" y="76" font-size="14" fill="#1a1a1a" text-anchor="end">“Ar”</text><rect x="758" y="64" width="29.2" height="18" fill="#8fa5c8"/><text x="791.2" y="78" font-size="13" fill="#404040">15%</text><text x="750" y="102" font-size="14" fill="#1a1a1a" text-anchor="end">“Death”</text><rect x="758" y="90" width="19" height="18" fill="#8fa5c8"/><text x="781" y="104" font-size="13" fill="#404040">10%</text><text x="750" y="128" font-size="14" fill="#1a1a1a" text-anchor="end">“Grand”</text><rect x="758" y="116" width="13.4" height="18" fill="#8fa5c8"/><text x="775.4" y="130" font-size="13" fill="#404040">7%</text><text x="750" y="154" font-size="14" fill="#1a1a1a" text-anchor="end">“·Zion”</text><rect x="758" y="142" width="12.9" height="18" fill="#8fa5c8"/><text x="774.9" y="156" font-size="13" fill="#404040">7%</text><text x="750" y="180" font-size="14" fill="#1a1a1a" text-anchor="end">“Z”</text><rect x="758" y="168" width="12.6" height="18" fill="#8fa5c8"/><text x="774.6" y="182" font-size="13" fill="#404040">7%</text><text x="750" y="206" font-size="14" fill="#1a1a1a" text-anchor="end">“Se”</text><rect x="758" y="194" width="11.7" height="18" fill="#8fa5c8"/><text x="773.7" y="208" font-size="13" fill="#404040">6%</text><text x="750" y="232" font-size="14" fill="#1a1a1a" text-anchor="end">“Red”</text><rect x="758" y="220" width="10.9" height="18" fill="#8fa5c8"/><text x="772.9" y="234" font-size="13" fill="#404040">6%</text><text x="750" y="258" font-size="14" fill="#1a1a1a" text-anchor="end">“Dead”</text><rect x="758" y="246" width="5.2" height="18" fill="#8fa5c8"/><text x="767.2" y="260" font-size="13" fill="#404040">3%</text><text x="750" y="284" font-size="14" fill="#1a1a1a" text-anchor="end">“The”</text><rect x="758" y="272" width="4.9" height="18" fill="#8fa5c8"/><text x="766.9" y="286" font-size="13" fill="#404040">3%</text><text x="480" y="314" font-size="13" fill="#404040" text-anchor="middle">At temperature 1.0 these ten tokens hold 60% of the probability; thousands of others share the rest.</text></svg></pre>
+<figcaption>The ten most likely first tokens of the answer, as Qwen3.5-2B gave them on our run (middle), and the same list reshaped by a lower and a higher temperature (shares among the top 20). Tokens are often word pieces: “Ar” starts Arches, and “Z” and “·Zion” (· marks a space) are two ways to start Zion. Not every likely token is right: “Death” would start Death Valley, in California and Nevada.</figcaption>
+</figure>
+
+<p>The sampling settings decide how one token is picked from that list:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Setting</th>
+<th scope="col">llama.cpp default</th>
+<th scope="col">What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>temperature</code></td>
+<td>0.8</td>
+<td>Reshapes the probabilities. Below 1 sharpens them toward the favorite; 0 always picks the favorite; above 1 flattens them, so unlikely words win more often.</td>
+</tr>
+<tr>
+<td><code>top_k</code></td>
+<td>40</td>
+<td>Keep only the k most likely tokens.</td>
+</tr>
+<tr>
+<td><code>top_p</code></td>
+<td>0.95</td>
+<td>Keep the smallest set of top tokens whose probabilities add up to p.</td>
+</tr>
+<tr>
+<td><code>min_p</code></td>
+<td>0.05</td>
+<td>Drop any token less than this fraction as likely as the favorite.</td>
+</tr>
+<tr>
+<td><code>presence_penalty</code>, <code>repeat_penalty</code></td>
+<td>0, 1.0 (off)</td>
+<td>Make tokens that already appeared less likely, to stop loops.</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>random</td>
+<td>The random draw. The same seed and settings give the same reply on the same machine.</td>
+</tr>
+<tr>
+<td><code>max_tokens</code> (<code>-n</code>)</td>
+<td>no limit</td>
+<td>Stop after this many tokens.</td>
+</tr>
+</tbody>
+</table>
+<p>Qwen's model card recommends temperature 1.0, top_p 1.0, top_k 20, and
+presence penalty 2.0 for text without thinking. In the chat page, open
+<strong>Settings</strong> (the gear on the left), then <strong>Sampling &amp; Penalties</strong>, to change
+any of them for your next message.</p>
+<hr>
+<h3>Try it: one prompt, three temperatures</h3>
+<p>In <strong>Settings → Sampling &amp; Penalties</strong> set Top K to 0, Top P to 1, and Min P
+to 0, so that only temperature changes. Then ask this three times at each
+temperature, each time in a new chat. The page draws a new random seed for
+every message; we fixed seeds 1, 2, and 3 so you can compare:</p>
+<blockquote>
+<p>Suggest one name for a new coffee shop in Salt Lake City. Reply with the
+name only.</p>
+</blockquote>
+<!-- fig-temperature -->
+
+<table>
+<thead>
+<tr>
+<th scope="col">Temperature</th>
+<th scope="col">Seed 1</th>
+<th scope="col">Seed 2</th>
+<th scope="col">Seed 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.0</td>
+<td>Salt Lake Mountain Brew</td>
+<td>Salt Lake Mountain Brew</td>
+<td>Salt Lake Mountain Brew</td>
+</tr>
+<tr>
+<td>0.7</td>
+<td>Mountain Peak Roastery</td>
+<td>The Salt Lake Mountain Roast</td>
+<td>Salty Roast</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>Cle употреблять York</td>
+<td>The建行 keskust lofty zoomn和国家 hall china amer … Volume Wiki menyinger chill decor write</td>
+<td>L把EO Lounge</td>
+</tr>
+</tbody>
+</table>
+<!-- /fig-temperature -->
+
+<p>At temperature 0 the favorite wins every time, so the seed doesn't matter.
+At 0.7 each seed gives a different, mostly sensible name. At 1.5, with nothing
+cutting off the unlikely tokens, rare tokens win often enough to turn the
+reply into nonsense. That is what top_k, top_p, and min_p are for: they drop
+the long tail before the draw. Set them back to the defaults (40, 0.95, and
+0.05) when you're done.</p>
+<hr>
+<h2>8. Is a 2-billion-parameter model good enough? Check it.</h2>
+<p>You wouldn't trust an analysis without checking it, and the same goes for a
+model. In the chat page set the lightbulb to <strong>Off</strong> and Temperature to 0, so
+each answer is the model's favorite, and paste these eight questions one at a
+time, in a <strong>new chat</strong> for each. Then stop the server, start it again with
+<code>-m bonsai-2b.gguf</code> in place of <code>-m qwen3.5-2b.gguf</code>, and ask them again.</p>
+<!-- fig-prompts -->
+
+<ol>
+<li>From this email, what date is the meeting? Reply with the date only. Email: "Hi team, we're moving the vendor review from Thursday to Tuesday, October 27, at 10 a.m., same room. Dana"</li>
+<li>Classify this support ticket as billing, shipping, technical, or other. Reply with one word. Ticket: "I was charged twice for my order last week and need one of the charges refunded."</li>
+<li>What is 17% of 2,340? Reply with the number only.</li>
+<li>A store sells 340 units a week at $12.50 each. Next week the price rises 8% and units sold fall 5%. What is next week's revenue in dollars? Reply with the number only.</li>
+<li>Which planet is closest to the Sun? Reply with one word.</li>
+<li>Who was the dean of the University of Utah's David Eccles School of Business in 2020? Reply with the name only.</li>
+<li>Return only a JSON object with the keys "product" and "quantity" for this order: "Please send three boxes of printer paper."</li>
+<li>How many times does the letter r appear in the word strawberry? Reply with the number only.</li>
+</ol>
+<!-- /fig-prompts -->
+
+<hr>
+<h3>What we got</h3>
+<!-- fig-validation -->
+
+<table>
+<thead>
+<tr>
+<th scope="col">Question</th>
+<th scope="col">Correct answer</th>
+<th scope="col">Qwen3.5-2B</th>
+<th scope="col">Bonsai 2 2B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Meeting date from an email</td>
+<td>october 27</td>
+<td>Right: October 27</td>
+<td>Right: October 27</td>
+</tr>
+<tr>
+<td>2. Ticket category</td>
+<td>billing</td>
+<td>Right: billing</td>
+<td>Right: Billing</td>
+</tr>
+<tr>
+<td>3. 17% of 2,340</td>
+<td>397.8</td>
+<td>Wrong: 3178</td>
+<td>Right: 29.98 2340 * 0.17 = 299.8 Wait, let me recal … 397.8 Answer: 397.8 &lt;/think&gt; 397.8</td>
+</tr>
+<tr>
+<td>4. Next week’s revenue</td>
+<td>4360.5</td>
+<td>Wrong: 1283</td>
+<td>Wrong: 12.50 * 340 * (1 + 0.08) * (1 - 0.05) = 12.50 * 340 * 1.08 * 0.95 = 4000.00 4000</td>
+</tr>
+<tr>
+<td>5. Planet closest to the Sun</td>
+<td>mercury</td>
+<td>Right: Mercury</td>
+<td>Right: Mercury</td>
+</tr>
+<tr>
+<td>6. Eccles dean in 2020</td>
+<td>taylor randall</td>
+<td>Wrong: David Eccles</td>
+<td>Wrong: David Eccles was the dean of the University … David Eccles School of Business in 2020.</td>
+</tr>
+<tr>
+<td>7. JSON for an order</td>
+<td>quantity 3</td>
+<td>Right: { "product": "printer paper", "quantity": 3 }</td>
+<td>Right: { "product": "printer paper", "quantity": 3 }</td>
+</tr>
+<tr>
+<td>8. r’s in “strawberry”</td>
+<td>3</td>
+<td>Wrong: 4</td>
+<td>Wrong: 5</td>
+</tr>
+</tbody>
+</table>
+<!-- /fig-validation -->
+
+<p>Qwen3.5-2B got 4 of the 8 right and Bonsai 2 2B got 5. Both pulled the date
+and the ticket category out of the text, knew the planet, and wrote the JSON.
+Both named "David Eccles", the man the school is named after, as its 2020
+dean: a confident, plausible invention. Taylor Randall was dean from 2009
+until he became the university's president in 2021. Both missed the revenue
+and the r's in "strawberry". Qwen got 17% of 2,340 badly wrong; Bonsai got it
+right only because, though told not to think, it wrote out its working
+anyway. Section 9 comes back to that.</p>
+<p>These are the usual failures of small models: arithmetic, facts they never
+stored, and anything that needs the letters inside a token. Pulling facts
+out of text you supply, sorting it into categories, and formatting it are
+what they do well. Now paste the same eight questions into ChatGPT EDU and
+compare. <strong>Which of these tasks would you hand to a 1.3 GB model on a
+laptop, and which not?</strong></p>
+<hr>
+<h3>Deeper: "abliterated" and "uncensored" models</h3>
+<p>Search Hugging Face for almost any popular model and you'll find copies
+named "abliterated" or "uncensored": the same model with its refusals taken
+out. NPR counted more than 6,000 abliterated models there in May 2026, up
+from about 600 in 2024.</p>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col">Uncensored (retrained)</th>
+<th scope="col">Abliterated (edited)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>How it's made</td>
+<td>Trained again on examples with the refusals removed. Eric Hartford's 2023 essay "Uncensored Models" made the idea popular.</td>
+<td>In 2024 researchers showed that refusing is controlled largely by <strong>one direction</strong> in the model's internal numbers (Arditi and others, NeurIPS 2024). Abliteration subtracts that direction from the weights. No training.</td>
+</tr>
+<tr>
+<td>Effort</td>
+<td>Training on graphics cards</td>
+<td>Minutes to hours on one graphics card; tools such as Heretic search for the edit that removes refusals while changing everything else least</td>
+</tr>
+<tr>
+<td>What else changes</td>
+<td>Style and quality can shift</td>
+<td>Benchmark scores drop a little, and behaviour shifts in ways nobody aimed at: in one July 2026 study, abliterated models gave more optimistic stock calls</td>
+</tr>
+</tbody>
+</table>
+<p>The business view:</p>
+<ul>
+<li><strong>Why people want them.</strong> Official models sometimes refuse legitimate
+  work: security testing, medical and legal questions, fiction, content
+  moderation. Over-refusal is a real cost.</li>
+<li><strong>Why to be careful.</strong> You remove a layer of safety you may be relying
+  on. The model will now answer requests your company's policy forbids, and
+  your company owns what it says. The licence still applies.</li>
+<li><strong>Uncensored isn't more truthful.</strong> Taking out refusals adds no
+  knowledge; it would still invent the Eccles dean.</li>
+<li><strong>Unknown uploader, unknown edits.</strong> A stranger's copy can differ from the
+  original in ways you can't see by reading the file.</li>
+<li><strong>A better first step.</strong> Try a clear system prompt or a vendor's
+  enterprise settings first. If you do use an edited model, put your own
+  checks around it (filters, logs, human review) and write down why.</li>
+</ul>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=tILPh-DBZQA">Andy Arditi, “Refusal in LLMs Is Mediated by a Single Direction”</a>, 28 minutes: the paper's first author on how the refusal direction was found.</li>
+</ul>
+<hr>
+<h2>9. Thinking: better answers, at a price</h2>
+<div class="box idea"><p><b>The idea in one line.</b> A thinking model writes out its working before it answers. More working often means more right answers, but every thinking token costs the same time, memory, and, on a hosted model, money as any other token.</p></div>
+
+<p>Hosted products sell the same trade-off under other names: the thinking
+modes in ChatGPT, the "reasoning effort" setting in AI companies' APIs, and
+Claude's extended thinking. On your laptop you can see exactly what it costs.
+The lightbulb in the chat page sets it for each message:</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Lightbulb</th>
+<th scope="col">What the page asks the model for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Off</td>
+<td>No thinking: answer straight away.</td>
+</tr>
+<tr>
+<td>Low</td>
+<td>Think for at most 512 tokens, then answer.</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>Think for at most 2,048 tokens.</td>
+</tr>
+<tr>
+<td>High</td>
+<td>Think for at most 8,192 tokens.</td>
+</tr>
+<tr>
+<td>Max</td>
+<td>Think as long as it likes.</td>
+</tr>
+<tr>
+<td>Default</td>
+<td>Whatever the model does when not told. Qwen's model card says its 2B model doesn't think unless asked, but with this file in llama.cpp it does: our test question took 431 tokens. Bonsai 2 also thinks by default.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>Try it</h3>
+<p>Set Temperature back to its default, 0.8. Ask these three questions from
+section 8 at <strong>Off</strong>, then at <strong>Low</strong>, each in a new chat. Click the thinking
+block above a reply to read the working. For each, note: right or wrong,
+tokens written, and seconds. Leave Medium, High, and Max alone tonight: a
+2B model on a laptop can think for minutes, and sometimes never stops.</p>
+<blockquote>
+<p>What is 17% of 2,340? Reply with the number only.</p>
+<p>A store sells 340 units a week at $12.50 each. Next week the price rises 8%
+and units sold fall 5%. What is next week's revenue in dollars? Reply with
+the number only.</p>
+<p>How many times does the letter r appear in the word strawberry? Reply with
+the number only.</p>
+</blockquote>
+<hr>
+<h3>What we got</h3>
+<p>All eight questions from section 8, asked three times each (seeds 1, 2, and
+3) at Off and at Low, with llama.cpp's default sampling, on Qwen3.5-2B:</p>
+<!-- fig-thinking -->
+
+<table>
+<thead>
+<tr>
+<th scope="col">Lightbulb</th>
+<th scope="col">Right answers</th>
+<th scope="col">Tokens written (median)</th>
+<th scope="col">Time (median)</th>
+<th scope="col">Slowest reply</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Off</td>
+<td>12 of 24</td>
+<td>5</td>
+<td>0.2 s</td>
+<td>10 s</td>
+</tr>
+<tr>
+<td>Low (512 thinking tokens at most)</td>
+<td>18 of 24</td>
+<td>518</td>
+<td>18.7 s</td>
+<td>19 s</td>
+</tr>
+</tbody>
+</table>
+<!-- /fig-thinking -->
+
+<figure class="s8fig" id="fig-thinkgrid">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 368" role="img" aria-labelledby="fig-thinkgrid-t"><title id="fig-thinkgrid-t">Right answers per question with thinking off and with a 512-token budget</title><text x="318" y="24" font-size="14" fill="#404040" text-anchor="end" font-weight="600">Right answers out of 3</text><text x="460" y="24" font-size="16" fill="#1f3864" text-anchor="middle" font-weight="600">Off</text><text x="460" y="44" font-size="13" fill="#404040" text-anchor="middle">5 tokens · 0.2 s</text><text x="720" y="24" font-size="16" fill="#1f3864" text-anchor="middle" font-weight="600">Low</text><text x="720" y="44" font-size="13" fill="#404040" text-anchor="middle">518 tokens · 18.7 s</text><text x="318" y="80" font-size="15" fill="#1a1a1a" text-anchor="end">Meeting date from an email</text><rect x="338" y="60" width="244" height="30" fill="#d9e1f2" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="81" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">2 / 3</text><rect x="598" y="60" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="81" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><text x="318" y="118" font-size="15" fill="#1a1a1a" text-anchor="end">Ticket category</text><rect x="338" y="98" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="119" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><rect x="598" y="98" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="119" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><text x="318" y="156" font-size="15" fill="#1a1a1a" text-anchor="end">17% of 2,340</text><rect x="338" y="136" width="244" height="30" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="157" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">0 / 3</text><rect x="598" y="136" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="157" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><text x="318" y="194" font-size="15" fill="#1a1a1a" text-anchor="end">Next week’s revenue</text><rect x="338" y="174" width="244" height="30" fill="#fbe5d6" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="195" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">1 / 3</text><rect x="598" y="174" width="244" height="30" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="195" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">0 / 3</text><text x="318" y="232" font-size="15" fill="#1a1a1a" text-anchor="end">Planet closest to the Sun</text><rect x="338" y="212" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="233" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><rect x="598" y="212" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="233" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><text x="318" y="270" font-size="15" fill="#1a1a1a" text-anchor="end">Eccles dean in 2020</text><rect x="338" y="250" width="244" height="30" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="271" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">0 / 3</text><rect x="598" y="250" width="244" height="30" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="271" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">0 / 3</text><text x="318" y="308" font-size="15" fill="#1a1a1a" text-anchor="end">JSON for an order</text><rect x="338" y="288" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="309" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><rect x="598" y="288" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="309" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text><text x="318" y="346" font-size="15" fill="#1a1a1a" text-anchor="end">r’s in “strawberry”</text><rect x="338" y="326" width="244" height="30" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="4"/><text x="460" y="347" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">0 / 3</text><rect x="598" y="326" width="244" height="30" fill="#1f3864" stroke="#707070" stroke-width="1.5" rx="4"/><text x="720" y="347" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">3 / 3</text></svg></pre>
+<figcaption>Each cell is one question asked three times. Columns: the lightbulb setting, with the median tokens written and seconds per reply on our 16 server cores. Dark navy: right all three times; white: never.</figcaption>
+</figure>
+
+<p>With thinking off, Qwen3.5-2B got 12 of 24 right, writing a median of 5
+tokens in under a quarter of a second. With a 512-token budget it got 18 of
+24, writing about 100 times as many tokens and taking 18.7 seconds per answer
+on our server. Look at where the gain came from:</p>
+<ul>
+<li><strong>Thinking fixed the arithmetic and the counting.</strong> The percentage went
+  from 0 of 3 to 3 of 3, and the r's in "strawberry" from 0 of 3 to 3 of 3.
+  The model worked them out step by step.</li>
+<li><strong>Thinking can't supply a missing fact.</strong> The dean stayed at 0 of 3: no
+  amount of working produces a name the model never stored.</li>
+<li><strong>A budget too small can make things worse.</strong> The revenue question needs
+  more than 512 tokens of working. The budget cut the thinking off
+  mid-calculation, and two of the three replies gave the new price, $13.50,
+  instead of the revenue. 15 of the 24 Low replies ran into the budget.</li>
+</ul>
+<hr>
+<h3>More thinking: the larger budgets</h3>
+<p>Medium, High, and Max raise the budget to 2,048 tokens, 8,192 tokens, and no
+limit. We didn't measure them, for the reason above, but the pattern is well
+known from the large thinking models:</p>
+<ul>
+<li><strong>Accuracy rises with the budget, then levels off.</strong> Hard multi-step
+  problems keep improving with more thinking for a while; easy questions
+  don't improve at all, because the model already knew the answer.</li>
+<li><strong>Cost rises in step with the tokens.</strong> Every thinking token takes the
+  same time to write, holds the same space in the KV cache, and, on a hosted
+  model, is billed like the answer.</li>
+<li><strong>Small models get less out of it.</strong> A 2B model can wander, repeat itself,
+  or argue itself out of a right answer. Large models make better use of
+  long thinking.</li>
+<li><strong>The wait is the customer's.</strong> A reply that takes a minute is fine for a
+  monthly report and useless for a live chat.</li>
+</ul>
+<hr>
+<h3>The trade-off, in business terms</h3>
+<!-- fig-tradeoff -->
+
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col">Off</th>
+<th scope="col">Low</th>
+<th scope="col">Medium, High, Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Right answers on our eight questions, three tries each</td>
+<td>12 of 24</td>
+<td>18 of 24</td>
+<td>Not measured</td>
+</tr>
+<tr>
+<td>Tokens written per question (median)</td>
+<td>5</td>
+<td>518 (about 100 times as many)</td>
+<td>Up to 2,048, 8,192, or no limit</td>
+</tr>
+<tr>
+<td>Time per question on our server (median)</td>
+<td>0.2 s</td>
+<td>18.7 s</td>
+<td>Minutes on a laptop; a small model may never stop</td>
+</tr>
+<tr>
+<td>What a hosted model bills</td>
+<td>The answer</td>
+<td>The answer plus up to 512 thinking tokens</td>
+<td>The answer plus all the thinking</td>
+</tr>
+<tr>
+<td>Where it fits</td>
+<td>Extraction, classification, formatting, chat</td>
+<td>Short calculations and checks</td>
+<td>Long multi-step problems, on models big enough to use the extra thinking</td>
+</tr>
+</tbody>
+</table>
+<!-- /fig-tradeoff -->
+
+<div class="box idea"><p><b>A decision rule for your team.</b> Turn thinking on where a wrong answer is expensive and the task has steps (arithmetic, planning, code). Leave it off where the answer is in the text you supply (extraction, classification, formatting) or where a person is waiting. Then check the rule on your own questions, as you did tonight.</p></div>
+
+<hr>
+<h2>10. Five jumps in how models are built, and why each makes self-hosting harder</h2>
+<p>Large language models have changed shape since 2023. The open models from
+DeepSeek, Qwen, and others publish their designs; the closed models behind
+ChatGPT, Claude, and Gemini publish less but face the same costs. Five
+changes matter most. Each one makes models cheaper and faster to serve <strong>in a
+data center</strong>, and each one makes them harder to run yourself.</p>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col">Qwen3.5-2B, on your laptop</th>
+<th scope="col">DeepSeek-V4.1-Flash, released September 10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parameters stored</td>
+<td>1.94 billion</td>
+<td>552 billion</td>
+</tr>
+<tr>
+<td>Parameters used for each token it writes</td>
+<td>All of them</td>
+<td>About 16 billion</td>
+</tr>
+<tr>
+<td>Published weights</td>
+<td>1.33 GB (our 5-bit file)</td>
+<td>510 GB</td>
+</tr>
+<tr>
+<td>Long-term cache per token</td>
+<td>12 KiB (48 MiB for 4,096 tokens)</td>
+<td>890 bytes</td>
+</tr>
+<tr>
+<td>Longest context</td>
+<td>262,144 tokens</td>
+<td>1,000,000 tokens</td>
+</tr>
+<tr>
+<td>Runs in llama.cpp tonight</td>
+<td>Yes</td>
+<td>No: too big for a laptop, and not yet supported</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>Jump 1. Mixture of experts: huge models that use a small part per token</h3>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What changed</strong></td>
+<td>Instead of one block of weights that every token passes through, each layer holds many "experts", and a small router picks a few for each token. DeepSeek-V4.1-Flash (September 10, 2026) has 552 billion parameters. Each layer has 384 routed experts and 1 shared one, and 6 routed experts run per token, so about 16 billion parameters work on each token it writes. Qwen3.5-35B-A3B: 35 billion parameters, 3 billion active.</td>
+</tr>
+<tr>
+<td><strong>Why it matters</strong></td>
+<td>Each token costs about as much arithmetic as a 16-billion-parameter model, but the model has the knowledge of a far bigger one. Providers can serve it cheaply.</td>
+</tr>
+<tr>
+<td><strong>Why it's hard to self-host</strong></td>
+<td>Speed depends on the active parameters, but <strong>memory depends on all of them</strong>, because the next token may need any expert. 552 billion parameters at 4 bits is about 276 GB; a well-equipped laptop has 16 to 32 GB. Workarounds keep experts in ordinary memory or stream them from the SSD, and they are slow. A llama.cpp proposal to stream experts from disk has been open since July 4.</td>
+</tr>
+</tbody>
+</table>
+<figure class="s8fig" id="fig-moe">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 334" role="img" aria-labelledby="fig-moe-t"><title id="fig-moe-t">Memory needed for all the weights against laptop memory</title><text x="230" y="18" font-size="14" fill="#404040" font-weight="600">Memory for all the weights, in GB (log scale)</text><text x="218" y="50" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">Bonsai 2 2B</text><text x="218" y="68" font-size="12" fill="#404040" text-anchor="end">1.9 B stored · 1.9 B per token</text><rect x="230" y="38" width="50.2" height="26" fill="#1f3864"/><text x="288.2" y="57" font-size="14" fill="#1a1a1a">0.6 GB</text><text x="218" y="102" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">Qwen3.5-2B</text><text x="218" y="120" font-size="12" fill="#404040" text-anchor="end">1.9 B stored · 1.9 B per token</text><rect x="230" y="90" width="123.4" height="26" fill="#1f3864"/><text x="361.4" y="109" font-size="14" fill="#1a1a1a">1.3 GB</text><text x="218" y="154" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">Bonsai 2 27B</text><text x="218" y="172" font-size="12" fill="#404040" text-anchor="end">27 B stored · 27 B per token</text><rect x="230" y="142" width="247.6" height="26" fill="#1f3864"/><text x="485.6" y="161" font-size="14" fill="#1a1a1a">6 GB</text><text x="218" y="206" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">Qwen3.5-35B-A3B</text><text x="218" y="224" font-size="12" fill="#404040" text-anchor="end">35 B stored · 3 B per token</text><rect x="230" y="194" width="356" height="26" fill="#c55a11"/><text x="594" y="213" font-size="14" fill="#1a1a1a">22 GB</text><text x="218" y="258" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">DeepSeek-V4.1-Flash</text><text x="218" y="276" font-size="12" fill="#404040" text-anchor="end">552 B stored · 16 B per token</text><rect x="230" y="246" width="565.6" height="26" fill="#c55a11"/><text x="803.6" y="265" font-size="14" fill="#1a1a1a">276 GB (at 4 bits)</text><line x1="559.6" y1="26" x2="559.6" y2="290" stroke="#2e6b30" stroke-width="1.5" stroke-dasharray="4 4"/><text x="559.6" y="306" font-size="12" fill="#2e6b30" text-anchor="middle">16 GB laptop</text><line x1="617" y1="26" x2="617" y2="290" stroke="#2e6b30" stroke-width="1.5" stroke-dasharray="4 4"/><text x="617" y="306" font-size="12" fill="#2e6b30" text-anchor="middle">32 GB</text><line x1="732" y1="26" x2="732" y2="290" stroke="#2e6b30" stroke-width="1.5" stroke-dasharray="4 4"/><text x="732" y="306" font-size="12" fill="#2e6b30" text-anchor="middle">128 GB</text><text x="329.8" y="324" font-size="12" fill="#404040" text-anchor="middle">1 GB</text><text x="520.6" y="324" font-size="12" fill="#404040" text-anchor="middle">10 GB</text><text x="711.5" y="324" font-size="12" fill="#404040" text-anchor="middle">100 GB</text></svg></pre>
+<figcaption>Orange: mixture-of-experts models, which use only a few billion parameters per token but must keep every expert in memory. Navy: dense models. Green lines: common laptop memory. DeepSeek-V4.1-Flash’s published weights are 510 GB.</figcaption>
+</figure>
+
+<hr>
+<h3>Jump 2. Cheaper memory for long conversations</h3>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What changed</strong></td>
+<td>Long context made the KV cache the main memory cost. Newer designs shrink it. Qwen3.5 keeps per-token notes in only 6 of its 24 layers; the other 18 use <strong>linear attention</strong> (Gated DeltaNet), which keeps a fixed-size summary however long the conversation gets. DeepSeek-V4.1-Flash shares its cache across layers, attends only to selected past tokens, and stores the cache at 4 bits: 890 bytes per token, about a quarter of its predecessor's, with contexts up to a million tokens.</td>
+</tr>
+<tr>
+<td><strong>Why it matters</strong></td>
+<td>Agents read whole codebases, long documents, and pages of tool output. A smaller cache means longer contexts and more users per machine.</td>
+</tr>
+<tr>
+<td><strong>Why it's hard to self-host</strong></td>
+<td>Every new kind of attention is new arithmetic that someone must write, and make fast, separately for each kind of chip: Intel and AMD processors, Apple's GPU, NVIDIA's, and the rest. llama.cpp added a new operation just for DeepSeek's sparse attention. Features that rewind or reuse a conversation are harder when part of the memory is a running summary.</td>
+</tr>
+</tbody>
+</table>
+<p>You measured this jump in section 5: Qwen3.5's cache at its full 262,144-token
+context is 3 GiB; with all 24 layers keeping notes it would be
+four times that.</p>
+<hr>
+<h3>Jump 3. Built-in guessers: multi-token prediction</h3>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What changed</strong></td>
+<td>Models now ship with a small extra part that guesses the next few tokens, so the big model can check several at once (section 11 explains how). DeepSeek-V3 (December 2024) trained a <strong>multi-token prediction (MTP)</strong> layer; its guess for the second token was accepted 85% to 90% of the time, for about 1.8 times as many tokens per second. Qwen3.5-2B, the model on your laptop, has one. DeepSeek-V4.1-Flash uses a separate three-block guesser that drafts five positions at once.</td>
+</tr>
+<tr>
+<td><strong>Why it matters</strong></td>
+<td>The same answers, faster, at no loss of quality.</td>
+</tr>
+<tr>
+<td><strong>Why it's hard to self-host</strong></td>
+<td>Each kind of guesser is its own piece of software. llama.cpp b11714 lists eleven settings for <code>--spec-type</code>, and the option names changed between versions this year. The speed-up needs spare arithmetic capacity, which a data-center GPU serving many users has and a laptop may not. Section 11 measures it.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>Jump 4. Reading and writing split apart</h3>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What changed</strong></td>
+<td>DeepSeek-V4.1-Flash is a <strong>causal encoder–decoder</strong>: its 40 layers are split into a 20-layer encoder and a 20-layer decoder. Reading the prompt runs mostly the encoder half, about 8 billion active parameters per token; writing each new token runs the whole model, about 16 billion. DeepSeek says this nearly halves the cost of reading.</td>
+</tr>
+<tr>
+<td><strong>Why it matters</strong></td>
+<td>Agents' work is mostly reading: files, search results, tool output. Making reading cheap cuts the cost of agents.</td>
+</tr>
+<tr>
+<td><strong>Why it's hard to self-host</strong></td>
+<td>It is a new model layout, so every program that runs models has to add it. The llama.cpp pull request to support it was opened on September 10, the day the model came out, and is still open on October 18: 2,090 new lines of code in 23 files. Some of its savings, such as keeping parts of the cache on an SSD, assume data-center storage.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>Jump 5. Trained for very few bits</h3>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What changed</strong></td>
+<td>Instead of rounding a finished model, train it to work with ternary or 1-bit weights. PrismML's Bonsai 2 27B fits in about 6 GB; the 2B model on your laptop is 0.55 GB.</td>
+</tr>
+<tr>
+<td><strong>Why it matters</strong></td>
+<td>Capable models on laptops and phones, and far less memory traffic per token.</td>
+</tr>
+<tr>
+<td><strong>Why it's hard to self-host</strong></td>
+<td>New number formats need new code for every chip. In llama.cpp, Apple GPU support for <code>Q2_0</code> arrived July 14, NVIDIA support July 30, PrismML's Bonsai 2 runtime October 11, and the fast path for ordinary Intel and AMD processors October 13. Bonsai's 1.83-bit <code>PTQ1_0</code> files still run only in PrismML's own copy of llama.cpp. PrismML says Windows hasn't been checked for its small models.</td>
+</tr>
+</tbody>
+</table>
+<figure class="s8fig" id="fig-lag">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 310" role="img" aria-labelledby="fig-lag-t"><title id="fig-lag-t">Days from a model’s release to llama.cpp support</title><line x1="261.3" y1="20" x2="261.3" y2="282" stroke="#e3e3e3" stroke-width="1"/><text x="265.3" y="300" font-size="13" fill="#404040">May</text><line x1="380.2" y1="20" x2="380.2" y2="282" stroke="#e3e3e3" stroke-width="1"/><text x="384.2" y="300" font-size="13" fill="#404040">Jun</text><line x1="495.2" y1="20" x2="495.2" y2="282" stroke="#e3e3e3" stroke-width="1"/><text x="499.2" y="300" font-size="13" fill="#404040">Jul</text><line x1="614.1" y1="20" x2="614.1" y2="282" stroke="#e3e3e3" stroke-width="1"/><text x="618.1" y="300" font-size="13" fill="#404040">Aug</text><line x1="733" y1="20" x2="733" y2="282" stroke="#e3e3e3" stroke-width="1"/><text x="737" y="300" font-size="13" fill="#404040">Sep</text><line x1="848" y1="20" x2="848" y2="282" stroke="#e3e3e3" stroke-width="1"/><text x="852" y="300" font-size="13" fill="#404040">Oct</text><text x="188" y="46" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">DeepSeek-V4</text><text x="188" y="64" font-size="12" fill="#404040" text-anchor="end">released Apr 24</text><line x1="234.5" y1="40" x2="798.1" y2="40" stroke="#1f3864" stroke-width="4"/><circle cx="234.5" cy="40" r="8" fill="#1f3864"/><circle cx="487.6" cy="40" r="6" fill="#ffffff" stroke="#1f3864" stroke-width="3"/><text x="497.6" y="64" font-size="12" fill="#1a1a1a">llama.cpp support merged, Jun 29 (66 days)</text><circle cx="798.1" cy="40" r="6" fill="#ffffff" stroke="#1f3864" stroke-width="3"/><text x="788.1" y="80" font-size="12" fill="#1a1a1a" text-anchor="end">its drafters, sparse attention, Mac GPU done, Sep 18 (147 days)</text><text x="188" y="130" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">DeepSeek-V4.1-Flash</text><text x="188" y="148" font-size="12" fill="#404040" text-anchor="end">released Sep 10</text><line x1="767.5" y1="124" x2="913.2" y2="124" stroke="#c55a11" stroke-width="4" stroke-dasharray="7 5"/><circle cx="767.5" cy="124" r="8" fill="#1f3864"/><circle cx="913.2" cy="124" r="6" fill="#ffffff" stroke="#c55a11" stroke-width="3"/><text x="903.2" y="148" font-size="12" fill="#1a1a1a" text-anchor="end">pull request still open, Oct 18 (38 days)</text><text x="188" y="214" font-size="15" fill="#1a1a1a" text-anchor="end" font-weight="600">Bonsai 2 27B</text><text x="188" y="232" font-size="12" fill="#404040" text-anchor="end">released Sep 17</text><line x1="794.3" y1="208" x2="894" y2="208" stroke="#1f3864" stroke-width="4"/><circle cx="794.3" cy="208" r="8" fill="#1f3864"/><circle cx="886.3" cy="208" r="6" fill="#ffffff" stroke="#1f3864" stroke-width="3"/><text x="876.3" y="232" font-size="12" fill="#1a1a1a" text-anchor="end">runtime merged, Oct 11 (24 days)</text><circle cx="894" cy="208" r="6" fill="#ffffff" stroke="#1f3864" stroke-width="3"/><text x="884" y="248" font-size="12" fill="#1a1a1a" text-anchor="end">fast Intel/AMD path, Oct 13 (26 days)</text></svg></pre>
+<figcaption>From release (filled dot) to support in llama.cpp (open dots). New designs reach self-hosting software weeks to months later, one chip at a time; DeepSeek-V4.1-Flash still had no merged support on October 18.</figcaption>
+</figure>
+
+<hr>
+<h3>The pattern</h3>
+<table>
+<thead>
+<tr>
+<th scope="col">Jump</th>
+<th scope="col">Who it helps most</th>
+<th scope="col">What it costs a self-hoster</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mixture of experts</td>
+<td>Providers serving many users</td>
+<td>Memory for every expert</td>
+</tr>
+<tr>
+<td>Cheaper long-context memory</td>
+<td>Agents with long inputs</td>
+<td>New arithmetic for every chip</td>
+</tr>
+<tr>
+<td>Built-in guessers (MTP)</td>
+<td>Fast replies on busy GPUs</td>
+<td>Separate software per guesser; small gains without spare capacity</td>
+</tr>
+<tr>
+<td>Encoder–decoder split</td>
+<td>Input-heavy agent work</td>
+<td>A new model layout to support; data-center storage tricks</td>
+</tr>
+<tr>
+<td>Trained low-bit weights</td>
+<td>Laptops and phones</td>
+<td>New number formats; forks until support lands</td>
+</tr>
+</tbody>
+</table>
+<p>The newest models arrive designed for data centers, and open-source software
+catches up weeks or months later, one chip at a time. When a vendor says a
+model is "open weights", ask two questions before planning to host it: how
+much memory do all its weights need, and does the software you'd run it on
+support its layout yet?</p>
+<hr>
+<h2>11. Speculative decoding, live</h2>
+<div class="box idea"><p><b>The idea in one line.</b> Writing one token needs a full pass through the model, but checking several proposed tokens costs about the same as writing one. So guess a few cheaply, check them in one pass, and keep the ones the model agrees with.</p></div>
+
+<figure class="s8fig" id="fig-spec">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 240" role="img" aria-labelledby="fig-spec-t"><title id="fig-spec-t">Ordinary decoding writes one token per pass; speculative decoding checks several guesses per pass</title><defs><marker id="fig-spec-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#707070"/></marker></defs><text x="10" y="22" font-size="15" fill="#1f3864" font-weight="600">Ordinary decoding: one full pass of the model per token</text><rect x="10" y="34" width="112" height="46" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="66" y="53.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">pass 1</text><text x="66" y="70.7" font-size="14" fill="#1a1a1a" text-anchor="middle">The</text><rect x="138" y="34" width="112" height="46" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="194" y="53.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">pass 2</text><text x="194" y="70.7" font-size="14" fill="#1a1a1a" text-anchor="middle">store</text><rect x="266" y="34" width="112" height="46" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="322" y="53.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">pass 3</text><text x="322" y="70.7" font-size="14" fill="#1a1a1a" text-anchor="middle">opens</text><rect x="394" y="34" width="112" height="46" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="450" y="53.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">pass 4</text><text x="450" y="70.7" font-size="14" fill="#1a1a1a" text-anchor="middle">at</text><rect x="522" y="34" width="112" height="46" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="578" y="53.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">pass 5</text><text x="578" y="70.7" font-size="14" fill="#1a1a1a" text-anchor="middle">9</text><text x="670" y="63" font-size="15" fill="#1a1a1a" font-weight="600">5 passes for 5 tokens</text><text x="10" y="122" font-size="15" fill="#b04e0f" font-weight="600">Speculative decoding: guess cheaply, check in one pass</text><rect x="10" y="134" width="200" height="64" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="110" y="162.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">Guesser drafts 4</text><text x="110" y="179.7" font-size="14" fill="#1a1a1a" text-anchor="middle">“store opens at 10”</text><line x1="212" y1="166" x2="262" y2="166" stroke="#707070" stroke-width="2" marker-end="url(#fig-spec-a)"/><rect x="266" y="134" width="220" height="64" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="376" y="162.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">One pass checks all 4</text><text x="376" y="179.7" font-size="14" fill="#1a1a1a" text-anchor="middle">model agrees with 3</text><line x1="488" y1="166" x2="538" y2="166" stroke="#707070" stroke-width="2" marker-end="url(#fig-spec-a)"/><rect x="542" y="140" width="92" height="52" fill="#e6f1e6" stroke="#2e6b30" stroke-width="1.5" rx="6"/><text x="588" y="162.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">store</text><text x="588" y="179.7" font-size="14" fill="#1a1a1a" text-anchor="middle">kept</text><rect x="642" y="140" width="92" height="52" fill="#e6f1e6" stroke="#2e6b30" stroke-width="1.5" rx="6"/><text x="688" y="162.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">opens</text><text x="688" y="179.7" font-size="14" fill="#1a1a1a" text-anchor="middle">kept</text><rect x="742" y="140" width="92" height="52" fill="#e6f1e6" stroke="#2e6b30" stroke-width="1.5" rx="6"/><text x="788" y="162.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">at</text><text x="788" y="179.7" font-size="14" fill="#1a1a1a" text-anchor="middle">kept</text><rect x="842" y="140" width="92" height="52" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="888" y="162.2" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">10 → 9</text><text x="888" y="179.7" font-size="14" fill="#1a1a1a" text-anchor="middle">fixed</text><text x="480" y="228" font-size="14" fill="#404040" text-anchor="middle">Four tokens from one pass of the big model, and in principle the same reply ordinary decoding would write.</text></svg></pre>
+<figcaption>When most guesses are right, the model writes several tokens for the price of one pass. When they are wrong, the extra checking is wasted work, so the speed-up depends on the guesser and on spare capacity in your chip.</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th scope="col">Guesser</th>
+<th scope="col">Where the guesses come from</th>
+<th scope="col">llama.cpp setting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multi-token prediction</td>
+<td>The model's own extra layer, trained to guess ahead</td>
+<td><code>--spec-type draft-mtp</code></td>
+</tr>
+<tr>
+<td>n-gram</td>
+<td>Copying what followed the same few words earlier in the conversation. Free, and good at edits, rewrites, and quoting a document</td>
+<td><code>--spec-type ngram-simple</code> or <code>ngram-mod</code></td>
+</tr>
+<tr>
+<td>Draft model</td>
+<td>A smaller model of the same family</td>
+<td><code>-md small.gguf --spec-type draft-simple</code></td>
+</tr>
+</tbody>
+</table>
+<p>With temperature 0 the reply should be the same with or without guessing;
+only the speed changes. In practice a near-tie can occasionally flip a word,
+as our results show.</p>
+<hr>
+<h3>Try it</h3>
+<p>Stop the server with Ctrl+C. Start it again with the MTP guesser on:</p>
+<pre><code class="language-bash">./llama-b11714/llama-server -m qwen3.5-2b.gguf -c 8192 -np 1 --port 8080 --spec-type draft-mtp
+</code></pre>
+<p>In the chat page, keep the lightbulb at Off, set Temperature to 0, and ask
+both prompts below; the page shows tokens per second under each reply. Then restart with <code>--spec-type
+ngram-simple --spec-draft-n-max 64</code> in place of <code>--spec-type draft-mtp</code>, and
+once more with no <code>--spec-type</code> at all, and ask the same two prompts.</p>
+<!-- fig-specprompts -->
+
+<blockquote>
+<p><strong>Rewrite (copies text):</strong> Copy the paragraph below exactly, word for word, but change every "Monday" to "Tuesday". Output only the paragraph. Our store opens at 9 a.m. on Monday and closes at 6 p.m. Deliveries arrive every Monday morning, so the back room is busy until noon. If a customer orders before 3 p.m. on Monday, the order ships the same day. Returns are accepted at the front desk during opening hours, and gift cards can be used for any item in the store. The staff meeting is on Monday at 8:30 a.m., before the doors open, and everyone should bring their weekly sales sheet. Parking is free for customers in the lot behind the building.</p>
+<p><strong>Explain (new text):</strong> Explain in three sentences why a store would run an A/B test.</p>
+</blockquote>
+<!-- /fig-specprompts -->
+
+<hr>
+<h3>What we got</h3>
+<!-- fig-specresults -->
+
+<table>
+<thead>
+<tr>
+<th scope="col">Server setting</th>
+<th scope="col">Rewrite prompt</th>
+<th scope="col">Explain prompt</th>
+<th scope="col">Same text as no guesser?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No guesser</td>
+<td>26.84 tokens/s</td>
+<td>27.00 tokens/s</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>MTP (<code>draft-mtp</code>)</td>
+<td>39.50 tokens/s · 89 of 93 guesses kept</td>
+<td>21.76 tokens/s · 35 of 96 guesses kept</td>
+<td>No</td>
+</tr>
+<tr>
+<td>n-gram (<code>ngram-simple</code>)</td>
+<td>27.63 tokens/s · 58 of 192 guesses kept</td>
+<td>28.33 tokens/s</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>n-gram (<code>ngram-mod</code>)</td>
+<td>42.25 tokens/s · 93 of 192 guesses kept</td>
+<td>22.47 tokens/s · 10 of 64 guesses kept</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<!-- /fig-specresults -->
+
+<p>On our server the MTP guesser made the rewrite about one and a half times as
+fast: almost every guess was right, because the reply copies the prompt. On
+the explain prompt, where every sentence is new, fewer than 4 in 10 guesses
+were kept, and checking the wrong ones made it slower than no guesser. The
+n-gram guessers only help when text repeats. At temperature 0 the rewrite
+came out word for word the same every time; on the explain prompt two
+settings changed a few words, because checking several tokens at once does
+the arithmetic in a slightly different order, and a near-tie can flip.
+<strong>Measure it on your own laptop before you turn it on.</strong></p>
+<hr>
+<h3>Deeper: what MTP is, exactly</h3>
+<p>An ordinary model reads the text and predicts the <strong>next</strong> token. A
+multi-token-prediction (MTP) block is one extra layer that predicts the
+token <strong>after</strong> that.</p>
+<figure class="s8fig" id="fig-mtp">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 300" role="img" aria-labelledby="fig-mtp-t"><title id="fig-mtp-t">How a multi-token-prediction block guesses the token after next</title><defs><marker id="fig-mtp-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#707070"/></marker></defs><text x="20" y="22" font-size="15" fill="#1f3864" font-weight="600">Reading “…our store opens”</text><rect x="20" y="36" width="320" height="72" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="180" y="68" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Qwen3.5-2B’s 24 layers</text><text x="180" y="86.7" font-size="15" fill="#1a1a1a" text-anchor="middle">read everything so far</text><line x1="342" y1="72" x2="456" y2="72" stroke="#707070" stroke-width="2" marker-end="url(#fig-mtp-a)"/><text x="399" y="62" font-size="12" fill="#404040" text-anchor="middle">output layer</text><rect x="460" y="44" width="150" height="56" fill="#e6f1e6" stroke="#2e6b30" stroke-width="1.5" rx="6"/><text x="535" y="68" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">next token</text><text x="535" y="86.7" font-size="15" fill="#1a1a1a" text-anchor="middle">“at”</text><text x="620" y="68" font-size="13" fill="#2e6b30">written now</text><text x="620" y="86" font-size="13" fill="#404040">(the normal step)</text><line x1="180" y1="110" x2="180" y2="176" stroke="#707070" stroke-width="2" marker-end="url(#fig-mtp-a)"/><text x="170" y="148" font-size="12" fill="#404040" text-anchor="end">its internal state</text><line x1="535" y1="102" x2="344" y2="186" stroke="#707070" stroke-width="2" marker-end="url(#fig-mtp-a)"/><text x="470" y="158" font-size="12" fill="#404040">the token just chosen</text><rect x="20" y="180" width="320" height="72" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="180" y="211.9" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">MTP block (blk.24): one extra layer</text><text x="180" y="230.7" font-size="15" fill="#1a1a1a" text-anchor="middle">mixes the two, 42 MB of the file</text><line x1="342" y1="216" x2="456" y2="216" stroke="#707070" stroke-width="2" marker-end="url(#fig-mtp-a)"/><text x="399" y="206" font-size="12" fill="#404040" text-anchor="middle">same output layer</text><rect x="460" y="188" width="150" height="56" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" stroke-dasharray="5 4" rx="6"/><text x="535" y="211.9" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">guess, two ahead</text><text x="535" y="230.7" font-size="15" fill="#1a1a1a" text-anchor="middle">“9”</text><text x="620" y="212" font-size="13" fill="#b04e0f">checked on the next pass,</text><text x="620" y="230" font-size="13" fill="#b04e0f">with any further guesses</text><text x="480" y="286" font-size="14" fill="#404040" text-anchor="middle">Training: the block learns to predict two tokens ahead. In use: it drafts, and the full model checks (section 11).</text></svg></pre>
+<figcaption>The model writes “at” as usual. The MTP block takes the model’s internal state and the token it just chose, and guesses the token after that. The guess costs one small layer instead of a pass through all 24.</figcaption>
+</figure>
+
+<ul>
+<li><strong>In training.</strong> The block is trained together with the model (Meta
+  2024; DeepSeek-V3, December 2024). Predicting two tokens ahead gives the
+  model more to learn from in every sentence and pushes it to plan. Meta's
+  13-billion-parameter models solved 12% more coding problems on one test
+  and 17% more on another; DeepSeek also reported better scores.</li>
+<li><strong>In use.</strong> The block becomes a built-in guesser: it drafts the next few
+  tokens, and the full model checks them in one pass, as in section 11. It
+  guesses well because it starts from the model's own internal state, not
+  from scratch.</li>
+<li><strong>You can see it in tonight's file.</strong> Qwen3.5-2B has 24 layers plus a
+  25th block, <code>blk.24</code>, whose parts are named <code>nextn</code> ("next n"): 61 million
+  parameters, 42 MB, 3% of the file. Without <code>--spec-type draft-mtp</code>,
+  llama.cpp skips it and says so in the log: <code>model has unused tensor
+  blk.24.nextn.eh_proj.weight … ignoring</code>.</li>
+<li><strong>Why "MTP" is in the file's name.</strong> Until May 2026 the usual conversion
+  to GGUF threw this block away, and llama.cpp could only use it from May 16.
+  Unsloth converted Qwen3.5 again to keep it. Newer repositories, such as
+  Qwen3.8's, ship the block as its own small file, <code>mtp-….gguf</code>, next to
+  the model.</li>
+<li><strong>Relatives.</strong> Medusa adds several small heads, each guessing one
+  position; EAGLE trains a small separate layer that reads the model's
+  internal state; DeepSeek-V4.1-Flash dropped its MTP block for a separate
+  three-stage drafter that proposes five tokens at once. All of them guess
+  cheaply from work the big model has already done.</li>
+</ul>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=4BhZZYg2_J4">bycloud, “Why would anyone let LLMs predict 4 tokens at once? Multi-Token Prediction Explained”</a>, 11 minutes: Meta's paper and DeepSeek-V3's MTP.</li>
+</ul>
+<hr>
+<h3>Deeper: n-grams, from guessing to memory</h3>
+<p>An <strong>n-gram</strong> is a run of n tokens in a row: "the back room" is a 3-gram.
+The idea is older than neural networks, and in 2026 it came back in two
+places.</p>
+<p><strong>1. As a free guesser: what you ran in section 11.</strong> <code>ngram-simple</code> looks
+at the last few tokens; if the same tokens appeared earlier in the
+conversation, it proposes what followed them then.</p>
+<figure class="s8fig" id="fig-ngram">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 240" role="img" aria-labelledby="fig-ngram-t"><title id="fig-ngram-t">An n-gram guesser copies what followed the same words earlier</title><defs><marker id="fig-ngram-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#707070"/></marker></defs><text x="10" y="22" font-size="15" fill="#1f3864" font-weight="600">Earlier in the conversation: your prompt</text><rect x="10" y="34" width="100" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="60" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">Deliveries</text><rect x="115" y="34" width="65.6" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="147.8" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">arrive</text><rect x="185.6" y="34" width="57" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="214.1" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">every</text><rect x="247.6" y="34" width="65.6" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="280.4" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">Monday</text><rect x="318.2" y="34" width="82.8" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="359.6" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">morning,</text><rect x="406" y="34" width="31.2" height="30" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="421.6" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">so</text><rect x="442.2" y="34" width="39.8" height="30" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="462.1" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">the</text><rect x="487" y="34" width="48.4" height="30" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="511.2" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">back</text><rect x="540.4" y="34" width="48.4" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="564.6" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">room</text><rect x="593.8" y="34" width="31.2" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="609.4" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">is</text><rect x="630" y="34" width="48.4" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="654.2" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">busy</text><rect x="683.4" y="34" width="57" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="711.9" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">until</text><rect x="745.4" y="34" width="57" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="773.9" y="54" font-size="14" fill="#1a1a1a" text-anchor="middle">noon.</text><text x="10" y="98" font-size="15" fill="#1f3864" font-weight="600">The model’s reply so far</text><rect x="10" y="110" width="100" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="60" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">Deliveries</text><rect x="115" y="110" width="65.6" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="147.8" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">arrive</text><rect x="185.6" y="110" width="57" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="214.1" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">every</text><rect x="247.6" y="110" width="74.2" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="284.7" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">Tuesday</text><rect x="326.8" y="110" width="82.8" height="30" fill="#ffffff" stroke="#c8c8c8" stroke-width="1.5" rx="4"/><text x="368.2" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">morning,</text><rect x="414.6" y="110" width="31.2" height="30" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="430.2" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">so</text><rect x="450.8" y="110" width="39.8" height="30" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="470.7" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">the</text><rect x="495.6" y="110" width="48.4" height="30" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="519.8" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">back</text><line x1="553" y1="125" x2="599" y2="125" stroke="#707070" stroke-width="2" marker-end="url(#fig-ngram-a)"/><rect x="605" y="110" width="48.4" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="629.2" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">room</text><rect x="658.4" y="110" width="31.2" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="674" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">is</text><rect x="694.6" y="110" width="48.4" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="718.8" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">busy</text><rect x="748" y="110" width="57" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="776.5" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">until</text><rect x="810" y="110" width="57" height="30" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="838.5" y="130" font-size="14" fill="#1a1a1a" text-anchor="middle">noon.</text><text x="605" y="164" font-size="13" fill="#b04e0f">draft: copy what followed last time</text><text x="10" y="204" font-size="14" fill="#404040">The last few words (navy) match an earlier stretch of text, so the guesser proposes the words that followed (orange).</text><text x="10" y="226" font-size="14" fill="#404040">One pass of the model checks them all. Here every guess is right; at “Monday” it would have been wrong.</text></svg></pre>
+<figcaption>Words stand in for tokens here. llama.cpp’s <code>ngram-simple</code> matches the last 12 tokens and proposes up to 48. It needs no extra model and no extra memory, which is why it is free, and why it only helps when text repeats.</figcaption>
+</figure>
+
+<p><strong>2. As a memory inside the model.</strong> DeepSeek's <strong>Engram</strong> (paper, January
+2026) and Qwen's <strong>Qwen3.8-Flash-Next</strong> (August 26, billed as a preview of
+Qwen4) add a huge lookup table to the model itself. At each position the
+model turns the last 2 to 4 tokens into a row number, fetches the vector
+stored in that row, and blends it into its thinking.</p>
+<table>
+<thead>
+<tr>
+<th scope="col"></th>
+<th scope="col">DeepSeek-V4.1-Flash (September 10)</th>
+<th scope="col">Qwen3.8-Flash-Next (August 26)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where</td>
+<td>Two tables, at layers 1 and 14</td>
+<td>One table, at layer 2</td>
+</tr>
+<tr>
+<td>What is looked up</td>
+<td>2-, 3-, and 4-grams</td>
+<td>2- and 3-grams</td>
+</tr>
+<tr>
+<td>How big</td>
+<td>About 384 million rows per table</td>
+<td>51 billion parameters</td>
+</tr>
+</tbody>
+</table>
+<p>Why both labs do it:</p>
+<ul>
+<li><strong>Remembering is cheap; computing is expensive.</strong> Names, phrases, and
+  facts that always follow the same words ("Salt Lake" → "City") can be
+  looked up instead of worked out by many layers of arithmetic, which
+  frees those layers for reasoning. DeepSeek calls it "a new axis of
+  sparsity", next to mixture of experts.</li>
+<li><strong>A lookup isn't arithmetic.</strong> It costs the same however big the table
+  is. Because the row depends only on the words already there, the table
+  can sit in the computer's ordinary memory and be fetched ahead of time,
+  instead of filling the graphics card.</li>
+<li><strong>For self-hosters it cuts both ways.</strong> Tens or hundreds of billions of
+  parameters that need no fast chip, but still need memory, and one more
+  new layout for llama.cpp to support (jump 4).</li>
+</ul>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=87Q8nf1XHKA&amp;t=387s">Jia-Bin Huang, “DeepSeek Gave LLMs a Real Memory (It's Not RAG)”</a>, 28 minutes; from 6:27: lookup, hashing, and how the model decides when to trust the table.</li>
+</ul>
+<hr>
+<h2>12. Your laptop as an AI server</h2>
+<p>The web page is one client of your server. The server also speaks the
+<strong>OpenAI-compatible API</strong> at <code>http://127.0.0.1:8080/v1</code>, the request format
+most AI software uses. An app built for a hosted model can use yours by
+changing one address.</p>
+<p><strong>Prompt 1 — call your own model from a script (your coding agent)</strong></p>
+<blockquote>
+<p>My laptop is running llama-server at http://127.0.0.1:8080 with an
+OpenAI-compatible API. Write a short Python script, standard library only,
+that sends the support-ticket question from section 8 to
+/v1/chat/completions with temperature 0 and prints the reply, the number of
+tokens, and the "timings" field from the response. Run it and explain each
+part of the response.</p>
+</blockquote>
+<figure class="s8fig" id="fig-api">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 236" role="img" aria-labelledby="fig-api-t"><title id="fig-api-t">Three kinds of client calling one local server</title><defs><marker id="fig-api-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#707070"/></marker></defs><rect x="10" y="14" width="250" height="60" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="6"/><text x="135" y="40" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">The chat page</text><text x="135" y="58.7" font-size="15" fill="#1a1a1a" text-anchor="middle">in your browser</text><line x1="262" y1="44" x2="372" y2="118" stroke="#707070" stroke-width="1.8" marker-end="url(#fig-api-a)"/><rect x="10" y="88" width="250" height="60" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="6"/><text x="135" y="114" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Your Python script</text><text x="135" y="132.7" font-size="15" fill="#1a1a1a" text-anchor="middle">Prompt 1</text><line x1="262" y1="118" x2="372" y2="118" stroke="#707070" stroke-width="1.8" marker-end="url(#fig-api-a)"/><rect x="10" y="162" width="250" height="60" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="6"/><text x="135" y="187.9" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">Any app for OpenAI’s API</text><text x="135" y="206.7" font-size="15" fill="#1a1a1a" text-anchor="middle">change one address</text><line x1="262" y1="192" x2="372" y2="118" stroke="#707070" stroke-width="1.8" marker-end="url(#fig-api-a)"/><rect x="376" y="76" width="270" height="84" fill="#1f3864" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="511" y="114" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="600">http://127.0.0.1:8080/v1</text><text x="511" y="132.7" font-size="15" fill="#ffffff" text-anchor="middle">llama-server</text><line x1="648" y1="118" x2="718" y2="118" stroke="#707070" stroke-width="2" marker-end="url(#fig-api-a)"/><rect x="722" y="76" width="228" height="84" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="836" y="114" font-size="15" fill="#1a1a1a" text-anchor="middle" font-weight="600">qwen3.5-2b.gguf</text><text x="836" y="132.7" font-size="15" fill="#1a1a1a" text-anchor="middle">on your disk</text></svg></pre>
+<figcaption>One server, many clients. 127.0.0.1 is your own computer, so nothing leaves the laptop.</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th scope="col">Keep it private</th>
+<th scope="col">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leave <code>--host</code> at its default, <code>127.0.0.1</code></td>
+<td>Only your own laptop can reach the server.</td>
+</tr>
+<tr>
+<td>Never use <code>--host 0.0.0.0</code> on public Wi-Fi</td>
+<td>That opens the server to everyone on the network.</td>
+</tr>
+<tr>
+<td>Add <code>--api-key</code> if others must reach it</td>
+<td>Requests without the key are refused.</td>
+</tr>
+<tr>
+<td>Treat the model file like software</td>
+<td>Download models only from sources you trust, pinned to a version, and check the fingerprint.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>Deeper: the vision add-on (<code>mmproj</code>)</h3>
+<p>Look again at the folder our model came from: next to the 21 model files
+are three called <code>mmproj</code>. Qwen3.5 was trained on text and images together
+from the start, and so was Qwen3.8-27B (August 2026), which also reads
+video. The language model you've used all evening is one part; the
+<code>mmproj</code> file is the part that sees.</p>
+<figure class="s8fig" id="fig-vision">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 236" role="img" aria-labelledby="fig-vision-t"><title id="fig-vision-t">How the vision add-on turns an image into tokens the language model can read</title><defs><marker id="fig-vision-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#707070"/></marker></defs><rect x="14" y="70" width="110" height="80" fill="#ffffff" stroke="#707070" stroke-width="1.5" rx="4"/><rect x="26" y="84" width="83.2" height="10" fill="#1f3864"/><rect x="26" y="99" width="48" height="10" fill="#1f3864"/><rect x="26" y="114" width="32" height="10" fill="#1f3864"/><rect x="26" y="129" width="14.4" height="10" fill="#c55a11"/><text x="69" y="168" font-size="13" fill="#404040" text-anchor="middle">your image</text><line x1="126" y1="110" x2="166" y2="110" stroke="#707070" stroke-width="2" marker-end="url(#fig-vision-a)"/><rect x="160" y="34" width="410" height="152" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" stroke-dasharray="6 4" rx="8"/><text x="365" y="56" font-size="14" fill="#b04e0f" text-anchor="middle" font-weight="600">mmproj-F16.gguf · 0.67 GB</text><rect x="172" y="70" width="190" height="104" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="267" y="102.4" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">Vision encoder</text><text x="267" y="118.6" font-size="13" fill="#1a1a1a" text-anchor="middle">cuts the image into</text><text x="267" y="134.9" font-size="13" fill="#1a1a1a" text-anchor="middle">small square patches,</text><text x="267" y="151.1" font-size="13" fill="#1a1a1a" text-anchor="middle">turns each into numbers</text><line x1="364" y1="122" x2="384" y2="122" stroke="#707070" stroke-width="2" marker-end="url(#fig-vision-a)"/><rect x="388" y="70" width="170" height="104" fill="#ffffff" stroke="#c55a11" stroke-width="1.5" rx="6"/><text x="473" y="102.4" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">Projector</text><text x="473" y="118.6" font-size="13" fill="#1a1a1a" text-anchor="middle">merges patches and</text><text x="473" y="134.9" font-size="13" fill="#1a1a1a" text-anchor="middle">translates them into</text><text x="473" y="151.1" font-size="13" fill="#1a1a1a" text-anchor="middle">the model’s tokens</text><line x1="572" y1="110" x2="612" y2="110" stroke="#707070" stroke-width="2" marker-end="url(#fig-vision-a)"/><text x="592" y="98" font-size="12" fill="#404040" text-anchor="middle">image</text><text x="592" y="136" font-size="12" fill="#404040" text-anchor="middle">tokens</text><rect x="616" y="60" width="200" height="100" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="6"/><text x="716" y="90.4" font-size="13" fill="#1a1a1a" text-anchor="middle" font-weight="600">Language model</text><text x="716" y="106.6" font-size="13" fill="#1a1a1a" text-anchor="middle">qwen3.5-2b.gguf · 1.33 GB</text><text x="716" y="122.9" font-size="13" fill="#1a1a1a" text-anchor="middle">reads image tokens</text><text x="716" y="139.1" font-size="13" fill="#1a1a1a" text-anchor="middle">and your question</text><line x1="818" y1="110" x2="858" y2="110" stroke="#707070" stroke-width="2" marker-end="url(#fig-vision-a)"/><text x="902" y="115" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">answer</text><text x="716" y="186" font-size="12" fill="#404040" text-anchor="middle">your question (text tokens)</text><line x1="716" y1="176" x2="716" y2="164" stroke="#707070" stroke-width="1.5" marker-end="url(#fig-vision-a)"/><text x="480" y="222" font-size="14" fill="#404040" text-anchor="middle">Our chart screenshot became 335 prompt tokens in all; the model read it in 6.7 s on our server.</text></svg></pre>
+<figcaption>The orange box is the second file. It turns pixels into tokens the language model already knows how to read; the language model itself is the same file you have been using all evening.</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th scope="col">Why it's a separate file</th>
+<th scope="col">What that means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>It's a different network</td>
+<td>A vision encoder with 24 layers of its own, about a third of a billion parameters for this model. llama.cpp runs it with separate code.</td>
+</tr>
+<tr>
+<td>It's optional</td>
+<td>No images, no need to load it, and 0.67 GB stays free. Text-only models, like Qwen3.8's 2.4-trillion-parameter flagship, have none.</td>
+</tr>
+<tr>
+<td>It stays at 16 bits</td>
+<td>It is small, and rounding hurts it more, so makers rarely shrink it: you choose F16, BF16, or F32.</td>
+</tr>
+<tr>
+<td>It belongs to one model</td>
+<td>It works only with the language model it was trained with.</td>
+</tr>
+</tbody>
+</table>
+<p>How an image gets in: the encoder cuts it into squares of 16 × 16 pixels
+and turns each square into a list of numbers; the projector merges each
+2 × 2 group of squares into one token the language model can read. A
+bigger image means more tokens, more memory, and a longer wait.</p>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=lOD_EE96jhM">IBM Technology, “What Are Vision Language Models? How AI Sees &amp; Understands Images”</a>, 10 minutes: how an image becomes tokens.</li>
+</ul>
+<hr>
+<h3>Try it: show it a picture</h3>
+<p>Download the vision file (0.67 GB) into your <code>s8</code> folder, then restart the
+server with it:</p>
+<pre><code class="language-bash">curl -L -o mmproj.gguf https://huggingface.co/unsloth/Qwen3.5-2B-MTP-GGUF/resolve/e05864f8066d874d5f85aaff007ae57a2a7d1efe/mmproj-F16.gguf
+./llama-b11714/llama-server -m qwen3.5-2b.gguf --mmproj mmproj.gguf -c 8192 -np 1 --port 8080
+</code></pre>
+<p>On Windows, type <code>curl.exe</code> and <code>.\llama-b11714\llama-server.exe</code> as before.
+Leave out <code>--spec-type draft-mtp</code>: Unsloth's model card says the MTP guesser
+doesn't work together with the vision file yet.</p>
+<p>Take a screenshot of the file-size chart in section 4 (Mac: Cmd+Shift+4;
+Windows: Windows+Shift+S), drag it into the chat page's message box, set the
+lightbulb to Off and Temperature to 0, and ask:</p>
+<blockquote>
+<p>This chart compares file sizes. List each bar's label and its size in GB,
+one per line.</p>
+</blockquote>
+<!-- fig-visionresult -->
+
+<table>
+<thead>
+<tr>
+<th scope="col">Our run, with the section 4 chart as the image</th>
+<th scope="col">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reply (lightbulb Off, temperature 0)</td>
+<td>BF16 (as released) Qwen3.5-2B 3.90 GB<br>Q8_0 Qwen3.5-2B 2.08 GB<br>Q4_K_M · tonight Qwen3.5-2B 1.33 GB<br>Q2_0 ternary · tonight Bonsai 2 2B 0.55 GB<br>PTQ1_0 ternary (fork only) Bonsai 2 2B 0.43 GB</td>
+</tr>
+<tr>
+<td>Prompt tokens, image plus question</td>
+<td>335</td>
+</tr>
+<tr>
+<td>Time to read them, then to write the reply</td>
+<td>6.7 s, then 3.9 s</td>
+</tr>
+</tbody>
+</table>
+<!-- /fig-visionresult -->
+
+<p>On our server Qwen3.5-2B read all five bars, labels and sizes, correctly.
+The picture became 300 tokens (960 × 320 pixels is 60 × 20 squares,
+merged four to one), and reading them took 6.7 seconds, slower per token
+than text, because the vision encoder runs first. Asked "What is this
+image? Answer in two sentences.", it wrote three sentences and called every
+bar a Qwen3.5-2B version, though two are Bonsai: right overall, sloppy in
+the details. Use it for receipts, forms, charts, and screenshots you can't
+send to a hosted model, and check it the way you did in section 8.</p>
+<hr>
+<h2>13. The final exam, October 26</h2>
+<p>The final is Monday, October 26, 6:00 to 10:00 p.m. in GARFF 1120. It is worth
+40% of your grade. You work alone, with your coding agent, ChatGPT EDU, the
+internet, and your notes, but no help from any person. You get a real public
+business dataset you haven't seen, a supplied script that runs any
+specification (version of the analysis) from a menu, and one decision
+question. You run a family of specifications, choose one by a rule you wrote
+first, and defend it.</p>
+<figure class="s8fig" id="fig-finalnight">
+<pre class="s8svg" role="none"><svg viewBox="0 0 960 266" role="img" aria-labelledby="fig-finalnight-t"><title id="fig-finalnight-t">The final exam night: four checkpoints and the points</title><line x1="40" y1="60" x2="920" y2="60" stroke="#1f3864" stroke-width="4"/><circle cx="40" cy="60" r="10" fill="#1f3864"/><text x="40" y="34" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">6:00 p.m.</text><text x="40" y="98" font-size="14" fill="#1a1a1a" font-weight="600">Question sheet and ZIP</text><text x="40" y="118" font-size="13" fill="#404040">data and the script</text><circle cx="260" cy="60" r="10" fill="#c55a11"/><text x="260" y="34" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">7:00 p.m.</text><line x1="260" y1="70" x2="260" y2="124" stroke="#c55a11" stroke-width="1.5"/><text x="246" y="142" font-size="14" fill="#1a1a1a" font-weight="600">Upload decision_rule.md</text><text x="246" y="162" font-size="13" fill="#404040">before any search</text><circle cx="590" cy="60" r="10" fill="#1f3864"/><text x="590" y="34" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">8:30 p.m.</text><text x="590" y="98" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">Stop searching</text><text x="590" y="118" font-size="13" fill="#404040" text-anchor="middle">choose, then check once</text><circle cx="920" cy="60" r="10" fill="#1f3864"/><text x="920" y="34" font-size="16" fill="#1a1a1a" text-anchor="middle" font-weight="600">10:00 p.m.</text><text x="920" y="98" font-size="14" fill="#1a1a1a" text-anchor="end" font-weight="600">Upload one Markdown file</text><text x="920" y="118" font-size="13" fill="#404040" text-anchor="end">memo last, AI record at the end</text><text x="40" y="204" font-size="14" fill="#404040" font-weight="600">Points (100); the score your shipped specification achieves earns 0</text><rect x="40" y="216" width="172" height="40" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="128" y="241" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">The search · 20</text><rect x="216" y="216" width="304" height="40" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="370" y="241" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">The discipline · 35</text><rect x="524" y="216" width="216" height="40" fill="#d9e1f2" stroke="#1f3864" stroke-width="1.5" rx="4"/><text x="634" y="241" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">The defence · 25</text><rect x="744" y="216" width="172" height="40" fill="#fbe5d6" stroke="#c55a11" stroke-width="1.5" rx="4"/><text x="832" y="241" font-size="14" fill="#1a1a1a" text-anchor="middle" font-weight="600">The memo · 20</text></svg></pre>
+<figcaption>Monday, October 26, 6:00–10:00 p.m., GARFF 1120. The decision rule goes in at 7:00, before the search; the discipline band is the largest.</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th scope="col">Graded on</th>
+<th scope="col" align="right">Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The search: how broad and sensible your set of specifications is</td>
+<td align="right">20</td>
+</tr>
+<tr>
+<td>The discipline: held-out testing, intervals, multiple comparisons, and a decision rule written before you search</td>
+<td align="right">35</td>
+</tr>
+<tr>
+<td>The defence: why this specification and not the runners-up</td>
+<td align="right">25</td>
+</tr>
+<tr>
+<td>The memo: at most 400 words to a named executive, including what would change your mind</td>
+<td align="right">20</td>
+</tr>
+<tr>
+<td>The score your shipped specification achieves</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3>Exam night, and where you practiced it</h3>
+<p>The night works like the cases. At 6:00 you get a question sheet and a ZIP
+with the data and the script. You upload a short <code>decision_rule.md</code> to Canvas
+by 7:00, search until about 8:30, choose and check once, and upload one
+Markdown answer file by 10:00, with the memo as its last section and an AI
+record at the end. There is no Git, repository, or PDF. The exam guide,
+posted after tonight's class, has the clock, the points for every part, and
+how to practise.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">On exam night</th>
+<th scope="col">Where you practiced it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Write the decision rule before searching</td>
+<td>Choosing on validation before the final check, in all three cases</td>
+</tr>
+<tr>
+<td>Report how many specifications you tried and what that does to your winner</td>
+<td>Cases 1–3, and the noise floor in Session 1</td>
+</tr>
+<tr>
+<td>Put a paired interval on each difference</td>
+<td>Cases 1–3</td>
+</tr>
+<tr>
+<td>Check a result before you believe it</td>
+<td>Tonight's eight questions and speed claims</td>
+</tr>
+<tr>
+<td>Keep a log of what your agent did</td>
+<td>Your case AI records</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Before Monday:</strong> sign in to your coding agent and test it, and check that
+<code>python -m pip install numpy pandas scikit-learn</code> works in a fresh virtual
+environment on Python 3.11 to 3.13.</p>
+<hr>
+<h2>Beyond today</h2>
+<table>
+<thead>
+<tr>
+<th scope="col">Topic</th>
+<th scope="col">One line</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bigger models on your laptop</td>
+<td>With 16 GB of memory, 4-bit models up to about 14 billion parameters run; mixture-of-experts models such as Qwen3.5-35B-A3B need about 22 GB at 4 bits.</td>
+</tr>
+<tr>
+<td>Desktop apps</td>
+<td>LM Studio and Ollama wrap engines like llama.cpp in a friendlier window and download models for you.</td>
+</tr>
+<tr>
+<td>Apple's own engine</td>
+<td>On a Mac, MLX runs many of the same models; Bonsai 2 ships MLX versions too.</td>
+</tr>
+<tr>
+<td>Your coding agent on a local model</td>
+<td>Some coding agents can be pointed at a local server instead of their provider, but a 2B model is too weak to drive an agent well.</td>
+</tr>
+<tr>
+<td>Serving many users</td>
+<td>vLLM and SGLang serve one model to many users on data-center GPUs; that is where mixture of experts and speculative decoding pay off most.</td>
+</tr>
+</tbody>
+</table>
+<div class="watch"></div>
+
+<p><strong>Watch (optional).</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=LPZh9BOjkQs">3Blue1Brown, “Large Language Models explained briefly”</a>, 8 minutes: a model as a machine that predicts the next token, with the probabilities you saw in section 7.</li>
+<li><a href="https://www.youtube.com/watch?v=K75j8MkwgJ0">Matt Williams, “Optimize Your AI - Quantization Explained”</a>, 12 minutes: what Q4 and Q8 mean, and the memory the conversation itself takes.</li>
+<li><a href="https://www.youtube.com/watch?v=sYDlVVyJYn4">IBM Technology, “What is Mixture of Experts?”</a>, 8 minutes: experts, the router, and why only a few run per token.</li>
+<li><a href="https://www.youtube.com/watch?v=VkWlLSTdHs8">IBM Technology, “Faster LLMs: Accelerate Inference with Speculative Decoding”</a>, 10 minutes: guess, check, and keep, as in section 11.</li>
+<li><a href="https://www.youtube.com/watch?v=S-8yr_RibJ4">Efficient NLP, “Speculative Decoding: When Two LLMs are Faster than One”</a>, 13 minutes: the same idea in more depth, including why the reply doesn't change.</li>
+</ul>
+<hr>
+<h2>Sources</h2>
+<p>Every measured number in this handout comes from one run on October 18,
+2026, of llama.cpp b11714 built from source on one 16-core CHPC compute node
+(Intel Xeon Gold 6230R, no GPU), using the two pinned files above; the cache
+types, batch sizes, and vision test on the "Deeper" screens come from a second
+run on October 19 on the same kind of node, with the same build. The commands and
+their full output are kept with the course materials. Speeds on your laptop
+will differ; answers at temperature 0 may differ slightly between chips.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">What</th>
+<th scope="col">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>llama.cpp</td>
+<td><a href="https://github.com/ggml-org/llama.cpp">github.com/ggml-org/llama.cpp</a>, release b11714 (October 17, 2026), MIT licence; its <code>docs/speculative.md</code> for the guessers</td>
+</tr>
+<tr>
+<td>Qwen3.5-2B</td>
+<td><a href="https://huggingface.co/Qwen/Qwen3.5-2B">Qwen/Qwen3.5-2B model card</a> (layer layout, MTP, recommended settings), Apache 2.0; the file is from <a href="https://huggingface.co/unsloth/Qwen3.5-2B-MTP-GGUF">unsloth/Qwen3.5-2B-MTP-GGUF</a></td>
+</tr>
+<tr>
+<td>Bonsai 2 2B</td>
+<td><a href="https://huggingface.co/prism-ml/Ternary-Bonsai-2-2B-gguf">prism-ml/Ternary-Bonsai-2-2B-gguf</a> and PrismML's <a href="https://github.com/PrismML-Eng/Bonsai-demo">Bonsai-demo</a> repository, Apache 2.0</td>
+</tr>
+<tr>
+<td>DeepSeek-V4.1-Flash</td>
+<td>DeepSeek's <a href="https://api-docs.deepseek.com/news/news260910/">release note</a> (September 10, 2026), its <a href="https://arxiv.org/abs/2609.19969">technical report</a>, and the <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">weights</a> (MIT licence, 510 GB)</td>
+</tr>
+<tr>
+<td>DeepSeek-V3's MTP results</td>
+<td>DeepSeek-AI, <em>DeepSeek-V3 Technical Report</em>, <a href="https://arxiv.org/abs/2412.19437">arXiv:2412.19437</a>, section 5.4.3</td>
+</tr>
+<tr>
+<td>Qwen3.5-35B-A3B</td>
+<td><a href="https://huggingface.co/Qwen/Qwen3.5-35B-A3B">Qwen/Qwen3.5-35B-A3B model card</a>: 35 billion parameters, 3 billion active, 256 experts</td>
+</tr>
+<tr>
+<td>Support dates</td>
+<td>llama.cpp pull requests <a href="https://github.com/ggml-org/llama.cpp/pull/24162">#24162</a> (DeepSeek V4), <a href="https://github.com/ggml-org/llama.cpp/pull/24231">#24231</a> (sparse-attention operation), <a href="https://github.com/ggml-org/llama.cpp/pull/28696">#28696</a> (DeepSeek V4.1, open), <a href="https://github.com/ggml-org/llama.cpp/pull/25294">#25294</a> (experts from disk, open), <a href="https://github.com/ggml-org/llama.cpp/pull/25419">#25419</a>, <a href="https://github.com/ggml-org/llama.cpp/pull/25707">#25707</a>, <a href="https://github.com/ggml-org/llama.cpp/pull/29600">#29600</a>, and <a href="https://github.com/ggml-org/llama.cpp/pull/30447">#30447</a> (<code>Q2_0</code> and Bonsai 2), and issue <a href="https://github.com/ggml-org/llama.cpp/issues/26369">#26369</a> (DeepSeek V4 follow-ups); DeepSeek's <a href="https://api-docs.deepseek.com/updates/">change log</a> for release dates</td>
+</tr>
+<tr>
+<td>Quantization formats</td>
+<td>llama.cpp's <a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md">quantize README</a>; the file list of <a href="https://huggingface.co/unsloth/Qwen3.5-2B-MTP-GGUF/tree/e05864f8066d874d5f85aaff007ae57a2a7d1efe">unsloth/Qwen3.5-2B-MTP-GGUF</a> at the pinned revision (Hugging Face API, October 19); Unsloth's <a href="https://unsloth.ai/docs/basics/unsloth-dynamic-2.0-ggufs">Dynamic 2.0</a> and <a href="https://unsloth.ai/docs/basics/dynamic-3.0-ggufs">Dynamic 3.0</a> notes</td>
+</tr>
+<tr>
+<td>KV cache types and batch sizes</td>
+<td>llama.cpp b11714 <code>common/arg.cpp</code> and <code>common/common.h</code> (defaults); pull request <a href="https://github.com/ggml-org/llama.cpp/pull/7527">#7527</a> (cache-type combinations); Qwen2.5-32B's published configuration (64 layers, 8 key-value heads of 128) for the 8 GiB example</td>
+</tr>
+<tr>
+<td>Abliteration</td>
+<td>Arditi and others, "Refusal in Language Models Is Mediated by a Single Direction", <a href="https://arxiv.org/abs/2406.11717">arXiv:2406.11717</a> (NeurIPS 2024); M. Labonne, <a href="https://huggingface.co/blog/mlabonne/abliteration">"Uncensor any LLM with abliteration"</a> (June 13, 2024); <a href="https://github.com/p-e-w/heretic">p-e-w/heretic</a>; E. Hartford, <a href="https://erichartford.com/uncensored-models">"Uncensored Models"</a>; <a href="https://www.npr.org/2026/05/31/nx-s1-5816391/ai-safety-concerns-danger-open-weight-models-risks">NPR, May 31, 2026</a>; "Abliteration Is Not a Scalpel", <a href="https://arxiv.org/abs/2607.17427">arXiv:2607.17427</a></td>
+</tr>
+<tr>
+<td>Multi-token prediction</td>
+<td>DeepSeek-V3 report section 2.2; Gloeckle and others, "Better &amp; Faster Large Language Models via Multi-token Prediction", <a href="https://arxiv.org/abs/2404.19737">arXiv:2404.19737</a>; llama.cpp pull request <a href="https://github.com/ggml-org/llama.cpp/pull/22673">#22673</a> (MTP, merged May 16, 2026); the <code>blk.24.nextn</code> tensors read from tonight's file</td>
+</tr>
+<tr>
+<td>n-gram memory</td>
+<td>DeepSeek, "Conditional Memory via Scalable Lookup" (Engram), <a href="https://arxiv.org/abs/2601.07372">arXiv:2601.07372</a>; the <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash">DeepSeek-V4.1-Flash</a> configuration and <a href="https://recipes.vllm.ai/deepseek-ai/DeepSeek-V4.1-Flash">vLLM recipe</a>; <a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Qwen/Qwen3.8-Flash-Next</a> model card and <a href="https://arxiv.org/abs/2608.30320">arXiv:2608.30320</a>; llama.cpp's <code>docs/speculative.md</code> for <code>ngram-simple</code></td>
+</tr>
+<tr>
+<td>Vision</td>
+<td>The <code>vision_config</code> of <a href="https://huggingface.co/Qwen/Qwen3.5-2B">Qwen/Qwen3.5-2B</a> (24-layer encoder, 16-pixel patches, 2 × 2 merge); the <a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen/Qwen3.8-27B</a> model card; <a href="https://huggingface.co/unsloth/Qwen3.5-2B-MTP-GGUF">unsloth/Qwen3.5-2B-MTP-GGUF</a> model card (MTP and <code>--mmproj</code> together not yet supported)</td>
+</tr>
+</tbody>
+</table>
+</main>
+</body>
+</html>

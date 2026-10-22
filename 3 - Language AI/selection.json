@@ -1,0 +1,6 @@
+{
+  "method": "bge_small",
+  "reason": "BGE-small achieved the highest validation nDCG@10 (0.739) and Exact@1 (0.525) among the three methods. Its nDCG@10 improvement over keyword search was 0.064, with a paired 95% confidence interval of 0.028 to 0.100.",
+  "saved_at_utc": "2026-10-20T20:27:22Z",
+  "validation_metrics_sha256": "9506a6f8459f9b258f8dece8c8d5f0fe5dabf86c49238e61711519ecbadbd874"
+}

@@ -1,0 +1,5 @@
+method,split,n,ndcg10,exact1_hits,exact1,exact1_low,exact1_high,judged10,baseline,ndcg10_diff,diff_low,diff_high,beats_baseline,loses_to_baseline
+bge_small,validation,200,0.7393,105,0.5250,0.4560,0.5931,0.8805,bge_small,0.0000,0.0000,0.0000,0,0
+keyword,validation,200,0.6750,90,0.4500,0.3826,0.5192,0.8905,bge_small,-0.0644,-0.1004,-0.0281,60,91
+bge_base,validation,200,0.7414,104,0.5200,0.4510,0.5882,0.8825,bge_small,0.0021,-0.0122,0.0157,77,65
+minilm,validation,200,0.7357,96,0.4800,0.4118,0.5490,0.8780,bge_small,-0.0037,-0.0292,0.0194,71,62
